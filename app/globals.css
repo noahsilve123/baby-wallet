@@ -1,0 +1,157 @@
+@import "tailwindcss";
+
+/*
+  Default light theme variables. System dark-mode media queries were
+  removed so the site matches the rest of the website by default.
+  If you want dark mode later, enable it via a `dark` class and
+  Tailwind's `darkMode: 'class'` in `tailwind.config.cjs`.
+*/
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --gold: #c9a12d;
+  --gold-light: #f8edd0;
+  --crimson: #7b1222;
+  --crimson-dark: #4f0b13;
+  --crimson-soft: #fbeaec;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Headings use Source Serif 4 when available */
+h1, h2, h3 {
+  font-family: var(--font-source-serif, Georgia, 'Times New Roman', serif);
+}
+
+/* Site title uses Amasis MT Pro Light with gold outline */
+.site-title {
+  font-family: 'Amasis MT Pro Light', 'Times New Roman', Georgia, serif;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  font-size: 1.5rem; /* 24px */
+  line-height: 1.05;
+  color: var(--crimson);
+  text-shadow: 0 2px 6px rgba(79, 11, 19, 0.15);
+}
+
+/* Simple fade-up animation for in-view entrance of elements */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.service-card {
+  opacity: 0;
+  transform: translateY(10px);
+  animation-name: fadeUp;
+  animation-duration: 600ms;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(.2,.9,.3,1);
+}
+.service-card[data-delay='1'] { animation-delay: 80ms; }
+.service-card[data-delay='2'] { animation-delay: 180ms; }
+.service-card[data-delay='3'] { animation-delay: 280ms; }
+
+
+/* Hero embellishments */
+.pattern-grid {
+  background-image:
+    linear-gradient(rgba(15, 23, 42, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 23, 42, 0.05) 1px, transparent 1px);
+  background-size: 70px 70px;
+}
+
+.glass-card {
+  border-radius: 1rem;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  padding: 1.25rem;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(14px);
+}
+
+.glass-panel {
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 1.5rem;
+  border: 1px solid rgba(123, 18, 34, 0.25);
+  box-shadow: 0 25px 45px rgba(79, 11, 19, 0.12);
+  backdrop-filter: blur(25px);
+}
+
+.stat-dot {
+  display: inline-block;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 999px;
+  background: rgba(123, 18, 34, 0.1);
+  border: 1px solid rgba(123, 18, 34, 0.35);
+}
+
+.gold-pill {
+  background: var(--gold-light);
+  color: #7a5a16;
+  border: 1px solid rgba(201, 161, 45, 0.4);
+}
+
+.gold-divider {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  border-radius: 999px;
+}
+
+.crimson-pill {
+  background: var(--crimson-soft);
+  color: var(--crimson);
+  border: 1px solid rgba(123, 18, 34, 0.2);
+}
+
+.crimson-link {
+  color: var(--crimson);
+  transition: color 160ms ease;
+}
+
+.crimson-link:hover {
+  color: var(--crimson-dark);
+}
+
+.btn-crimson {
+  background: var(--crimson);
+  color: #fff;
+  box-shadow: 0 15px 25px rgba(79, 11, 19, 0.2);
+}
+
+.btn-crimson:hover {
+  background: var(--crimson-dark);
+}
+
+.btn-crimson-outline {
+  border: 1.5px solid var(--crimson);
+  color: var(--crimson);
+  background: transparent;
+}
+
+.btn-crimson-outline:hover {
+  background: var(--crimson-soft);
+}
+
+
+/* Footer: light by default */
+footer {
+  background-color: #f9fafb;
+  color: #111827;
+}
+footer a,
+footer p,
+footer small {
+  color: #374151;
+}

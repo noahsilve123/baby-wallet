@@ -1,0 +1,2667 @@
+2025–26 FAFSA® Preview Presentation
+October 2024
+Topics
+• Overview
+• Dependent Student Invites Parent
+• Parent Starts and Submits a FAFSA® Form Without Student Consent and Approval or Signature
+• Independent Student Invites Student Spouse
+• Independent Student Who Is Single and a Non-Tax Filer
+• FAFSA Submission Summary
+• Dependent Student and Direct Unsubsidized Loan
+• Unaccompanied Homeless Youth
+• Provisionally Independent Student
+• Student Adds Schools to FAFSA® Form
+• Student Submits a FAFSA® Correction to Homeless Determination
+• Student Manages FAFSA® Contributors
+• Parent Submits a Required FAFSA® Correction for Missing Consent and Approval
+2
+Overview (1 of 4) 
+• The 2025–26 Free Application for Federal Student Aid (FAFSA®) Preview Presentation 
+provides screenshots that financial aid professionals, mentors, and counselors can use as a 
+guide for the 2025–26 online FAFSA form. The screenshots and information provided can be 
+used to create and/or modify presentations for professional trainings and high school FAFSA 
+completion nights.
+• The screenshots are intended to show what the FAFSA form will look like and present a 
+majority of the questions displayed on the FAFSA
+ form.
+• The 2025–26 version of the FAFSA form will become available by Dec. 1, 2024.
+3
+Dependent Student Invites Parent
+4
+Dependent Student FAFSA® Landing Page
+This is the main FAFSA® landing page. 
+On this page, students are directed to 
+"Start New Form" or “Edit Existing 
+Forms." For this section of the 
+presentation, the student is beginning a 
+new application.
+5
+Dependent Student Log In
+If the student selects "Start New Form" from 
+the FAFSA® landing page and they are not 
+logged in to StudentAid.gov, they are taken 
+to the "Log In" page to enter their 
+credentials. To access the FAFSA form, all 
+students are required to have an FSA ID 
+(StudentAid.gov account username and 
+password). If the student doesn't have an 
+FSA ID, they can select "Create an 
+Account."
+6
+Dependent Student Roles
+After logging in, the student can select 
+the applicable role to fill out the 
+FAFSA
+® form: "Student" or "Parent." 
+The student selects "Student." 
+7
+Student Onboarding (1 of 4)
+When the student starts the 2025–26 
+FAFSA® form for the first time, they are 
+taken through the FAFSA onboarding 
+process. The first onboarding page 
+provides an introduction of the FAFSA 
+form and an accompanying video. 
+8
+Dependent Student Onboarding (2 of 4)
+The second FAFSA® onboarding page 
+provides information about contributors 
+that may be required to participate in the 
+student’s FAFSA form, including an 
+accompanying video that explains 
+contributors, and information on how the 
+student will invite them. Documents that 
+may be needed to fill out the form are also 
+included on this page. 
+9
+Dependent Student Onboarding (3 of 4)
+The third FAFSA® onboarding page 
+provides information about what the 
+student can expect when completing their 
+FAFSA form. This includes information 
+about consent and approval, a time 
+estimate for completing the form, and that 
+they can save the form and return later if 
+needed, along with an accompanying 
+video.
+10
+Dependent Student Onboarding (4 of 4)
+The last FAFSA® onboarding page 
+provides information about what to 
+expect once the FAFSA form is 
+completed, submitted, and processed. 
+On this page, the student can select 
+"Start FAFSA Form" to begin. 
+11
+Dependent Student Identity Information
+This is the first page within the student 
+section. The student can verify that their 
+personal information is correct. To update 
+any of the personal information, the student 
+must access their Account Settings on 
+StudentAid.gov. 
+12
+Dependent Student State of Legal Residence
+The student is asked about their state of 
+legal residence. The student selects the 
+state from a drop-down box and 
+provides the month and year when they 
+became a legal resident.
+13
+Dependent Student Provides Consent and Approval
+This page informs the student about 
+consent, approval, and the use of their 
+federal tax information. By providing 
+consent and approval, the student’s 
+federal tax information is transferred 
+directly into the FAFSA
+® form from the 
+IRS to help complete the "Student 
+Financials" section. 
+14
+Dependent Student Provides Consent and Approval (Continued)
+This is a continuation of the consent and approval page. Frequently asked questions about consent and 
+approval are also provided that the student can expand and collapse. The student selects "Approve" to 
+provide consent and approval, and they are taken to the next page.
+15
+Dependent Student Imports IRS Information 
+This page imports the student’s federal tax 
+information by directly transferring it into 
+the FAFSA
+® form from the IRS to help 
+complete the "Student Financials" section. 
+16
+Dependent Student Imports IRS Information 
+(Continued)
+This page displays the results from the 
+IRS import for the student. For this 
+scenario, the student is starting a new 
+FAFSA
+® form and there is no federal tax 
+information available from the IRS. 
+17
+Dependent Student Personal Circumstances
+This is the first page within the "Student 
+Personal Circumstances" section. It 
+provides an overview of the section.
+18
+Dependent Student Marital Status
+The student is asked about their marital 
+status. The student selects the "Single 
+(never married)" option.
+19
+Dependent Student College or Career School Plans
+The student is asked about their college 
+grade level for the 2025–26 school year 
+and if they will have their first bachelor’s 
+degree. The student selects that they will 
+be a "First year (freshman)" and that they 
+will not have their first bachelor’s degree.
+20
+Dependent Student Personal Circumstances (Continued)
+The student is asked if any of the listed 
+personal circumstances apply to them. 
+The student selects "None of these apply." 
+21
+Dependent Student Homelessness
+The student is asked if they 
+were homeless or at risk of 
+being homeless. The student 
+selects "No."
+22
+Dependent Student Unusual Circumstances
+The student is asked if unusual 
+circumstances prevent them from 
+contacting their parent(s). The student 
+selects "No."
+23
+Student Dependency Status: Dependent Student
+Based on the answers provided by the 
+student, they are considered a dependent 
+student. The student is asked if they want 
+a financial aid administrator to determine 
+their eligibility for a Direct Unsubsidized 
+Loan only. This is an option if the student’s 
+parents are unwilling to provide 
+information. The student selects "No,“ and 
+if the student had selected “Yes,” a modal 
+would appear to warn them about missing 
+out on other potential federal student aid.
+24
+Dependent Student: Tell Us About Your Parents
+As the student is considered dependent, 
+they are asked to provide information 
+about their parents. The FAFSA
+® form 
+considers their “parent" to be their legal 
+(biological or adoptive) parent. The 
+student is asked if their parents are 
+married. The student selects "Yes" and is 
+instructed to provide information about 
+both their parents on the FAFSA form.
+25
+Dependent Student Invites Parents to FAFSA® Form
+The student is asked to enter personal information about their parents in order to send them an 
+invite to their FAFSA® form. In this scenario, the student invites one parent.
+26
+Introduction: Dependent Student Demographics
+This is the first page within the 
+"Student Demographics" section. It 
+provides an overview of the section.
+27
+Dependent Student Demographic Information
+The student is asked about their gender 
+identity. The student selects “Prefer not to 
+answer.”
+28
+Dependent Student Race and Ethnicity
+The student is asked if they are of Hispanic, 
+Latino, or Spanish origin. The student 
+selects the checkboxes that apply to them. 
+29
+Dependent Student Race and Ethnicity (Continued)
+This is a continuation of the student race 
+and ethnicity page. The student is asked to 
+identify their race. The student selects the 
+checkboxes that apply to them. 
+30
+Dependent Student Citizenship Status 
+The student is asked about their 
+citizenship status. The student selects the 
+"U.S. citizen or national" option.
+31
+Dependent Student’s Parent Education Status
+The student is asked about their parents’ 
+education status. The student selects the 
+"Neither parent attended college" option.
+32
+Dependent Student’s Parent Killed in Line of Duty
+The student is asked if their parent 
+was killed in the line of duty. The 
+student selects the "No" option.
+33
+Dependent Student High School Completion Status
+The student is asked about what their 
+high school completion status will be 
+when they start the 2025–26 school year. 
+The student selects the "High school 
+diploma" option.
+34
+Dependent Student High School Information
+The student is asked which high school they did or will graduate from. The student enters their high school’s 
+state and city. After selecting "Search," they select the correct high school from the search results.
+35
+Dependent Student Confirms High School
+The student has the option to edit the high 
+school information presented on this page 
+by selecting "Edit," which will return them 
+to the high school information page. The 
+student confirms their high school 
+information and selects "Continue" to 
+proceed to the next section.
+36
+Introduction: Dependent Student Financials
+This is the first page within the "Student 
+Financials" section. It provides an 
+overview of the section. The student can 
+select the hyperlink if they want to learn 
+about special financial circumstances. 
+37
+Dependent Student Tax Filing Status
+The student is asked about 
+their tax filing status. The 
+student selects "Yes" to "Did 
+or will the student file a 2023 
+IRS Form 1040 or 1040-
+NR?"
+38
+Dependent Student Tax Return Information
+The student is asked about their 
+2023 tax return. The student 
+selects "Single" as their filing 
+status.
+39
+Dependent Student Tax Return Information (Continued)
+The student is asked about their 
+taxes, income, and other financial 
+information. The student enters 
+dollar amounts in the responses. 
+40
+Dependent Student Assets
+The student is asked about their assets. 
+The student enters a response in each 
+entry field.
+41
+Introduction: Dependent Student Select Colleges
+This is the first page in the "Select 
+Colleges and Career Schools" section, 
+which is the final part of the FAFSA
+® 
+form’s student section to require 
+information. It provides an overview of 
+the section.
+42
+Dependent Student College Search
+The student is asked to search for the 
+colleges and/or career schools they 
+would like to receive their FAFSA
+® 
+information. The student searches for a 
+school by entering a state, city, and/or 
+school name and selecting "Search." If 
+the student can’t find a school 
+searching by school name or state, 
+they can search by school code. The 
+student must add at least one college 
+or career school to continue.  
+43
+Dependent Student College Search (Continued 1 of 2)
+After entering a school’s state, city, 
+and/or school name and selecting 
+"Search," the student selects the 
+correct school(s) from the search 
+results. Students can send their 
+FAFSA
+® information to a maximum 
+of 20 schools.
+44
+Dependent Student College Search (Continued 2 of 2)
+After the student selects the correct 
+school(s) from the search results, 
+they can review the school(s) they 
+chose before continuing.
+45
+Dependent Student Review Page
+The review page displays the responses that 
+the student has provided in the FAFSA® form. 
+The student can view all their responses by 
+selecting "Expand All" or expand each section 
+individually. To edit a response, the student 
+can select the question’s hyperlink to be taken 
+to the corresponding page. 
+46
+Dependent Student Review Page (Continued)
+This is a continuation of the student 
+review page. Since the student invited 
+their parent to their form, they see the 
+parent contributor section and the 
+status of their parent’s invite.
+47
+Dependent Student Signature
+On this page, the student reviews the 
+terms and conditions of the FAFSA® form 
+and what they’ll agree to if they sign the 
+form. 
+48
+Dependent Student Signature (Continued)
+This is a continuation of the student 
+signature page. After agreeing to the 
+terms and conditions of the FAFSA
+® form 
+and signing, the student is able to submit 
+their section of the FAFSA form. Since 
+parent information has not been provided, 
+the FAFSA form is not considered 
+complete and can’t be processed yet. 
+49
+Dependent Student Section Complete
+Upon signing the student section, the student 
+is presented “The student section is 
+complete!” page. The student is reminded 
+that their FAFSA
+® form is not completed and 
+can’t be submitted until the parent completes 
+the contributor section of the form and signs 
+it. This page also displays next steps the 
+student can take, including tracking and 
+managing their form.
+50
+Dependent Student Section Complete (Continued)
+This is a continuation of the student section 
+complete page. This page displays 
+information for the student about next steps, 
+including checking their email and a reminder 
+that their FAFSA
+® form is not completed and 
+can’t be submitted until the parent completes 
+the contributor section of the form and signs 
+it. Next, in this scenario, the student’s invited 
+parent will enter the FAFSA form and 
+complete the parent section.
+51
+Dependent Student’s Parent Email
+This is NOT a view within StudentAid.gov 
+or the FAFSA® form. This view 
+demonstrates a parent opening the 
+FAFSA invitation from their email. The 
+parent selects "Get Started" and is taken 
+to StudentAid.gov.
+52
+Dependent Student’s Parent Log In
+The parent is taken from their email to the 
+"Log In" page to enter their credentials. To 
+access the FAFSA® form, all users are 
+required to have an FSA ID 
+(StudentAid.gov account username and 
+password). If the parent doesn't have an 
+FSA ID, they can select "Create an 
+Account."
+53
+Parent Status Center – My Activity
+After successfully logging in, the parent is 
+taken to their "My Activity" section. The 
+parent sees an invitation to be a 
+contributor on the student’s FAFSA
+® form.
+54
+Parent Status Center – My Activity (Continued)
+When the parent selects "Accept 
+Invitation," a pop-up window appears 
+to remind the parent that their 
+personal information is needed to fill 
+out the student’s FAFSA
+® form. The 
+parent selects "Continue" to agree to 
+sharing their information and enters 
+the FAFSA form. 
+55
+Dependent Student’s Parent Onboarding (1 of 4)
+When the parent enters a 2025–26 
+FAFSA® form for the first time, they are 
+taken through the FAFSA onboarding 
+process. The first onboarding page 
+provides an introduction of the FAFSA 
+form and an accompanying video.
+56
+Dependent Student’s Parent Onboarding (2 of 4)
+The second FAFSA® onboarding page 
+provides information about contributors 
+that may be required to participate in the 
+student’s FAFSA form, including an 
+accompanying video that explains 
+contributors, and information on how the 
+parent will invite them. Documents that 
+may be needed to fill out the form are also 
+included on this page. 
+57
+Dependent Student’s Parent Onboarding (3 of 4)
+The third FAFSA® onboarding page 
+provides information about what the 
+parent can expect when completing 
+the student’s FAFSA form. This 
+includes information about consent 
+and approval, a time estimate to 
+complete the form, and that they can 
+save the form and return later if 
+needed, along with an accompanying 
+video.
+58
+Dependent Student’s Parent Onboarding (4 of 4)
+The last onboarding page provides 
+information about what to expect once the 
+FAFSA
+® form is completed, submitted, 
+and processed. On this page, the parent 
+selects "Start FAFSA Form" to begin the 
+parent section.
+59
+Dependent Student’s Parent Identity Information
+This is the first page within the parent 
+section. The parent can verify that their 
+personal information is correct. To update 
+any of the personal information, the parent 
+must access their Account Settings on 
+StudentAid.gov. 
+60
+Dependent Student’s Parent Identity Information 
+(Continued)
+This is a continuation of the first page 
+within the parent section. The parent can 
+verify their mailing address on this part of 
+the page. To update this information, the 
+parent must access their Account Settings 
+on StudentAid.gov. 
+61
+Dependent Student’s Parent Provides 
+Consent and Approval
+This page informs the parent about 
+consent, approval, and the use of their 
+federal tax information. By providing 
+consent and approval, the parent’s federal 
+tax information is transferred directly into 
+the FAFSA
+® form from the IRS to help 
+complete the "Parent Financials" section. 
+62
+Dependent Student’s Parent Provides Consent and 
+Approval (Continued)
+This is a continuation of the 
+consent and approval page. 
+Frequently asked questions 
+about consent and approval 
+are also provided that the 
+parent can expand and 
+collapse. The parent selects 
+"Approve" to provide consent 
+and approval, and they are 
+taken to the next page.
+63
+Dependent Student’s Parent Imports IRS Information
+This page imports the 
+parent’s federal tax 
+information by directly 
+transferring it into the 
+FAFSA
+® form from the IRS 
+to help complete the 
+“Parent Financials" section. 
+64
+Dependent Student’s Parent Imports IRS Information 
+(Continued)
+This page displays the 
+results from the IRS import 
+for the parent. For this 
+scenario, the parent is 
+contributing to a new 
+FAFSA
+® form and there is 
+no federal tax information 
+available from the IRS. 
+65
+Introduction: Dependent Student’s Parent Demographics
+This is the first page in the "Parent Demographics" section. It provides an overview of the section.
+66
+Dependent Student’s Parent Current Marital Status
+The parent is asked about their current 
+marital status. They select the "Married 
+(not separated)" option. 
+67
+Dependent Student’s Parent State of Legal Residence
+The parent is asked about their state of 
+legal residence. The parent selects the 
+state from a drop-down box and provides 
+the month and year when they became a 
+legal resident.
+68
+Introduction: Dependent Student’s Parent Finances
+This is the first page within the "Parent Financials" section. It provides an overview of the section.
+69
+Dependent Student’s Parent Federal Benefits Received 
+This page asks the parent if they or anyone 
+in their family has received federal benefits. 
+The parent selects "None of these apply."
+70
+Dependent Student’s Parent Tax Filing Status
+This page asks the parent about their 
+tax filing status. The parent selects 
+"Yes" to "Did or will the parent file a 
+2023 IRS Form 1040 or 1040-NR?" 
+and “Yes” to “Did or will the parent file 
+a 2023 joint tax return with their 
+current spouse?”
+71
+Dependent Student’s Parent Family Size
+This page displays the family size for the 
+student. The parent has the option to 
+enter the number of children or other 
+dependents who live with the parent and 
+will receive more than half of their support 
+from the parent between July 1, 2025, and 
+June 30, 2026. 
+72
+Dependent Student’s Parent Number in College
+This page asks the parent how many 
+people in the family will be in college 
+between July 1, 2025, and June 30, 2026. 
+The parent enters a response into the 
+entry field.
+73
+Dependent Student’s Parent Tax Return Information
+The parent is asked questions about their 2023 tax return. The parent enters a response in each entry field. 
+74
+Dependent Student’s Parent Assets
+The parent is asked about their assets. 
+The parent enters a response in each 
+entry field. 
+75
+Dependent Student’s Other Parent Information 
+The parent is asked to provide information 
+about their spouse or partner. In this 
+example, the other parent does not need 
+to contribute to the student’s FAFSA
+® form 
+because the parents filed taxes jointly. 
+After providing the other parent’s 
+information, all required parent information 
+will be complete. 
+76
+Dependent Student’s Parent Review Page
+The review page displays the responses 
+that the parent has provided in the FAFSA® 
+form. The parent can only view responses 
+within the parent section of the student’s 
+FAFSA form. The parent can view all their 
+responses by selecting "Expand All" or 
+expand each section individually. To edit a 
+response, the parent can select the 
+question’s hyperlink to be taken to the 
+corresponding page.
+77
+Dependent Student’s Parent Signature
+On this page, the parent acknowledges 
+the terms and conditions of the FAFSA® 
+form and signs their section. Since all 
+required sections are complete, the parent 
+can both sign and submit the student’s 
+FAFSA form. 
+78
+Dependent Student FAFSA® Confirmation
+Upon submitting the student’s FAFSA® 
+form, the parent is presented an 
+abbreviated confirmation page. This page 
+displays information about tracking the 
+student’s FAFSA form and next steps. The 
+student will receive an email with the full, 
+detailed confirmation. With the student 
+and parent sections completed and 
+signed, the FAFSA form is now considered 
+complete and submitted for processing. 
+79
+Parent Starts and Submits a FAFSA® Form 
+Without Student Consent or Signature
+80
+Parent FAFSA® Landing Page
+This is the main FAFSA® form landing 
+page. On this page, students and parents 
+are directed to "Start New Form" or “Edit 
+Existing Forms." For this section of 
+the presentation, the parent is beginning a 
+new application on behalf of their child.
+81
+Parent Log In
+If the parent selects "Start New Form" 
+from the FAFSA® landing page 
+and they are not logged in 
+to StudentAid.gov, they are taken to the 
+"Log In" page to enter their credentials. 
+To access the FAFSAform, all parents 
+are required to have an FSA ID 
+(account username and password). If 
+the parent doesn't have an FSA ID, 
+they can select "Create an Account."
+82
+Parent Roles
+After logging in, the parent selects 
+the applicable role to fill out the 
+FAFSA
+® form: "Parent."
+83
+Parent’s Student Information 
+The parent is asked to provide the 
+student’s information. Since the student 
+has not started a FAFSA® form yet, they 
+will receive an email notifying them that a 
+FAFSA form was started on their behalf. 
+The student can then enter the form to 
+provide consent, sign the form, and make 
+any needed corrections.
+84
+Parent Onboarding (1 of 4)
+When the parent starts the 2025–
+26 FAFSA® form for the first time, they 
+are taken through the FAFSA onboarding 
+process. The first onboarding 
+page provides an introduction of 
+the FAFSA form and an accompanying 
+video.
+85
+Parent Onboarding (2 of 4)
+The second FAFSA® onboarding page provides 
+information about contributors that may be required 
+to participate in the student’s FAFSA form, 
+including an accompanying video that explains 
+contributors, and information on how the parent will 
+invite them. Documents that may be needed to fill 
+out the form are also included on this page within a 
+drop-down menu and may include tax returns; 
+record of child support received; current balances 
+of cash, savings, and checking accounts; and net 
+worth of investments, businesses, and farms. 
+86
+Parent Onboarding (3 of 4)
+The third FAFSA® onboarding page 
+provides information about what the 
+parent can expect when completing 
+the student’s FAFSA form. This 
+includes information about consent 
+and approval, a time estimate to 
+complete the form, and that they can 
+save the form and return later if 
+needed, along with an accompanying 
+video.
+87
+Parent Onboarding (4 of 4)
+The final FAFSA® onboarding page 
+provides information about what 
+to expect once the FAFSA form is 
+completed, submitted, and processed. 
+On this page, the parent can 
+select "Start FAFSA Form" to begin.
+88
+Parent’s Student Identity Information
+After starting the FAFSA® form, the parent 
+sees the first page within the parent 
+section. The parent can verify that the 
+student’s personal information is correct. 
+To update any of the personal information, 
+the student must access their Account 
+Settings on StudentAid.gov. The parent 
+will not be able to update the student’s 
+information on this page. 
+89
+Parent’s Student Identity Information (Continued)
+This is a continuation of the "Parent 
+Identity Information" page. The parent can 
+verify that the student’s personal 
+information is correct. 
+90
+Parent’s Student State of Legal Residence
+The parent is asked about the student’s 
+state of legal residence. The parent 
+selects the state from a drop-down box 
+and provides the month and year when 
+the student became a legal resident.
+91
+Introduction: Parent’s Student Personal Circumstances
+This is the first page within 
+the "Student Personal Circumstances" 
+section. It provides an overview of 
+the section.
+92
+Parent’s Student Marital Status
+The parent is asked about the student’s 
+marital status. The parent selects the 
+"Single (never married)" option.
+93
+Parent’s Student College or Career School Plans
+The parent is asked about the student’s 
+college grade level for the 2025–26 
+school year and if the student will have 
+their first bachelor’s degree. The parent 
+selects that the student will be a "First 
+year (freshman)" and that they will not 
+have their first bachelor’s degree.
+94
+Parent’s Student Personal Circumstances
+The parent is asked if any of the listed 
+personal circumstances apply to the 
+student. The parent selects "None of 
+these apply."
+95
+Parent’s Student Homelessness
+The parent is asked if the student was 
+unaccompanied and either homeless 
+or at risk of being homeless. The 
+parent selects "No."
+96
+Parent’s Student Unusual Circumstances
+The parent is asked if unusual 
+circumstances prevent the student from 
+contacting their parent(s). The parent 
+selects "No."
+97
+Parent’s Student Dependency Status: Dependent Student
+Based on the answers provided by the 
+parent, the student is considered a 
+dependent student. The parent is asked if 
+they want a financial aid administrator 
+to determine the student’s eligibility for 
+a Direct Unsubsidized Loan only. This is 
+an option if they are unwilling to provide 
+their information. The parent selects "No."
+98
+Parent Identity Information
+This is the first page within the 
+parent section. The parent can verify that 
+their personal information is correct. 
+To update any of the personal 
+information, the parent must access their 
+Account Settings on StudentAid.gov. 
+99
+Parent Identity Information (Continued)
+This is a continuation of the first page 
+within the parent section. The parent can 
+verify their mailing address on this part of 
+the page. To update this information, the 
+parent must access their Account Settings 
+on StudentAid.gov. 
+100
+Parent Provides Consent and Approval
+This page informs the parent 
+about consent, approval, and the use of 
+their federal tax information. By providing 
+consent and approval, the parent’s federal 
+tax information is transferred directly into 
+the FAFSA
+® form from the IRS to help 
+complete the "Parent Financials" section. 
+101
+Parent Provides Consent and Approval (Continued)
+This is a continuation of the 
+consent and approval page. 
+Frequently asked questions 
+about consent and approval 
+are also provided that the 
+parent can expand and 
+collapse. The parent selects 
+"Approve" to provide consent 
+and approval, and they are 
+taken to the next page.
+102
+Parent Imports IRS Information
+This page imports the 
+parent’s federal tax 
+information by directly 
+transferring it into the 
+FAFSA
+® form from the IRS 
+to help complete the 
+“Parent Financials" section. 
+103
+Parent Imports IRS Information (Continued)
+This page displays the 
+results from the IRS import 
+for the parent. For this 
+scenario, the parent is 
+starting a new FAFSA and 
+there is no federal tax 
+information available from 
+the IRS. 
+104
+Introduction: Parent Demographics
+This is the first page in the "Parent 
+Demographics" section. It provides 
+an overview of the section.
+105
+Parent Current Marital Status
+The parent is asked about their current 
+marital status. They select the "Single 
+(never married)" option. 
+106
+Parent State of Legal Residence
+The parent is asked about their state of 
+legal residence. The parent selects the 
+state from a drop-down box and provides 
+the month and year when they became a 
+legal resident.
+107
+Introduction: Parent Financials
+This is the first page within the 
+"Parent Financials" section. It 
+provides an overview of the section.
+108
+Parent Federal Benefits Received 
+This page asks the parent if they or 
+anyone in their family has received federal 
+benefits. The parent selects "None of 
+these apply."
+109
+Parent Tax Filing Status
+This page asks the parent about their 
+tax filing status. The parent selects 
+"Yes" to "Did or will the parent file a 
+2023 IRS Form 1040 or 1040-NR?"
+110
+Parent Family Size
+This page displays the family size for 
+the parent. The parent has the option 
+to enter the number of children or other 
+dependents who live with the parent 
+and will receive more than half of their 
+support from the parent between July 
+1, 2025, and June 30, 2026. 
+111
+Parent Number in College
+This page asks the parent how many 
+people in the family will be in 
+college between July 1, 2025, and June 
+30, 2026. The parent enters a response 
+into the entry field.
+112
+Parent Tax Return Information
+The parent is asked questions about their 2023 tax return. They enter a response in each entry field. 
+113
+Parent Assets
+The parent is asked about their assets. 
+The parent enters a response in each 
+entry field. 
+114
+Parent Review Page
+The review page displays the 
+responses that the parent has provided in 
+the previous student and parent sections 
+of the student’s FAFSA
+® form. The parent 
+can view all their responses by selecting 
+"Expand All" or expand each section 
+individually. To edit a response, they can 
+select the question’s hyperlink to be taken 
+to the corresponding page.
+115
+Parent Signature
+On this page, the parent acknowledges 
+the terms and conditions of the 
+FAFSA® form and signs their section. After 
+agreeing and signing, the parent is able 
+to submit their section of the FAFSA form. 
+Since the student section is incomplete, 
+the FAFSA form is not considered 
+complete and can’t be processed yet. 
+116
+Parent Section Complete
+Upon signing the parent section, the parent is 
+presented “The parent section is complete!” 
+page. This page displays information for the 
+parent about next steps, including tracking 
+the student’s FAFSA
+® form. The parent is 
+reminded that the student’s form is not 
+complete and can’t be processed until the 
+student section is complete. 
+117
+Parent Section Complete (Continued)
+This is a continuation of the parent section 
+complete page. This page displays 
+information for the parent about next steps, 
+including checking their email. The parent is 
+told that they can manually provide their 
+information, but the student will not be 
+eligible for federal student aid until the 
+student provides consent, approval, and 
+their signature. Next, in this scenario, the 
+parent selects "Provide Student Information 
+Manually" and enters the student section. 
+118
+Introduction: Parent’s Student Demographics
+This is the first page within the "Student Demographics" section. It provides an overview of the 
+section.
+119
+Parent’s Student Demographic Information
+The parent is asked about the 
+student’s gender identity. The 
+parent selects “Prefer not to 
+answer.”
+120
+Parent’s Student Race and Ethnicity 
+The parent is asked if the student is of Hispanic, Latino, or Spanish origin. They are also 
+asked about the student’s race. The parent selects checkboxes to answer both questions.
+121
+Parent’s Student Citizenship Status 
+The parent is asked about the student’s 
+citizenship status. The parent selects 
+the "U.S. citizen or national" option.
+122
+Parent Education Status
+The parent is asked about their 
+education status. They select 
+the "Neither parent attended 
+college" option.
+123
+Parent Killed in Line of Duty
+The parent is asked if the student's 
+parent or guardian was killed in the 
+line of duty. The parent selects the 
+"No" option.
+124
+Parent’s Student High School Completion Status
+The parent is asked what the student’s 
+high school completion status will be 
+when they start the 2025–26 school 
+year. The parent selects the "High 
+school diploma" option.
+125
+Parent’s Student High School Information
+The parent is asked which high school the student did or will graduate from. The parent enters the student’s 
+high school’sstate and city. After selecting "Search," they select the correct high school from the search results.
+126
+Parent Confirms High School
+The parent is asked to confirm the high 
+school information. By selecting "Edit," 
+they will return to the high 
+school information page. The 
+parent verifies the student’s high school 
+information and selects "Continue" to 
+proceed to the next section.
+127
+Introduction: Parent’s Student Financials
+This is the first page within the 
+"Student Financials" section. It 
+provides an overview of the section.
+128
+Parent’s Student Tax Filing Status
+This page asks the parent about the 
+student’s tax filing status. The parent 
+selects "Yes" to "Did or will the student 
+file a 2023 IRS Form 1040 or 1040-NR?"
+129
+Parent’s Student Tax Return Information 
+Since the student has not provided 
+consent and approval for their federal tax 
+information to be transferred directly into 
+the FAFSA
+® form, the parent is asked to 
+manually enter the student’s 2023 tax 
+return information. The parent selects their 
+tax filing status and enters a response in 
+each entry field.
+130
+Parent’s Student Tax Return Information (Continued)
+This is a continuation of the student’s 
+2023 tax information page. The 
+parent enters a response in each entry 
+field. 
+131
+Parent’s Student Assets
+The parent is asked about the student’s 
+assets. The parent enters a response 
+in each entry field.
+132
+Introduction: Parent Select Colleges
+This is the first page in 
+the "Select Colleges and Career 
+Schools" section, which is the final part 
+of the FAFSA® form’s student section 
+to require information. It provides an 
+overview of the section.
+133
+Parent College Search
+The parent is asked to search for the colleges, career schools, and/or trade schools they would like to 
+receive the student’s FAFSA® information. The parent searches for a school by entering a state, city, 
+and/or school name. After selecting "Search," they select the correct school(s) from the search 
+results. Parents can send the student’s FAFSA information to a maximum of 20 schools.The parent is 
+required to add at least one college or career school. 
+134
+Parent Selected Colleges
+The parent can view which colleges, career schools, and/or trade schools they have selected for the 
+student. If the parent has not selected 20 schools, they have the option to search and select more schools. 
+When the parent selects "Continue," they will have completed entering the required student information for 
+the student section and can proceed to the review page.
+135
+Parent’s Student Review Page 
+The review page displays the responses 
+that the parent has provided in the 
+FAFSA® form on behalf of the student. The 
+parent can view all the responses 
+by selecting "Expand All" or expanding each 
+section individually. To edit a response, the 
+parent can select the question’s hyperlink 
+and will be taken to the corresponding page. 
+The parent cannot provide a signature for 
+the student. 
+136
+Parent’s Student Review Page (Continued)
+This is a continuation of the review page 
+displays the responses that the parent has 
+provided in the FAFSA
+® form in the parent 
+sections. The parent can view all the 
+responses by selecting "Expand All" or 
+expanding each section individually. To edit 
+a response, the parent can select the 
+question’s hyperlink and will be taken to the 
+corresponding page.
+137
+Parent Receives Student Missing Consent Message
+The parent is presented the missing 
+student consent and approval message 
+after hitting the "Submit" button on the 
+review page. This message explains that 
+because the student’s consent and 
+approval and signature are missing, the 
+student is currently ineligible for federal 
+student aid, including grants and loans. 
+138
+Parent’s Student Section Complete
+The parent is presented the student section 
+complete page after the parent hits "Submit" 
+on the message. This page displays 
+information for the parent about next steps, 
+including tracking the student’s FAFSA
+® form. 
+Because the student’s consent and approval 
+and signature are missing, the student is 
+currently ineligible for federal student aid, 
+including grants and loans. The student must 
+enter their form, provide their consent and 
+approval and signature, and submit the student 
+section for their FAFSA form to be processed.
+139
+Independent Student Invites 
+Student Spouse
+140
+Married Student FAFSA® Form Landing Page
+This is the main FAFSA® form landing 
+page. On this page, students are directed 
+to "Start New Form" or "Edit Existing 
+Forms." For this section of the 
+presentation, the student is beginning a 
+new application.
+141
+Married Student Log In
+If the student selects "Start New Form" 
+from the FAFSA® landing page and they 
+are not logged in to StudentAid.gov, they 
+are taken to the "Log In" page to enter their 
+credentials. To access the FAFSA form, all 
+students are required to have an FSA ID 
+(account username and password). If the 
+student doesn't have an FSA ID, they can 
+select "Create an Account."
+142
+Married Student Roles
+After logging in, the student selects 
+the applicable role to fill out the 
+FAFSA
+® form: "Student."
+143
+Married Student Onboarding (1 of 4)
+When the student starts the 2025–26 
+FAFSA® form for the first time, they are 
+taken through the FAFSA onboarding 
+process. The first onboarding page 
+provides an introduction of the FAFSA 
+form and an accompanying video. 
+144
+Married Student Onboarding (2 of 4)
+The second FAFSA® onboarding page provides 
+information about contributors that may be 
+required to participate in the student’s FAFSA 
+form, including an accompanying video that 
+explains contributors, and information on how the 
+student will invite them. Documents that may be 
+needed to fill out the form are also included on this 
+page within a drop-down menu and may include 
+tax returns; record of child support received; 
+current balances of cash, savings, and checking 
+accounts; and net worth of investments, 
+businesses, and farms. 
+145
+Married Student Onboarding (3 of 4)
+The third FAFSA® onboarding page 
+provides information about what the 
+student can expect when completing 
+their FAFSA form. This includes 
+information about consent and 
+approval, an estimated time to 
+complete the form, and that they can 
+save the form and return later if 
+needed, with an accompanying video.
+146
+Married Student Onboarding (4 of 4)
+The last FAFSA® onboarding page 
+provides information about what to 
+expect once the FAFSA form is 
+completed, submitted, and processed. 
+On this page, the student can select 
+"Start FAFSA Form" to begin. 
+147
+Married Student Identity Information
+This is the first page within the student 
+section. The student can verify that their 
+personal information is correct. To 
+update any of the personal information, 
+the student must access their Account 
+Settings on StudentAid.gov. 
+148
+Married Student Identity Information (Continued)
+This is a continuation of the first page 
+within the student section. The student 
+can verify their mailing address on this 
+part of the page. To update this 
+information, the student must access their 
+Account Settings on StudentAid.gov. 
+149
+Married Student State of Legal Residence
+The student is asked about their state of 
+legal residence. The student selects the 
+state from a drop-down box and 
+provides the month and year when they 
+became a legal resident.
+150
+Married Student Provides Consent and Approval
+This page informs the student about 
+consent, approval, and the use of their 
+federal tax information. By providing 
+consent and approval, the student’s 
+federal tax information is transferred 
+directly from the IRS into the FAFSA
+® form 
+to help complete the "Student Financials" 
+section. 
+151
+Married Student Provides Consent and Approval (Continued)
+This is a continuation of the consent and approval page. Frequently asked questions about consent and 
+approval are also provided. The student selects "Approve" to provide consent and approval, and they 
+are taken to the next page.
+152
+Married Student Imports IRS Information
+This page imports the student’s 
+federal tax information by directly 
+transferring it into the FAFSA
+® form 
+from the IRS to help complete the 
+"Student Financials" section. 
+153
+Married Student Imports IRS Information (Continued)
+This page displays the results from the 
+IRS import for the student. For this 
+scenario, the student is starting a new 
+FAFSA and there is no federal tax 
+information available from the IRS. 
+154
+Introduction: Married Student Personal Circumstances
+This is the first page within the 
+"Student Personal Circumstances" 
+section. It provides an overview of the 
+section.
+155
+Married Student Marital Status
+The student is asked about their 
+marital status. The student selects 
+the "Married (not separated)" option.
+156
+Married Student College or Career School Plans
+The student is asked about their college 
+grade level for the 2025–26 school year 
+and if they will have their first bachelor’s 
+degree. The student selects “Master’s or 
+doctorate program (such as, M.A., MBA, 
+M.D., J.D., Ph.D., Ed.D., etc.)" and that 
+they will have their first bachelor’s 
+degree. Because they have answered 
+"Yes," the student is asked if they will be 
+pursuing an initial teaching certification. 
+The student selects "No." 
+157
+Married Student Personal Circumstances
+The student is asked if any of the listed 
+personal circumstances apply to them. 
+The student selects "None of these apply.”
+158
+Married Student Homelessness
+The student is asked if they 
+were unaccompanied and either 
+homeless or at risk of being 
+homeless. The student selects 
+"No."
+159
+Married Student Dependency Status: Independent Student
+Based on the answers provided by the 
+student, they are considered an 
+independent student. The student is not 
+required to provide information about their 
+parents due to this status. 
+160
+Introduction: Married Student Demographics
+This is the first page within the "Student Demographics" section. It provides an overview of the section.
+161
+Married Student Demographic Information
+The student is asked about their gender 
+identity. The student selects their 
+response from the options listed.
+162
+Married Student Race and Ethnicity
+The student is asked if they are of Hispanic, Latino, or Spanish origin. They are also asked about their 
+race. The student selects checkboxes to answer both questions.
+163
+Married Student Citizenship Status 
+The student is asked about their 
+citizenship status. The student selects 
+the "U.S. citizen or national" option.
+164
+Married Student’s Parent Education Status
+The student is asked about their 
+parents’ education status. The student 
+selects the "Neither parent attended 
+college" option.
+165
+Married Student’s Parent Killed in Line of Duty
+Since the student is under the age of 
+33, they are asked if their parent was 
+killed in the line of duty. The student 
+selects the "No" option.
+166
+Married Student High School Completion Status
+The student is asked about what their 
+high school completion status will be 
+when they start the 2025–26 school 
+year. The student selects the "High 
+school diploma" option.
+167
+Married Student High School Information
+The student is asked which high school they did or will graduate from. The student enters their high school’s 
+state and city. After selecting "Search," they select the correct high school from the search results.
+168
+Married Student Confirms High School
+The student has the option to edit the high 
+school information presented on this page 
+by selecting "Edit," which will return them 
+to the high school information page. The 
+student confirms their high school 
+information and selects "Continue" to 
+proceed to the next section.
+169
+Introduction: Married Student Financials
+This is the first page within the "Student 
+Financials" section. It provides an 
+overview of the section.
+170
+Married Student Federal Benefits Received 
+This page asks the student if they or 
+anyone in their family has received 
+federal benefits. The student selects 
+"None of these apply."
+171
+Married Student Tax Filing Status
+This page asks the student about their 
+tax filing status. The student selects 
+"Yes" to "Did or will the student file 
+a 2023 IRS Form 1040 or 1040-
+NR?" and "No" to "Did or will the student 
+file a 2023 joint tax return with their 
+current spouse?"
+172
+Married Student Family Size
+This page displays the family size for 
+the student. The student has the 
+option to enter the number of 
+children or other dependents who 
+live with the student and will receive 
+more than half of their support from 
+the student between July 1, 2025, 
+and June 30, 2026. 
+173
+Married Student Number in College
+This page asks the student how many 
+people in the family will be in college 
+between July 1, 2025, and June 30, 2026. 
+The student enters a response into the 
+entry field.
+174
+Married Student Tax Return Information
+The student is asked questions about their 2023 tax return. The student enters a response in each entry field.
+175
+Married Student Assets
+The student is asked about their and 
+their spouse’s assets and the amount 
+of child support received. The student 
+enters a response in each entry field.
+176
+Invite Spouse to Your FAFSA® Form
+Based on their marital status and the information provided by the student, the student is required to invite 
+their spouse to their FAFSA® form to complete the required student spouse sections. The student enters the 
+personal information about their spouse in order to send them an invite to their form. 
+177
+Introduction: Married Student Select Colleges
+This is the first page in the "Select 
+Colleges and Career Schools" section, 
+which is the final part of the FAFSA
+® 
+form’s student section to require 
+information. It provides an overview of 
+the section.
+178
+Married Student College Search
+The student is asked to search for the 
+colleges and/or career schools they 
+would like to receive their FAFSA
+® 
+information. The student searches for a 
+school by entering a state, city, and/or 
+school name. After selecting "Search," 
+they select the correct school(s) from the 
+search results. Students can send their 
+FAFSA information to a maximum of 20 
+schools.
+179
+Married Student Selected Colleges
+The student can view which colleges and/or 
+career schools they have selected. If the 
+student has not selected 20 schools, they have 
+the option to search and select more schools, 
+and, in some states, they have the option to 
+reorder the list of selected schools. When the 
+student selects "Continue," they will have 
+completed entering the required student 
+information for their section and can proceed to 
+review and sign their form.
+180
+Married Student Review Page
+The review page displays the 
+responses that the student has 
+provided in the FAFSA
+® form. The 
+student can view all their responses 
+by selecting "Expand All" or expand 
+each section individually. To edit a 
+response, the student can select the 
+question’s hyperlink and will be 
+taken to the corresponding page. 
+Additionally, since the student 
+invited their spouse into the form, 
+they see the spouse contributor 
+section and the status of their 
+spouse’s invite.
+181
+Married Student Signature
+On this page, the student reviews the 
+terms and conditions for signing their 
+FAFSA
+® form. They agree to a list of 
+statements that they certify before 
+providing their signature. 
+182
+Married Student Signature (Continued)
+This is a continuation of the student 
+signature page. After agreeing to the 
+terms and conditions of the FAFSA
+® form 
+and signing, the student is able to submit 
+their section of the FAFSA form. Since the 
+student spouse information has not been 
+provided, the FAFSA form is not 
+considered complete and can’t be 
+processed yet. 
+183
+Married Student Section Complete
+Upon signing the student section, the student 
+is presented the student section complete 
+page. This page displays information for the 
+student about next steps, including tracking 
+their FAFSA
+® form. The student is reminded 
+that their form is not completed and can’t be 
+submitted until their spouse completes the 
+contributor section of the form and signs it. 
+184
+Married Student Section Complete (Continued)
+This is a continuation of the student section 
+complete page. This page displays 
+information for the student about next steps, 
+including checking their email and a reminder 
+that their FAFSA
+® form is not completed and 
+can’t be submitted until the student spouse 
+completes the contributor section of the form 
+and signs it. Next, in this scenario, the 
+student’s invited spouse will enter the FAFSA 
+form and complete the spouse section.
+185
+Student Spouse Email
+This is NOT a view within StudentAid.gov 
+or the FAFSA® form. This view 
+demonstrates a student spouse opening 
+the FAFSA invitation from their email. The 
+student spouse selects "Get Started" and 
+is taken to StudentAid.gov.
+186
+Student Spouse Log In
+The student spouse is taken from their 
+email to the "Log In" page to enter their 
+log-in credentials. To access the FAFSA® 
+form, all users are required to have an 
+FSA ID (StudentAid.gov account 
+username and password). If the student 
+spouse doesn't have an FSA ID, they can 
+select "Create an Account."
+187
+Student Spouse Status Center – My Activity
+After successfully logging in, the student 
+spouse is taken to their "My Activity" 
+section. The student spouse sees an 
+invitation to be a contributor on the 
+student’s FAFSA
+® form.
+188
+Student Spouse Status Center – My Activity (Continued)
+When the student spouse selects 
+"Accept Invitation," a pop-up window 
+appears to remind the student spouse 
+that their personal information is needed 
+to fill out the student’s FAFSA
+® form. The 
+student spouse selects "Continue" to 
+agree to sharing their information and 
+enters the FAFSA form. 
+189
+Student Spouse Contributing to the FAFSA® Form
+This page provides information about 
+being a contributor on a FAFSA® form.
+190
+Student Spouse Identity Information
+This is the first page within the student 
+spouse section. The student spouse can 
+verify that their personal information is 
+correct. To update any of the personal 
+information, the student spouse must 
+access their Account Settings on 
+StudentAid.gov. 
+191
+Student Spouse Provides Consent and Approval
+This page informs the student spouse 
+about consent, approval, and the use of 
+their federal tax information. By providing 
+consent and approval, the student 
+spouse’s federal tax information is 
+transferred directly from the IRS into the 
+FAFSA
+® form to help complete the 
+"Student Spouse Financials" section. 
+192
+Student Spouse Provides Consent and Approval (Continued)
+This is a continuation of the consent and approval page. Frequently asked questions about consent and 
+approval are also provided. The student spouse selects "Provide Approval" to provide consent and 
+approval, and they are taken to the next page.
+193
+Student Spouse Imports IRS Information
+This page imports the student 
+spouse’s federal tax information by 
+directly transferring it into the 
+FAFSA
+® form from the IRS to help 
+complete the "Student Spouse 
+Financials" section. 
+194
+Student Spouse Imports IRS Information (Continued)
+This page displays the results from the 
+IRS import for the student spouse. For 
+this scenario, the student spouse is 
+contributing to a new FAFSA
+® and 
+there is no federal tax information 
+available from the IRS. 
+195
+Introduction: Student Spouse Financials
+This is the first page within the 
+"Student Spouse Financials" 
+section. It provides an overview 
+of the section.
+196
+Student Spouse Tax Filing Status
+This page asks the student spouse about 
+their tax filing status. The student spouse 
+selects "Yes" to "Did or will the student’s 
+spouse file a 2023 IRS Form 1040 or 
+1040-NR?"
+197
+Student Spouse Tax Return Information
+The student spouse is asked 
+questions about their 2023 tax 
+return. The student spouse enters 
+a response in each entry field.
+198
+Student Spouse Review Page
+The review page displays the responses 
+that the student spouse has provided in the 
+FAFSA
+® form. In this scenario, the student 
+spouse can only view responses within the 
+student spouse section of the student’s 
+FAFSA form. The student spouse can view 
+all their responses by selecting "Expand All" 
+or expand each section individually. To edit a 
+response, the student spouse can select the 
+question’s hyperlink to be taken to the 
+corresponding page.
+199
+Student Spouse Signature
+On this page, the student spouse 
+acknowledges the terms and conditions of 
+the FAFSA
+® form and signs their section. 
+Since all required sections are complete, 
+the student spouse can both sign and 
+submit the student’s FAFSA form. 
+200
+Student Spouse Confirmation
+Upon submitting the student’s FAFSA® 
+form, the student spouse is presented an 
+abbreviated confirmation page. This page 
+displays information about tracking the 
+student’s FAFSA form and next steps. The 
+student will receive an email with the full, 
+detailed confirmation. With the student and 
+student spouse sections completed and 
+signed, the FAFSA form is now considered 
+complete and submitted for processing. 
+201
+Independent Student Who Is Single
+and a Non-Tax Filer
+202
+Independent Student FAFSA® Form Landing Page
+This is the main FAFSA® form landing 
+page. On this page, students are directed 
+to "Start New Form" or “Edit Existing 
+Form." For this section of the 
+presentation, the student is beginning a 
+new application.
+203
+Independent Student Log In
+If the student selects "Start New Form" 
+from the FAFSA® landing page and they 
+are not logged in to StudentAid.gov, they 
+are taken to the "Log In" page to enter their 
+credentials. To access the FAFSA form, all 
+students are required to have an FSA ID 
+(StudentAid.gov account username and 
+password). If the student doesn't have an 
+FSA ID, they can select "Create an 
+Account."
+204
+Independent Student Roles
+After logging in, the student selects 
+the applicable role to fill out 
+the FAFSA® form: "Student."
+205
+Independent Student Onboarding (1 of 4)
+When the student starts the 2025–26 
+FAFSA® form for the first time, they are 
+taken through the FAFSA onboarding 
+process. The first onboarding page 
+provides an introduction of the FAFSA 
+form and an accompanying video. 
+206
+Independent Student Onboarding (2 of 4)
+The second FAFSA® onboarding page 
+provides information about contributors 
+that may be required to participate in the 
+student’s FAFSA form, including an 
+accompanying video that explains 
+contributors, and information on how the 
+student can invite them. Documents that 
+may be needed to fill out the form are also 
+included on this page. 
+207
+Independent Student Onboarding (3 of 4)
+The third FAFSA® onboarding page 
+provides information about what the 
+student can expect when completing 
+their FAFSA form. This includes 
+information about consent and 
+approval, a time estimate to complete 
+the form, and that they can save the 
+form and return later if needed, along 
+with an accompanying video.
+208
+Independent Student Onboarding (4 of 4)
+The last FAFSA® onboarding page 
+provides information about what to 
+expect once the FAFSA form is 
+completed, submitted, and processed. 
+On this page, the student can select 
+"Start FAFSA Form" to begin. 
+209
+Independent Student Identity Information
+This is the first page within the student 
+section. The student can verify that their 
+personal information is correct. To 
+update any of the personal information, 
+the student must access their Account 
+Settings on StudentAid.gov. 
+210
+Independent Student Identity Information (Continued)
+This is a continuation of the first page 
+within the student section. The student can 
+verify their mailing address on this part of 
+the page. To update this information, the 
+student must access their Account Settings 
+on StudentAid.gov. 
+211
+Independent Student State Of Legal Residence
+The student is asked about their 
+state of legal residence. The 
+student selects the state from a 
+drop-down box and provides the 
+month and year when they 
+became a legal resident.
+212
+Independent Student Provides Consent and Approval
+This page informs the student about consent, approval, and the use of their federal tax information. By 
+providing consent and approval, the student’s federal tax information is transferred directly from the IRS 
+into the FAFSA
+® form to help complete the "Student Financials" section. 
+213
+Independent Student Provides Consent and Approval 
+(Continued)
+This is a continuation of the consent and approval page. Frequently asked questions about consent and 
+approval are also provided that the student can expand and collapse. The student selects "Approve" to 
+provide consent and approval, and they are taken to the next page.
+214
+Independent Student Imports IRS Information
+This page imports the student’s 
+federal tax information by 
+directly transferring it into the 
+FAFSA
+® form from the IRS to 
+help complete the "Student 
+Financials" section. 
+215
+Independent Student Imports IRS Information (Continued)
+This page displays the results 
+from the IRS import for the 
+student. For this scenario, the 
+student is starting a new 
+FAFSA and there is no federal 
+tax information available from 
+the IRS. 
+216
+Independent Student Personal Circumstances
+This is the first page within the 
+"Student Personal Circumstances" 
+section. It provides an overview of 
+the section.
+217
+Independent Student Marital Status
+The student is asked about their 
+marital status. The student selects 
+the "Single (Never Married)" option.
+218
+Independent Student College or Career School Plans
+The student is asked about their college 
+grade level for the 2025–26 school year 
+and if they will have their first bachelor’s 
+degree. The student selects that they will 
+be a "First Year (freshman)" and that they 
+will not have their first bachelor’s degree.
+219
+Independent Student Personal Circumstances (Continued)
+The student is asked if any of the listed 
+personal circumstances apply to them. 
+The student selects "None of these 
+apply.”
+220
+Independent Student Homelessness
+The student is asked if they are 
+unaccompanied and either 
+homeless or at risk of being 
+homeless. The student selects "No."
+221
+Student Dependency Status: Independent Student
+Because the student’s date of birth is 
+before Jan. 1, 2002, they are 
+considered an independent student. 
+222
+Introduction: Independent Student Demographics
+This is the first page within the "Student Demographics" section. It provides an overview of the section.
+223
+Independent Student Demographic Information
+The student is asked about their gender 
+identity. The student selects “Prefer not to 
+answer.”
+224
+Independent Student Race and Ethnicity
+The student is asked if they are 
+of Hispanic, Latino, or Spanish 
+origin. The student selects 
+checkbox that applies to them. 
+225
+Independent Student Race and Ethnicity (Continued)
+A continuation of the student race and 
+ethnicity page. The student is asked 
+to identify their race. The student 
+selects the checkboxes that apply to 
+them. After making their selection, a 
+second drop-down appears, and the 
+student selects the checkboxes that 
+apply to them. 
+226
+Independent Student Citizenship Status 
+The student is asked about their 
+citizenship status. The student selects 
+the "U.S. citizen or national" option.
+227
+Independent Student’s Parent Education Status
+The student is asked about their 
+parents’ education status. The student 
+selects the "Neither parent attended 
+college" option.
+228
+Independent Student’s Parent Killed in Line of Duty
+Since the student is under the age of 33, 
+they are asked if their parent was killed 
+in the line of duty. The student selects 
+the "No" option.
+229
+Independent High School Completion Status
+The student is asked about what their 
+high school completion status will be 
+when they start the 2025–26 school year. 
+The student selects the "High school 
+diploma" option.
+230
+Independent Student High School Information
+The student is asked which high school they did or will graduate from. The student enters their high 
+school’s state and city. After selecting "Search," they select the correct high school from the search results.
+231
+Independent Student Confirms High School
+The student has the option to edit the high 
+school information presented on this page 
+by selecting "Edit," which will return them 
+to the high school information page. The 
+student confirms their high school 
+information and selects "Continue" to 
+proceed to the next section.
+232
+Introduction: Independent Student Financials
+This is the first page within the "Student Financials" section. It provides an overview of the section. 
+The student can select the hyperlink if they want to learn about special financial circumstances. 
+233
+Independent Student Federal Benefits
+The student is asked if they or anyone in 
+their family has received federal benefits. 
+The student selects “None of these apply.”
+234
+Independent Student Tax Filing Status
+This page asks the student about their 
+tax filing status. The student selects "No" 
+to "Did or will the student file a 2023 IRS 
+Form 1040 or 1040-NR?" Because of this 
+selection, the student is asked if they 
+earned income in a foreign country, were 
+employed by an international 
+organization but not required to report 
+income on any tax return, or filed a tax 
+return with Puerto Rico or another U.S. 
+territory. The student selects "No."
+235
+Independent Student Number in College
+This page asks the student how many 
+people in the family will be in 
+college between July 1, 2025, and June 
+30, 2026. The student enters a response 
+into the entry field.
+236
+Introduction: Independent Student Select Colleges
+This is the first page in the "Select Colleges" section, which is the final part of the FAFSA® form’s 
+student section to require information. It provides an overview of the section.
+237
+Independent Student College Search
+The student is asked to search for the 
+colleges and/or career schools they would 
+like to receive their FAFSA® information. 
+The student searches for a school 
+by entering a state, city, and/or school 
+name. After selecting "Search," they 
+select the correct school(s) from the 
+search results. Students can select to 
+send their FAFSA information to a 
+maximum of 20 schools. The student is 
+required to add at least one college or 
+career school. 
+238
+Independent Student Selected Colleges
+The student can view which college(s) and/or 
+career school(s) they have selected. If the 
+student has not selected 20 schools, they 
+have the option to search and select more 
+schools. When the student selects "Continue," 
+they will have completed entering the required 
+student information for their section and can 
+proceed to review and sign their form.
+239
+Independent Student Review Page 
+The review page displays the responses 
+that the student has provided in the 
+FAFSA® form. The student can view all the 
+responses by selecting "Expand All" or 
+expand each section individually. To edit a 
+response, the student can select the 
+question’s hyperlink and they will be taken to 
+the corresponding page.
+240
+Independent Student Signature
+On this page, the student reviews the 
+terms and conditions of the FAFSA® 
+form and what they’ll agree to if they 
+sign the form. 
+241
+Independent Student Signature (Continued)
+This is a continuation of the student 
+signature page. After agreeing to the 
+terms and conditions of the FAFSA
+® form 
+and signing, the student is able to submit 
+their section of the FAFSA form. Since all 
+required sections are complete, the 
+student can both sign and submit the 
+FAFSA form.
+242
+Independent Student Confirmation Page
+The student is presented the confirmation 
+page. This page displays information for 
+the student about their completion date 
+and data release number for their FAFSA
+® 
+form, along with an estimate for their 
+Student Aid Index. The student is informed 
+they may be eligible for a Federal Pell 
+Grant, which may be a result of their 
+negative SAI. 
+243
+Independent Student Confirmation Page (Continued)
+This is a continuation of the student section 
+complete page. This page displays 
+information for the student about next steps, 
+including checking their email, tracking their 
+FAFSA
+® form, and receiving communications 
+from their school. 
+244
+FAFSA Submission Summary
+245
+FAFSA Submission Summary Landing Page
+The student receives a FAFSA Submission Summary for their processed FAFSA® form and any subsequent 
+corrections that they submit. The FAFSA Submission Summary is broken into four tabs: “Eligibility Overview,” 
+“FAFSA Form Answers,” “School Information,” and “Next Steps.” At the top, the student will see when their 
+form was received and processed. They also have the option to print their FAFSA Submission Summary to 
+keep for their records. 
+246
+Eligibility Overview
+On the "Eligibility Overview" tab, the student 
+sees information about what federal student 
+aid they may be eligible for, such as a 
+Federal Pell Grant and Federal Direct Loans. 
+Any amounts of financial aid that display on 
+this tab are estimates and are not 
+guaranteed. Final determination of the 
+student’s financial aid eligibility is provided 
+by their school’s financial aid office. 
+247
+Eligibility Overview (Continued)
+This is a continuation of the "Eligibility Overview" tab of the FAFSA Submission Summary. Final 
+determination of the student’s financial aid eligibility is provided by their school’s financial aid office. They 
+are also able to view their Student Aid Index. 
+248
+FAFSA Form Answers 
+On the "FAFSA Form Answers" tab, the 
+student sees the answers that they provided 
+on their FAFSA® form. If any of the provided 
+answers are incorrect, the student can choose 
+make a correction.
+249
+FAFSA Form Answers (Continued)
+This is a continuation of the 
+"FAFSA Form Answers" tab, where the 
+student sees the answers that they 
+provided on their FAFSA
+® form. 
+250
+FAFSA Form Answers Contributors
+This is a continuation of the "FAFSA Form Answers" tab. If applicable, student sees the answers their 
+contributor(s) provided on their FAFSA® form.
+251
+School Information 
+On the "School Information" tab, the 
+student sees information about the 
+college(s) and/or career school(s) that 
+they selected to send their FAFSA
+® 
+information. The student can compare 
+the graduation rate, retention rate, 
+transfer rate, default rate, median debt 
+upon completion, and average annual 
+cost of their selected schools. 
+252
+Next Steps 
+On the "Next Steps" tab, the student sees 
+comments that pertain to their FAFSA® form. 
+Some comments may require the student to 
+make a correction or send additional 
+documentation to their school. Other 
+comments may be informational and do not 
+require any further action from the student. 
+253
+More Resources 
+Lastly, along the right side of their FAFSA 
+Submission Summary, the student can 
+access additional resources, including 
+visiting “My Aid” or College Scorecard. 
+254
+Dependent Student and Direct 
+Unsubsidized Loan 
+255
+Dependency Status: Dependent Student
+If the parents of a dependent student are 
+unwilling to provide their information but the 
+student doesn’t have an unusual circumstance, 
+the student can choose to have their school 
+determine their eligibility for a Direct 
+Unsubsidized Loan only. 
+Note: Selecting “Yes” here makes the student 
+ineligible for other types of federal student aid, 
+such as Federal Pell Grants, Federal Work-
+Study, or Direct Subsidized Loans. 
+256
+Dependent Student Selects Direct Unsubsidized Loan Only 
+If the student selects "Yes" to have their 
+school determine their eligibility for a 
+Direct Unsubsidized Loan only and then 
+selects "Continue," a pop-up window 
+appears warning the student that they will 
+not be eligible for most federal student aid. 
+257
+Unaccompanied Homeless Youth
+258
+Student Homelessness
+The student is asked if they were 
+unaccompanied and either homeless or at 
+risk of being homeless. The student 
+selects "Yes." Next, the student is asked 
+who determined that they are homeless or 
+at risk of being homeless. They select 
+"None of these apply." 
+259
+Impact of Unaccompanied Homeless Youth Status 
+Based on the answers provided by the student, they 
+are not required to provide parent information on the 
+FAFSA
+® form. The student is able to sign and submit 
+the FAFSA form, but they will need to contact the 
+financial aid office at their school about their 
+circumstances. The school will be required to make 
+a determination of the student’s unaccompanied 
+homeless youth status based on a written statement 
+from the student or a documented interview with the 
+student. Until the student’s circumstances are verified, 
+the U.S. Department of Education's office of Federal 
+Student Aid will only provide the student an estimate of 
+their federal student aid eligibility.
+260
+Provisionally Independent Student
+261
+Student Unusual Circumstances
+The student is asked if unusual 
+circumstances prevent them from 
+contacting their parent(s). The 
+student selects "Yes."
+262
+Impact of Provisionally Independent Status 
+Based on the answers provided by the student, they 
+are considered a provisionally independent student 
+and are not required to provide parent information. 
+The student is able to sign and submit their FAFSA
+® 
+form, but they will need to contact their school to 
+see what supporting documentation they need to 
+submit. A financial aid administrator at the school 
+will review and make a determination regarding a 
+dependency override. Until the student’s 
+circumstances are verified, the U.S. Department of 
+Education's office of Federal Student Aid will only 
+provide the student an estimate of their federal 
+student aid eligibility.
+263
+Student Adds Schools to FAFSA® Form
+264
+Add Schools Log In
+To access an existing FAFSA® form, the 
+student is required to have an FSA ID 
+(StudentAid.gov account username and 
+password). 
+265
+Add Schools Dashboard
+On the account Dashboard, the student 
+can see their most recent 2025–26 
+FAFSA® activity under the "My Activity" 
+section. In this scenario, the student has a 
+processed 2025–26 FAFSA form. To see 
+further information about this application, 
+the student selects the application and is 
+taken to the "Details" page.
+266
+Add Schools Details
+On the "Details" page, the student sees 
+information related to their processed 
+FAFSA
+® form, such as when it was started 
+and processed, their FAFSA Submission 
+Summary, and additional resources. Within 
+the "Actions" menu, the student can select 
+"Add or Remove Schools.” Selecting this 
+option will start a voluntary correction to 
+update their selected schools.
+267
+Add Schools Details (Continued)
+Farther down the "Details" page, the 
+student sees their invited contributor(s), 
+selected school(s) and FAFSA
+® 
+submission history. In this scenario, the 
+student selects "Add or Remove Schools" 
+within the "Actions" menu to update their 
+selected schools.
+268
+Add Schools Onboarding
+When the student starts a 2025–26 
+FAFSA® correction, they are taken through 
+the FAFSA correction onboarding process. 
+A correction should only be submitted if 
+critical information was missing, incorrect 
+information was provided, the student 
+needs to update their selected school(s), 
+and/or a correction was requested by a 
+financial aid administrator. The student 
+selects "Add or Remove Schools" to begin 
+their correction. 
+269
+Add Schools Selected Colleges and Career Schools
+The student can view which college(s), 
+career school(s), or trade school(s) they 
+selected in their processed application. If 
+the student has not selected 20 schools, 
+they have the option to search and select 
+more schools, and, in some states, they 
+have the option to reorder the list of 
+selected schools. In this scenario, the 
+student wants to remove their selected 
+school and add new ones. The student 
+selects "Remove" for the listed school.
+270
+Add Schools Selected Colleges and Career Schools (Continued)
+After removing the school, the student 
+selects "Search and Select More 
+Schools" and is taken to the college 
+search page.
+271
+Add Schools College Search
+The student is asked to search for the 
+colleges, career schools, or trade schools they 
+would like to receive their FAFSA® 
+information. The student searches for a school 
+by entering a state and a city and/or school 
+name. 
+272
+Add Schools College Search (Continued)
+After entering a school’s state and city 
+and/or school name and selecting 
+"Search," the student selects the 
+correct school(s) from the search 
+results. Students can send their 
+FAFSA
+® information to a maximum of 
+20 schools.
+273
+Add Schools Selected Colleges
+The student can view which new 
+college(s), career school(s), and/or trade 
+school(s) they have selected. When they 
+select "Continue," they will 
+have completed updating the "Select 
+Colleges and Career Schools" section 
+and can proceed to the review changes 
+page.
+274
+Add Schools Review Changes Page 
+The review page displays the school(s) that the 
+student has added and/or removed. If the 
+student needs to make additional updates to the 
+rest of their form, they can select "Make More 
+Changes." The student is ready to submit their 
+correction and selects "Continue."
+275
+Sign and Submit Changes to the FAFSA Form
+On this page, the student reviews the 
+terms and conditions of the FAFSA® form 
+and what they’ll agree to if they sign the 
+form. 
+276
+Sign and Submit Changes to the FAFSA Form (Continued)
+This is a continuation of the 
+student signature page. After 
+agreeing to the terms and 
+conditions of the FAFSA
+® form 
+and signing, the student is able to 
+resubmit their section of the 
+FAFSA form.
+277
+Add Schools Confirmation
+After the student has submitted their 
+correction, they are presented the 
+confirmation page. This page displays 
+information for the student about next steps, 
+including tracking their FAFSA
+® correction. 
+278
+Student Submits a FAFSA® Correction to 
+Homeless Determination
+279
+Homeless Determination Correction Log In
+To access an existing FAFSA® form, the 
+student is required to log in using their FSA 
+ID (StudentAid.gov account username and 
+password). 
+280
+Homeless Determination Correction Dashboard
+On the account Dashboard, the 
+student can see their most recent 
+2025–26 FAFSA
+® activity under the 
+"My Activity" section. In this scenario, 
+the student has a processed 2025–26 
+FAFSA form. To see further information 
+about this application, the student 
+selects the application and is taken to 
+the "Details" page.
+281
+Homeless Determination Correction Details
+On the "Details" page, the student sees 
+information related to their processed 
+FAFSA
+® form, such as when it was started 
+and processed, their FAFSA Submission 
+Summary, and additional resources. 
+Within the "Actions" menu, the student can 
+select "Make Corrections" to start a 
+voluntary correction.
+282
+Homeless Determination Correction Onboarding 
+When the student starts a 2025–26 
+FAFSA® correction, they are taken 
+through the FAFSA correction 
+onboarding process. A correction 
+should only be submitted if critical 
+information was missing, incorrect 
+information was provided, the 
+student needs to update their 
+selected school(s), and/or a 
+correction was requested by a 
+financial aid administrator.
+283
+Homeless Determination Correction Select Correction 
+Type
+A student can choose to update their 
+selected schools, answers to questions on 
+their FAFSA
+® form, and/or contributor 
+contact information (if a contributor was 
+invited to their form). In this scenario, the 
+student selects "Update Answers to 
+Questions on Your FAFSA
+® Form." 
+284
+Homeless Determination Correction Select Correction 
+Type (Continued)
+When the student selects to update their 
+answers to questions on their FAFSA® 
+form, a message displays explaining when 
+a correction should and shouldn’t be 
+submitted. In this scenario, the student’s 
+school instructed them to update their 
+response to the homeless determination 
+question. The student selects "Continue."
+285
+Homeless Determination Correction Section Summary
+The "Section Summary" page displays all 
+the sections belonging to the logged-in 
+user, which in this case is the student. The 
+student selects to enter "Section 1: 
+Personal Circumstances" where the 
+homeless determination question was 
+answered. This takes the student to the 
+first question within the "Student Personal 
+Circumstances" section.
+286
+Homeless Determination Correction Marital Status
+The Student Marital Status page is the 
+first question within the "Student Personal 
+Circumstances" section. The student is 
+asked about their current marital status. 
+They maintain their response of "Single 
+(never married)."
+287
+Homeless Determination Correction College or Career 
+School Plans
+The student is asked about their college 
+grade level for the 2025–26 school year 
+and if they will have their first bachelor’s 
+degree. The student maintains their 
+response of being a "First year 
+(freshman)" and not having their first 
+bachelor’s degree.
+288
+Homeless Determination Correction Personal 
+Circumstances
+The student is asked if any of the listed 
+personal circumstances apply to them. 
+The student maintains their response 
+"None of these apply." 
+289
+Homeless Determination Correction Other Circumstances
+The student is asked if they were 
+homeless or at risk of being homeless. 
+The student updates their response to 
+"Yes." After selecting thisresponse, the 
+student is asked who made the 
+homelessness determination. They select 
+"Financial aid administrator."
+290
+Homeless Determination Correction Other 
+Circumstances (Continued)
+When the student selects "Continue," a 
+message displays informing the student 
+that their dependency status has changed. 
+They select "Continue."
+291
+Homeless Determination Correction Dependency Status
+Based on the updated answers provided 
+by the student, they are considered an 
+independent student. The student selects 
+"Continue" and enters the "Student 
+Demographics" section.
+292
+Homeless Determination Correction Demographic 
+Information
+The student is asked about their gender 
+identity. They maintain their response of 
+"Female." Since the student has finished 
+their correction, they select "Skip to end of 
+form" to proceed with submitting their 
+correction.
+293
+Homeless Determination Correction Review Changes Page
+The review page displays the responses that the 
+student has updated in their FAFSA® form. The 
+student can view all their updated answers and 
+previous answers by selecting "Expand All" or by 
+expanding each section individually. To edit a 
+response, the student can select the "Edit" button 
+beside each question and will be taken to the 
+corresponding page. If the student needs to make 
+additional updates, they can select "Make More 
+Changes." The student is ready to submit their 
+correction and selects "Continue."
+294
+Homeless Determination Correction Signature
+After confirming their changes, the student reviews, signs, and submits the terms and conditions of the 
+FAFSA® form. 
+295
+Homeless Determination Correction Confirmation
+After the student has submitted their 
+correction, they are presented the 
+confirmation page. This page displays 
+information for the student about next steps, 
+including tracking their FAFSA
+® correction. 
+296
+Student Manages FAFSA® Contributors
+297
+Manage FAFSA® Contributors Log In
+To access an existing FAFSA® form, the 
+student is required to have an FSA ID 
+(StudentAid.gov account username and 
+password). 
+298
+Manage FAFSA® Contributors Dashboard
+On the account Dashboard, the student 
+can see their most recent 2025–26 
+FAFSA® activity under the "My Activity" 
+section. In this scenario, the student has a 
+processed 2025–26 FAFSA form. To see 
+further information about this application, 
+the student selects the application and is 
+taken to the "Details" page.
+299
+Manage FAFSA® Contributors Details
+On the "Details" page, the student sees 
+information related to their processed 
+FAFSA
+® form, such as when it was started 
+and processed, their FAFSA Submission 
+Summary, and additional resources. If a 
+required contributor was invited to the 
+student’s form, the student can select "Edit 
+Contributor Information" within the "Actions" 
+menu. This option allows the student to 
+resend the invitation if they provided the 
+wrong information for their contributor.
+300
+Manage FAFSA® Contributors Details (Continued)
+Farther down the "Details" 
+page, the student sees their 
+invited contributor(s), 
+selected school(s), and 
+FAFSA
+® submission history. 
+In this scenario, the student 
+selects "Edit Contributor 
+Information" within the 
+"Actions" menu to resend an 
+invitation to their spouse.
+301
+Manage FAFSA® Contributors Onboarding
+When the student starts a 2025–26 
+FAFSA® correction, they are taken 
+through the FAFSA correction onboarding 
+process. A correction should only be 
+submitted if critical information was 
+missing, incorrect information was 
+provided, the student needs to update 
+their selected school(s), and/or a 
+correction was requested by a financial 
+aid administrator.
+302
+Manage FAFSA® Contributors Update Contributor
+This page displays the invitation(s) that were sent on the processed form. When the student selects "Update 
+Information" on their spouse’s invitation, a message displays informing the student that if they choose to 
+update their spouse’s information, their spouse’s section will be reset on their FAFSA
+® form and a new 
+invitation will be sent. The student selects "Confirm."
+303
+Manage FAFSA® Contributors Update Contributor Details
+The student is able to provide information 
+for their new spouse and send a new 
+invitation. As a result, the information 
+provided in the student spouse section will 
+be reset. The new student spouse will have 
+to accept the new invitation, provide consent 
+and approval (if not previously provided), 
+and provide their signature for the student’s 
+FAFSA
+® form to be processed successfully.
+304
+Manage FAFSA® Contributors Update Contributor Details 
+(Continued)
+The student provides the remaining 
+information for their new spouse. To 
+confirm the updated information and 
+send the new contributor invite, the 
+student selects "Invite Spouse."
+305
+Manage FAFSA® Contributors Invite Sent 
+This page informs the student that the 
+invite to their new spouse has been sent. 
+The student spouse will receive an email 
+inviting them to enter the FAFSA
+® form to 
+complete their required sections. The 
+student closes their FAFSA correction by 
+selecting "Exit."
+306
+Manage FAFSA® Contributors Correction Details
+After updating contributor information 
+and exiting the FAFSA® form, the student 
+returns to the "Details" page. The student 
+sees information related to their FAFSA 
+correction. In this scenario, the student 
+chooses to return to their form and enter 
+the student spouse section. To begin this 
+process, the student selects "Edit Form."
+307
+Manage FAFSA® Contributors Section Summary
+After selecting "Edit Form," the student 
+reenters their FAFSA® correction. The 
+"Section Summary" page displays all the 
+sections of the student’s FAFSA form. 
+308
+Manage FAFSA® Contributors Section Summary (Continued)
+This is a continuation of the "Section 
+Summary" page. The remaining sections 
+of the student’s FAFSA
+® form are 
+displayed. In this scenario, the student 
+selects the hyperlink to "Provide 
+Contributor Information." 
+309
+Manage FAFSA® Contributors Section Summary (Pop-Up) 1
+After the student selects "Provide 
+Contributor Information," a message 
+displays informing the student that their 
+contributor will be required to review and 
+sign the changes that the student makes 
+to their contributor’s section(s). The 
+student selects "Confirm Changes."
+310
+Manage FAFSA® Contributors Student Spouse Section 
+Summary
+After the student confirms that they 
+want to make updates to a contributor 
+section, the "Section Summary" page 
+displays all the sections belonging to 
+the contributor(s), which in this case is 
+the student spouse. The student selects 
+to enter the "Student Spouse 
+Financials" section. 
+311
+Manage FAFSA® Contributors Section Summary (Pop-
+Up) 2
+When the student selects to enter the 
+"Student Spouse Financials" section on 
+their FAFSA
+® form, a message displays 
+explaining that the student spouse will 
+need to review and sign the changes 
+made in this section. The student 
+selects "Confirm Changes." 
+312
+Manage FAFSA® Contributors Student Spouse Identity 
+Information
+This is the first page within the student 
+spouse section. The student can verify that 
+the student spouse’s personal information 
+is correct. To update any of the personal 
+information, the student spouse must 
+access their Account Settings on 
+StudentAid.gov. 
+313
+Manage FAFSA® Contributors Student Spouse Finances
+This page provides an overview of the "Student Spouse Finances" section.
+314
+Manage FAFSA® Contributors Student Spouse 
+Tax Return Information
+The student is asked questions about the student spouse’s tax filing status. The student selects the 
+appropriate response. 
+315
+Manage FAFSA® Contributors Student Spouse 
+Tax Return Information (Continued)
+Since the student spouse 
+has not provided consent for 
+their federal tax information 
+to be transferred directly into 
+the FAFSA
+® form, the 
+student must manually
+enter their spouse’s 2023 tax 
+return information. The 
+student enters a response
+in each entry field.
+316
+Manage FAFSA® Contributors Review Changes Page
+The student is taken to a page that tells them they are almost done. If the student needs to make additional 
+updates, they can select "Make More Changes." The student is ready to submit their correction and selects 
+“Continue."
+317
+Manage FAFSA® Contributors Signature
+On this page, the student acknowledges the terms and conditions of the FAFSA® form, signs, and submits 
+their correction.
+318
+Manage FAFSA® Contributors Signature (Pop Up)
+When the student signs their correction 
+on their FAFSA® form, a message 
+displays informing the student that 
+contributor consent and approval is 
+missing. The student has the option to 
+submit without the contributor consent 
+and approval, but they won’t be eligible 
+for federal student aid until it is provided. 
+The student selects "Sign and Exit." 
+319
+Manage FAFSA® Contributors Confirmation
+After signing their FAFSA® form, the 
+student has submitted their correction and 
+is presented the confirmation page. This 
+page displays information for the student 
+about next steps, including tracking their 
+FAFSA correction. The student is informed 
+that their form is not complete because 
+their new spouse needs to resolve error(s) 
+in the contributor section(s) and provide 
+their signature.
+320
+Parent Submits a Required FAFSA® Correction for 
+Missing Consent and Approval
+321
+Consent and Approval Correction Log In
+To access an existing FAFSA® form, the 
+parent is required to log in using their FSA 
+ID (StudentAid.gov account username and 
+password). 
+322
+Consent and Approval Correction Dashboard
+On the account Dashboard, the parent 
+can see their most recent 2025–26 
+FAFSA® activity under the "My Activity" 
+section. In this scenario, the parent’s child 
+has a processed 2025–26 FAFSA form 
+with an "Action Required" status. To see 
+further information about this application, 
+the parent selects the application and is 
+taken to the "Details" page.
+323
+Consent and Approval Correction Details
+On the "Details" page, the parent sees 
+information related to their child’s 
+processed FAFSA
+® form, such as when 
+it was started and processed and 
+additional resources. In this scenario, 
+the parent hasn’t provided consent and 
+approval on the form. Selecting 
+"Approve" starts a required correction.
+324
+Consent and Approval Correction Onboarding
+When the parent starts a 2025–26 
+FAFSA® correction, they are taken 
+through the FAFSA correction onboarding 
+process. A correction should only be 
+submitted if critical information was 
+missing, incorrect information was 
+provided, the student needs to update 
+their selected school(s), and/or a 
+correction was requested by a financial 
+aid administrator.
+325
+Consent and Approval Correction Provide Consent and 
+Approval
+This page informs the parent about 
+consent, approval, and the use of their 
+federal tax information. By providing 
+consent and approval, the parent’s 
+federal tax information is transferred 
+directly from the IRS into the FAFSA
+® 
+form to help complete the "Parent 
+Financials" section. 
+326
+Consent and Approval Correction
+Provide Consent and Approval (Continued)
+This is a continuation of the consent 
+and approval page. Frequently asked 
+questions about consent and 
+approval are provided that the parent 
+can expand and collapse. The parent 
+selects "Approve" to provide consent 
+and approval. Because the parent 
+had previously completed the 
+"Parent Financials" section, when 
+they select "Approve" to provide 
+consent and approval, they are taken 
+directly to the signature page. 
+327
+Consent and Approval Correction Review ChangesPage
+The parent is ready to sign and submit their correction and selects "Continue."
+328
+Consent Loading Page
+This page imports the parent’s federal tax information by directly transferring it into the FAFSA® form 
+from the IRS to help complete the “Parent Financials" section. 
+329
+Consent Results Page
+If the data import from the IRS is not successful, an error message will appear saying “Data Not 
+Received.” The parent can then continue to manually input their financial information in the “Parent 
+Financials” section.
+330
+Consent and Approval Correction Signature
+After the parent fills out their financial 
+information, they need to acknowledge 
+the terms and conditions of the FAFSA® 
+form, sign, and submit their correction.
+331
+Consent and Approval Correction Confirmation
+The parent is presented the confirmation 
+page. This page displays information for 
+the parent about next steps and tracking 
+their FAFSA
+® correction.
+332
+Conclusion
+333
