@@ -22,19 +22,26 @@ export default function ResourcesPage() {
         <article className="p-6 bg-white border rounded-lg shadow-sm">
           <div className="flex items-center gap-3 mb-3"><div className="p-2 text-white rounded" style={{ backgroundColor: 'var(--crimson)' }}><BookOpen size={18} /></div><h3 className="font-semibold">Guides & Checklists</h3></div>
           <p className="text-gray-700">Step-by-step checklists for grade-by-grade planning, college applications, and transition-to-college tasks.</p>
-          <Link href="#" className="inline-block mt-4 underline crimson-link">Download checklist →</Link>
+          <Link href="/resources/checklists" className="inline-block mt-4 underline crimson-link">Go to checklists →</Link>
         </article>
 
         <article className="p-6 bg-white border rounded-lg shadow-sm">
           <div className="flex items-center gap-3 mb-3"><div className="p-2 text-white rounded" style={{ backgroundColor: 'var(--crimson)' }}><Search size={18} /></div><h3 className="font-semibold">Scholarship Search</h3></div>
-          <p className="text-gray-700">Tips and trusted links to locate scholarships and build a competitive application.</p>
-          <Link href="#" className="inline-block mt-4 underline crimson-link">Find scholarships →</Link>
+          <p className="text-gray-700">Starting points for local Summit / New Jersey funds plus national tools to build a strong list.</p>
+          <Link href="/resources/scholarships" className="inline-block mt-4 underline crimson-link">Explore scholarships →</Link>
         </article>
 
         <article className="p-6 bg-white border rounded-lg shadow-sm">
           <div className="flex items-center gap-3 mb-3"><div className="p-2 text-white rounded" style={{ backgroundColor: 'var(--crimson)' }}><FileText size={18} /></div><h3 className="font-semibold">FAFSA & Financial Aid</h3></div>
-          <p className="text-gray-700">Clear instructions for completing FAFSA and maximizing aid eligibility.</p>
-          <Link href="#" className="inline-block mt-4 underline crimson-link">FAFSA help →</Link>
+          <p className="text-gray-700">Official FAFSA instructions plus Destination College tools to make each line less intimidating.</p>
+          <Link
+            href="https://studentaid.gov/h/apply-for-aid/fafsa"
+            target="_blank"
+            rel="noreferrer"
+            className="inline-block mt-4 underline crimson-link"
+          >
+            Open FAFSA site →
+          </Link>
         </article>
       </section>
 
