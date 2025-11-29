@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function ResourcesPage() {
   return (
-    <main className="min-h-screen max-w-5xl mx-auto px-6 py-16">
+    <main id="main-content" tabIndex={-1} className="min-h-screen max-w-5xl mx-auto px-6 py-16">
       <header className="mb-8">
         <h1 className="text-4xl font-bold">Resources — Tools for Students & Families</h1>
         <p className="text-gray-600 mt-2">A curated collection of guides, checklists, scholarship search tools, and templates to help students navigate every step toward college.</p>
@@ -61,6 +61,13 @@ export default function ResourcesPage() {
             Fuel more resources
           </Link>
         </div>
+      </section>
+
+      <section id="privacy" className="mb-8 rounded-3xl border border-gray-200 bg-white p-6 shadow-sm">
+        <h2 className="text-2xl font-semibold text-gray-900">Privacy & data handling</h2>
+        <p className="mt-3 text-sm text-gray-600">
+          Uploaded FAFSA helper files stay in your browser until you click “Scan document.” At that point they are sent securely to the configured extractor service, used to surface suggested values, and then discarded. Destination College never stores or emails tax records. Close or refresh the page anytime to clear your temporary entries.
+        </p>
       </section>
 
       <Link href="/" className="underline crimson-link">← Back to home</Link>

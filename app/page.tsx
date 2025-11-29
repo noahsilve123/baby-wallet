@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { ArrowRight, BookOpen, ChevronRight, GraduationCap, Heart, Users } from 'lucide-react'
+import { ArrowRight, BookOpen, ChevronRight, GraduationCap, Heart, Quote, ShieldCheck, Users } from 'lucide-react'
 
 export default function Page() {
 	const quickLinks = [
@@ -32,8 +32,51 @@ export default function Page() {
 		{ title: '3. Prevail', description: 'Scholarship packaging, transition-to-campus coaching, and alumni mentoring.' },
 	]
 
+	const communitySignals = [
+		{ label: 'Advising hours delivered last year', value: '3,200+', detail: 'from FAFSA nights to parent meetings' },
+		{ label: 'Scholarship essays reviewed', value: '140+', detail: 'across fall and spring deadlines' },
+		{ label: 'Campus visits funded', value: '24', detail: 'so students can visualize themselves on campus' },
+	]
+
+	const successStories = [
+		{
+			name: 'Malia • Summit HS 2024',
+			quote: 'Weekly mentor calls turned my anxiety into a checklist. When financial aid letters arrived, I understood exactly what to compare.',
+			pillar: 'Mentorship',
+		},
+		{
+			name: 'Andre • Parent',
+			quote: 'Destination College translated FAFSA into clear steps. We finished in one sitting and avoided weeks of guesswork.',
+			pillar: 'Financial Aid Studio',
+		},
+		{
+			name: 'Isabella • STEM Scholar',
+			quote: 'SAT Lab felt like a team sport. The practice cadence and feedback bumped my score 210 points.',
+			pillar: 'Academic Labs',
+		},
+	]
+
+	const faqs = [
+		{
+			question: 'How early should a student join Destination College?',
+			answer: 'Families often join as early as 9th grade so we can map coursework, budgets, and enrichment options. We also welcome juniors and seniors—there is always a next step we can tackle together.',
+		},
+		{
+			question: 'Does it cost anything to participate?',
+			answer: 'Programs are fully funded by donors and community partners. There are no fees for families; our job is to remove financial friction, not add to it.',
+		},
+		{
+			question: 'Can I volunteer if I am not an alum?',
+			answer: 'Yes. We train volunteers to coach essays, lead mock interviews, host FAFSA nights, or serve as near-peer mentors. Complete the interest form on the Programs page to get started.',
+		},
+		{
+			question: 'How are donations used?',
+			answer: 'Every $250 covers essentials like application fees, campus travel stipends, or emergency bridge grants. Larger gifts underwrite staff counselors so we can walk with students year-round.',
+		},
+	]
+
 	return (
-		<main className="bg-white text-gray-900">
+		<main id="main-content" tabIndex={-1} className="bg-white text-gray-900">
 			<section className="relative overflow-hidden bg-gradient-to-br from-rose-50 via-white to-amber-50 text-gray-900">
 				<div className="absolute inset-0 opacity-40 pattern-grid" aria-hidden />
 				<div className="relative max-w-7xl mx-auto px-6 py-20 grid gap-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] items-center">
@@ -163,6 +206,76 @@ export default function Page() {
 				</div>
 			</section>
 
+			<section className="bg-white border-y border-gray-100">
+				<div className="max-w-6xl mx-auto px-6 py-16">
+					<div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+						<div>
+							<p className="text-sm font-semibold uppercase tracking-wide text-gray-500">Proof in motion</p>
+							<h2 className="mt-2 text-3xl font-bold text-gray-900">Families stick with us because the support is personal.</h2>
+							<p className="mt-2 text-gray-600">These are the metrics we review every month to ensure we are closing real gaps.</p>
+						</div>
+						<Link href="/resources" className="btn-crimson inline-flex items-center gap-2 rounded-full px-5 py-2 font-semibold text-white">
+							Browse accountability kit <ArrowRight className="h-4 w-4" />
+						</Link>
+					</div>
+					<div className="mt-10 grid gap-4 md:grid-cols-3">
+						{communitySignals.map((signal) => (
+							<div key={signal.label} className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+								<p className="text-3xl font-semibold" style={{ color: 'var(--crimson)' }}>{signal.value}</p>
+								<p className="mt-1 font-semibold text-gray-900">{signal.label}</p>
+								<p className="mt-2 text-sm text-gray-600">{signal.detail}</p>
+							</div>
+						))}
+					</div>
+				</div>
+			</section>
+
+			<section className="bg-gradient-to-b from-slate-900 to-slate-800 text-white">
+				<div className="max-w-6xl mx-auto px-6 py-16 space-y-10">
+					<div className="flex flex-col gap-4 text-center">
+						<p className="text-sm uppercase tracking-[0.4em] text-white/70">Stories</p>
+						<h2 className="text-3xl font-bold">The journey in their own words</h2>
+						<p className="text-white/80 max-w-3xl mx-auto">We measure success by the moment a student believes, “I belong here.”</p>
+					</div>
+					<div className="grid gap-6 md:grid-cols-3">
+						{successStories.map((story) => (
+							<article key={story.name} className="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-lg backdrop-blur">
+								<div className="flex items-center gap-2 text-sm font-semibold text-white/80">
+									<ShieldCheck className="h-4 w-4 text-amber-300" />
+									<span>{story.pillar}</span>
+								</div>
+								<p className="mt-4 text-white text-lg leading-relaxed">
+									<Quote className="inline h-5 w-5 text-amber-200" aria-hidden />
+									{' '}
+									{story.quote}
+								</p>
+								<p className="mt-6 text-sm font-semibold text-amber-200">{story.name}</p>
+							</article>
+						))}
+					</div>
+				</div>
+			</section>
+
+			<section className="bg-slate-50 py-16">
+				<div className="max-w-5xl mx-auto px-6 text-center">
+					<p className="text-sm font-semibold uppercase tracking-[0.3em] text-gray-500">Questions parents ask most</p>
+					<h2 className="mt-3 text-3xl font-bold text-gray-900">Quick answers before a call</h2>
+					<p className="mt-2 text-gray-600">Use these to guide a family meeting or send them to a supporter who wants to help.</p>
+				</div>
+				<div className="mt-10 max-w-4xl mx-auto px-6 space-y-4">
+					{faqs.map((faq) => (
+						<details key={faq.question} className="group rounded-2xl border border-gray-200 bg-white p-5 transition" aria-label={faq.question}>
+							<summary className="flex cursor-pointer items-center justify-between gap-3 text-left text-lg font-semibold text-gray-900 list-none">
+								<span>{faq.question}</span>
+								<span className="text-sm text-gray-500 group-open:hidden">+</span>
+								<span className="text-sm text-gray-500 hidden group-open:inline">—</span>
+							</summary>
+							<p className="mt-3 text-sm text-gray-600">{faq.answer}</p>
+						</details>
+					))}
+				</div>
+			</section>
+
 			<section className="bg-slate-900 text-white">
 				<div className="max-w-6xl mx-auto px-6 py-16 text-center">
 					<h2 className="text-3xl font-bold">Ready to walk alongside a student?</h2>
@@ -173,10 +286,6 @@ export default function Page() {
 					</div>
 				</div>
 			</section>
-
-			<footer className="bg-gray-50 border-t">
-				<div className="max-w-7xl mx-auto px-6 py-6 text-center text-sm text-gray-600">© {new Date().getFullYear()} Destination College — All rights reserved.</div>
-			</footer>
 		</main>
 	)
 }

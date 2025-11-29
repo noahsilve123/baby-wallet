@@ -35,8 +35,27 @@ h1, h2, h3 {
   letter-spacing: 0.01em;
   font-size: 1.5rem; /* 24px */
   line-height: 1.05;
-  color: var(--crimson);
+  color: inherit;
   text-shadow: 0 2px 6px rgba(79, 11, 19, 0.15);
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -40px;
+  background: var(--crimson);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  font-weight: 600;
+  z-index: 100;
+  transition: top 0.2s ease, opacity 0.2s ease;
+  opacity: 0;
+}
+
+.skip-link:focus {
+  top: 1rem;
+  opacity: 1;
 }
 
 /* Simple fade-up animation for in-view entrance of elements */
@@ -152,16 +171,4 @@ h1, h2, h3 {
 
 .btn-crimson-outline:hover {
   background: var(--crimson-soft);
-}
-
-
-/* Footer: light by default */
-footer {
-  background-color: #f9fafb;
-  color: #111827;
-}
-footer a,
-footer p,
-footer small {
-  color: #374151;
 }

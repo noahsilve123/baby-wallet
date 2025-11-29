@@ -68,7 +68,7 @@ function DonateContent() {
   }
 
   return (
-    <main className="min-h-screen max-w-4xl mx-auto px-6 py-16">
+    <main id="main-content" tabIndex={-1} className="min-h-screen max-w-4xl mx-auto px-6 py-16">
       <header className="mb-8 text-center">
         <div className="mb-4 flex items-center justify-center gap-3">
           <div className="rounded-full p-3 text-white" style={{ backgroundColor: 'var(--crimson)' }}>

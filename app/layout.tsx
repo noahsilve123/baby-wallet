@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Source_Serif_4 } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 const sourceSerif = Source_Serif_4({
   variable: "--font-source-serif",
@@ -27,9 +28,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${sourceSerif.variable} antialiased`}>
-        <Header />
-        {children}
+      <body id="top" className={`${sourceSerif.variable} antialiased bg-white text-gray-900`}>
+        <a href="#main-content" className="skip-link">Skip to main content</a>
+        <div className="flex min-h-screen flex-col">
+          <Header />
+          <div className="flex-1">{children}</div>
+          <Footer />
+        </div>
       </body>
     </html>
   );

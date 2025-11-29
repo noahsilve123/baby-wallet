@@ -10,14 +10,14 @@ export const metadata: Metadata = {
 
 export default function ProgramsPage() {
   return (
-    <main className="min-h-screen max-w-7xl mx-auto px-6 py-16">
+    <main id="main-content" tabIndex={-1} className="min-h-screen max-w-7xl mx-auto px-6 py-16">
       <header className="mb-8">
         <h1 className="text-4xl font-bold">Programs — Prepare. Practice. Prevail.</h1>
         <p className="text-gray-600 mt-2">Hands-on workshops, mentoring, test preparation, and financial-aid guidance designed to help students reach college and succeed once enrolled.</p>
       </header>
 
       <section className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-        <article className="p-6 bg-white border rounded-lg shadow-sm">
+        <article id="mentorship" className="p-6 bg-white border rounded-lg shadow-sm">
           <div className="flex items-center gap-4 mb-4">
             <div className="p-3 text-white rounded-md" style={{ backgroundColor: 'var(--crimson)' }}><GraduationCap size={22} /></div>
             <h3 className="text-lg font-semibold">Mentorship</h3>
@@ -26,7 +26,7 @@ export default function ProgramsPage() {
           <Link href="/programs#mentorship" className="inline-block mt-4 underline crimson-link">Read details →</Link>
         </article>
 
-        <article className="p-6 bg-white border rounded-lg shadow-sm">
+        <article id="sat-prep" className="p-6 bg-white border rounded-lg shadow-sm">
           <div className="flex items-center gap-4 mb-4">
             <div className="p-3 text-white rounded-md" style={{ backgroundColor: 'var(--crimson)' }}><Users size={22} /></div>
             <h3 className="text-lg font-semibold">Workshops & SAT Prep</h3>
@@ -35,7 +35,7 @@ export default function ProgramsPage() {
           <Link href="/programs#sat-prep" className="inline-block mt-4 underline crimson-link">See schedule →</Link>
         </article>
 
-        <article className="p-6 bg-white border rounded-lg shadow-sm">
+        <article id="financial-aid" className="p-6 bg-white border rounded-lg shadow-sm">
           <div className="flex items-center gap-4 mb-4">
             <div className="p-3 text-white rounded-md" style={{ backgroundColor: 'var(--crimson)' }}><BookOpen size={22} /></div>
             <h3 className="text-lg font-semibold">Financial Aid & Scholarships</h3>
