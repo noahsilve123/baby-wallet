@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from 'react'
-import type { Metadata } from 'next'
 
 type Member = {
   name: string
@@ -10,11 +9,6 @@ type Member = {
   email: string
   phone: string
   linkedin?: string
-}
-
-export const metadata: Metadata = {
-  title: 'Network – Destination College',
-  description: 'A private directory for current Destination College students, alumni, and mentors.',
 }
 
 const MEMBERS: Member[] = [
@@ -81,7 +75,7 @@ export default function NetworkPage() {
             {error && <p className="mt-1 text-sm text-red-600">{error}</p>}
           </form>
         </section>
-      }
+      )}
 
       {unlocked && (
         <section className="mb-10 rounded-3xl border border-gray-200 bg-white p-6 shadow-sm">
