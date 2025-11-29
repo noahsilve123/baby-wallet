@@ -29,7 +29,9 @@ export default function Header() {
     <>
       <header className="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-[var(--gold)] text-gray-900 shadow-sm">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          <div className="text-xl tracking-tight site-title">Destination College</div>
+          <Link href="/" className="text-xl tracking-tight site-title focus:outline-offset-4" style={{ color: 'var(--crimson)' }}>
+            Destination College
+          </Link>
           <nav className="hidden md:flex gap-6 items-center text-gray-700">
             <Link href="/" className="hover:text-gray-900">Home</Link>
             <Link href="/programs" className="hover:text-gray-900">Programs</Link>

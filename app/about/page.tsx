@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <main className="min-h-screen max-w-5xl mx-auto px-6 py-16">
+    <main id="main-content" tabIndex={-1} className="min-h-screen max-w-5xl mx-auto px-6 py-16">
       <header className="mb-10 text-center">
         <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gray-500">Our Story</p>
         <h1 className="mt-2 text-4xl font-bold">About Destination College</h1>
@@ -19,7 +19,7 @@ export default function AboutPage() {
         </p>
       </header>
 
-      <section className="mb-12">
+      <section id="involved" className="mb-12">
         <h2 className="text-2xl font-semibold mb-4">Our Mission</h2>
         <p className="text-gray-700">
           We remove academic, social, and financial barriers by staying with students from early high school through college graduation. Families, schools, and volunteer mentors partner with us to design clear, achievable roadmaps that keep every milestone in sight.
