@@ -10,21 +10,38 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <main id="main-content" tabIndex={-1} className="min-h-screen max-w-5xl mx-auto px-6 py-16">
-      <header className="mb-10 text-center">
-        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gray-500">Our Story</p>
-        <h1 className="mt-2 text-4xl font-bold">About Destination College</h1>
-        <p className="text-gray-600 mt-3 max-w-3xl mx-auto">
-          We help first-generation, college-bound students from Summit High School in New Jersey prepare for, apply to, and thrive at college through mentorship, practical workshops, and financial guidance tailored to each family.
-        </p>
+    <main id="main-content" tabIndex={-1} className="min-h-screen max-w-6xl mx-auto px-4 md:px-6 py-12 md:py-16">
+      <header className="mb-12 grid gap-8 md:grid-cols-[minmax(0,1.3fr)_minmax(0,0.9fr)] md:items-center">
+        <div>
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gray-500">Our Story</p>
+          <h1 className="mt-2 text-4xl md:text-5xl font-bold">About Destination College</h1>
+          <p className="text-gray-600 mt-4 max-w-2xl">
+            Destination College is a long-term partnership for first-generation, college-bound students from Summit High School
+            in New Jersey. We combine mentoring, practical workshops, and financial guidance so families never have to navigate
+            the process alone.
+          </p>
+        </div>
+        <div className="mx-auto w-full max-w-xs overflow-hidden rounded-3xl border border-gray-100 bg-white shadow-xl">
+          <Image
+            src="/martha-sayre.jpg"
+            alt="Martha Sayre, co-founder of Destination College"
+            width={320}
+            height={400}
+            className="h-full w-full object-cover"
+          />
+        </div>
       </header>
 
-      <section className="mb-12">
-        <h2 className="text-2xl font-semibold mb-4">Our Mission</h2>
-        <p className="text-gray-700">
-          We remove academic, social, and financial barriers by staying with students from early high school through college graduation. Families, schools, and volunteer mentors partner with us to design clear, achievable roadmaps that keep every milestone in sight.
-        </p>
-        <div className="mt-6 grid gap-4 md:grid-cols-2 text-sm text-gray-700">
+      <section className="mb-10 md:mb-12 grid gap-8 md:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)]">
+        <div>
+          <h2 className="text-2xl font-semibold mb-4">Our Mission</h2>
+          <p className="text-gray-700">
+            We remove academic, social, and financial barriers by staying with students from early high school through college
+            graduation. Families, schools, and volunteer mentors partner with us to design clear, achievable roadmaps that keep
+            every milestone in sight.
+          </p>
+        </div>
+        <div className="grid gap-4 sm:grid-cols-2 text-sm text-gray-700">
           <div className="rounded-2xl border border-gray-200 p-4">
             <p className="font-semibold text-gray-900">500+ students</p>
             <p className="mt-1">supported with advising, testing, and financial-aid planning.</p>
@@ -36,45 +53,50 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="mb-12 rounded-3xl border border-gray-200 bg-white p-8 shadow-sm">
-        <div className="flex flex-col gap-8 lg:flex-row lg:items-start">
-          <div className="lg:flex-1">
-            <p className="text-sm font-semibold uppercase tracking-wide text-gray-500">Founder Spotlight</p>
-            <h2 className="mt-2 text-3xl font-bold text-gray-900">Martha Sayre</h2>
+      <section className="mb-10 md:mb-12 rounded-3xl border border-gray-200 bg-white p-6 md:p-8 shadow-sm">
+        <div className="grid gap-8 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)] lg:items-start">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-wide text-gray-500">Leadership</p>
+            <h2 className="mt-2 text-3xl font-bold text-gray-900">Martha Sayre, Co‑Founder</h2>
             <p className="mt-3 text-gray-700">
-              Martha Sayre co-founded Destination College to ensure well-deserving students experience the encouragement, financial resources, and practical guidance that changed her own community. A senior leader adept at both strategy and operations, she thrives on being on the front lines of mission-driven work and building relationships at every level.
+              Martha Sayre co-founded Destination College to ensure well-deserving students experience the encouragement,
+              financial resources, and practical guidance that changed her own community. A senior leader adept at both strategy
+              and operations, she thrives on being on the front lines of mission-driven work and building relationships at every
+              level.
             </p>
-            <div className="mt-6 grid gap-4 md:grid-cols-2 text-gray-700">
-              <div className="rounded-2xl bg-slate-50 p-4 border border-slate-100">
-                <ul className="list-disc pl-4 space-y-2 text-sm">
-                  <li>Collaborative communicator who guides complex, multi-stakeholder projects.</li>
-                  <li>Emotionally intelligent manager with a track record of developing effective teams.</li>
-                  <li>Seasoned strategist with deep experience bridging nonprofit boards and staff.</li>
-                </ul>
-              </div>
-              <div className="rounded-2xl bg-white p-4 border border-gray-200">
-                <p className="text-sm text-gray-700">Her LinkedIn bio captures her drive:</p>
-                <p className="mt-2 text-gray-900">&ldquo;Senior leader adept at both strategy and operations seeks a role in the not-for-profit sector working on the front-lines to make a difference. Proven effectiveness building relationships at all levels and working collaboratively across an organization. Skilled communicator with demonstrated success in managing complex projects involving multiple stakeholders. Dynamic, emotionally intelligent organizational manager with commitment to fostering effective teams and a proven history of successful staff development.&rdquo;</p>
-              </div>
-              <div className="rounded-2xl bg-white p-4 border border-gray-200 md:col-span-2">
-                <p className="text-sm text-gray-700">Contact Martha directly:</p>
-                <a href="mailto:marthabsayre@gmail.com" className="mt-2 inline-flex items-center text-lg font-semibold crimson-link">marthabsayre@gmail.com</a>
-              </div>
-            </div>
           </div>
-          <div className="mx-auto w-full max-w-xs overflow-hidden rounded-3xl border border-gray-100 bg-white shadow-xl lg:ml-10">
-            <Image
-              src="/martha-sayre.jpg"
-              alt="Portrait of Martha Sayre"
-              width={285}
-              height={375}
-              className="h-full w-full object-cover"
-            />
+          <div className="grid gap-4 text-gray-700">
+            <div className="rounded-2xl bg-slate-50 p-4 border border-slate-100">
+              <ul className="list-disc pl-4 space-y-2 text-sm">
+                <li>Collaborative communicator who guides complex, multi-stakeholder projects.</li>
+                <li>Emotionally intelligent manager with a track record of developing effective teams.</li>
+                <li>Seasoned strategist with deep experience bridging nonprofit boards and staff.</li>
+              </ul>
+            </div>
+            <div className="rounded-2xl bg-white p-4 border border-gray-200">
+              <p className="text-sm text-gray-700">Her LinkedIn bio captures her drive:</p>
+              <p className="mt-2 text-gray-900">
+                &ldquo;Senior leader adept at both strategy and operations seeks a role in the not-for-profit sector working on
+                the front-lines to make a difference. Proven effectiveness building relationships at all levels and working
+                collaboratively across an organization. Skilled communicator with demonstrated success in managing complex
+                projects involving multiple stakeholders. Dynamic, emotionally intelligent organizational manager with commitment
+                to fostering effective teams and a proven history of successful staff development.&rdquo;
+              </p>
+            </div>
+            <div className="rounded-2xl bg-white p-4 border border-gray-200">
+              <p className="text-sm text-gray-700">Contact Martha directly:</p>
+              <a
+                href="mailto:marthabsayre@gmail.com"
+                className="mt-2 inline-flex items-center text-lg font-semibold crimson-link"
+              >
+                marthabsayre@gmail.com
+              </a>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="mb-12 rounded-3xl border border-gray-200 bg-white p-8 shadow-sm">
+      <section className="mb-10 md:mb-12 rounded-3xl border border-gray-200 bg-white p-6 md:p-8 shadow-sm">
         <h3 className="text-2xl font-semibold text-gray-900">Why Martha stays involved</h3>
         <blockquote className="mt-4 border-l-4 border-[var(--crimson)] bg-[var(--crimson-soft)]/70 p-6 text-gray-800">
           <p className="italic">&ldquo;It&rsquo;s been a joy to support these well-deserving students, but even more so, it&rsquo;s amazing to see them grow during their college years as they come back to check in. It&rsquo;s inspiring to see how determined these students are to go to college and how the scholarships can really change the direction of their lives. One student received a full-ride scholarship in real time, just as we were on the phone preparing to accept admission to his second-choice school. Moments like that stay with you.&rdquo;</p>
@@ -82,7 +104,7 @@ export default function AboutPage() {
         </blockquote>
       </section>
 
-      <section id="involved" className="mb-12">
+      <section id="involved" className="mb-10 md:mb-12">
         <h2 className="text-2xl font-semibold mb-4">Get Involved</h2>
         <ul className="list-disc pl-5 text-gray-700">
           <li>Volunteer as a mentor, workshop leader, or application reader.</li>

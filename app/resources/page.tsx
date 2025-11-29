@@ -12,15 +12,15 @@ export const metadata: Metadata = {
 
 export default function ResourcesPage() {
   return (
-    <main id="main-content" tabIndex={-1} className="min-h-screen max-w-5xl mx-auto px-6 py-16">
-      <header className="mb-8">
+    <main id="main-content" tabIndex={-1} className="min-h-screen max-w-6xl mx-auto px-4 md:px-6 py-12 md:py-16">
+      <header className="mb-6 md:mb-8">
         <h1 className="text-4xl font-bold">Resources — Tools for Students & Families</h1>
         <p className="text-gray-600 mt-2">A curated collection of guides, checklists, scholarship search tools, and templates to help students navigate every step toward college.</p>
       </header>
 
       {/* Top layout: tools visible immediately, with quick-link cards alongside */}
-      <section className="mb-16 grid gap-10 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,0.9fr)] items-start">
-        <div className="space-y-8">
+      <section className="mb-10 grid gap-8 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,0.9fr)] items-start">
+        <div className="space-y-6">
           <FAFSATool />
           <CSSProfileChecklist />
         </div>

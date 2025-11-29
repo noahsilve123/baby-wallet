@@ -2,6 +2,7 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -28,15 +29,34 @@ export default function Header() {
   return (
     <>
       <header className="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-[var(--gold)] text-gray-900 shadow-sm">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          <Link href="/" className="text-xl tracking-tight site-title focus:outline-offset-4" style={{ color: 'var(--crimson)' }}>
-            Destination College
+        <div className="max-w-7xl mx-auto px-4 md:px-6 py-3 md:py-4 flex items-center justify-between gap-4">
+          <Link
+            href="/"
+            className="flex items-center gap-3 focus:outline-offset-4"
+            aria-label="Destination College home"
+          >
+            {/* Ensure this file exists at public/destination-college-logo.png */}
+            <Image
+              src="/destination-college-logo.png"
+              alt="Destination College logo"
+              width={44}
+              height={44}
+              className="h-11 w-11 shrink-0"
+            />
+            <div className="leading-tight">
+              <p className="text-base md:text-lg tracking-tight site-title" style={{ color: 'var(--crimson)' }}>
+                Destination College
+              </p>
+              <p className="text-xs md:text-sm text-gray-600">Summit High School • First-gen support</p>
+            </div>
           </Link>
+
           <nav className="hidden md:flex gap-6 items-center text-gray-700">
             <Link href="/" className="hover:text-gray-900">Home</Link>
             <Link href="/programs" className="hover:text-gray-900">Programs</Link>
             <Link href="/about" className="hover:text-gray-900">About</Link>
             <Link href="/resources" className="hover:text-gray-900">Resources</Link>
+            <Link href="/network" className="hover:text-gray-900">Network</Link>
             <Link
               href="/donate"
               className="ml-2 btn-crimson inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold"
@@ -44,12 +64,13 @@ export default function Header() {
               Donate
             </Link>
           </nav>
+
           <div className="md:hidden">
             <button
               aria-label="Open menu"
               aria-expanded={menuOpen}
               onClick={() => setMenuOpen((s) => !s)}
-              className="text-gray-800 focus:outline-none focus:ring-2 focus:ring-[var(--gold)]/60"
+              className="text-gray-800 focus:outline-none focus:ring-2 focus:ring-[var(--gold)]/60 rounded-md px-1 py-1"
             >
               {menuOpen ? "✕" : "☰"}
             </button>
@@ -71,6 +92,7 @@ export default function Header() {
               <Link href="/programs" onClick={() => setMenuOpen(false)} className="text-lg">Programs</Link>
               <Link href="/about" onClick={() => setMenuOpen(false)} className="text-lg">About</Link>
               <Link href="/resources" onClick={() => setMenuOpen(false)} className="text-lg">Resources</Link>
+              <Link href="/network" onClick={() => setMenuOpen(false)} className="text-lg">Network</Link>
               <Link
                 href="/donate"
                 onClick={() => setMenuOpen(false)}
