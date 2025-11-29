@@ -47,28 +47,32 @@ export default function Page() {
 			<section className="relative overflow-hidden bg-gradient-to-br from-rose-50 via-white to-amber-50 text-gray-900">
 				<div className="absolute inset-0 opacity-40 pattern-grid" aria-hidden />
 				<div className="relative max-w-7xl mx-auto px-6 py-20 grid gap-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] items-center">
-					<div>
-						<span className="inline-flex items-center gap-2 crimson-pill px-4 py-1 text-sm font-medium">
-							<Sparkles className="h-4 w-4" style={{ color: 'var(--crimson)' }} /> First-gen success network
-						</span>
 						<h1 className="mt-6 text-4xl md:text-5xl lg:text-6xl font-black leading-tight text-gray-900">
 							Your future has a team behind it.
 						</h1>
 						<p className="mt-4 text-lg text-gray-700">
 							Destination College surrounds students with mentors, workshops, and financial guidance so the path to higher education feels clear—and possible.
 						</p>
+						<div className="mt-6 text-sm text-gray-600">
+							<p className="font-semibold">Who we serve</p>
+							<ul className="mt-1 flex flex-wrap gap-3">
+								<li className="rounded-full bg-white/80 px-3 py-1">Summit High School students</li>
+								<li className="rounded-full bg-white/80 px-3 py-1">Families planning for college costs</li>
+								<li className="rounded-full bg-white/80 px-3 py-1">Donors & volunteers who want to invest in first-gen success</li>
+							</ul>
+						</div>
 						<div className="mt-8 flex flex-wrap gap-3">
 							<Link
-								href="/programs"
-								className="btn-crimson inline-flex items-center gap-2 rounded-full px-6 py-3 font-semibold transition hover:-translate-y-0.5"
-							>
+									href="/programs"
+									className="btn-crimson inline-flex items-center gap-2 rounded-full px-6 py-3 font-semibold transition hover:-translate-y-0.5"
+								>
 								Explore programs <ArrowRight className="h-4 w-4" />
 							</Link>
 							<Link
-								href="/about"
-								className="btn-crimson-outline inline-flex items-center gap-2 rounded-full px-6 py-3 font-semibold transition"
-							>
-								Meet our team
+									href="/donate"
+									className="btn-crimson-outline inline-flex items-center gap-2 rounded-full px-6 py-3 font-semibold transition"
+								>
+								Invest in a student
 							</Link>
 						</div>
 						<div className="mt-10 grid grid-cols-2 gap-4 text-sm">

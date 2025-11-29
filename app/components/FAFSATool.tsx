@@ -48,6 +48,7 @@ export default function FAFSATool() {
   const [isDragging, setIsDragging] = useState(false)
   const [responses, setResponses] = useState<ResponseMap>({})
   const [uploadError, setUploadError] = useState<string | null>(null)
+  const [appliedQuestionId, setAppliedQuestionId] = useState<string | null>(null)
 
   const safeId = useCallback((fileName: string) => `${Date.now()}-${fileName}`, [])
 
@@ -188,6 +189,10 @@ export default function FAFSATool() {
     const extraction = doc?.extractedFields.find((field) => field.id === extractionId)
     if (!extraction) return
     updateResponse(extraction.questionId, extraction.value)
+    setAppliedQuestionId(extraction.questionId)
+    window.setTimeout(() => {
+      setAppliedQuestionId((current) => (current === extraction.questionId ? null : current))
+    }, 1500)
   }, [docs, updateResponse])
 
   const pendingCount = useMemo(() => docs.filter((doc) => doc.status === 'pending').length, [docs])
@@ -197,7 +202,15 @@ export default function FAFSATool() {
       <div className="flex flex-col gap-3 mb-6">
         <span className="uppercase text-xs tracking-widest text-slate-500">Financial Aid Simplified</span>
         <h2 className="text-3xl font-semibold">FAFSA File Prep Tool</h2>
-        <p className="text-slate-600 max-w-2xl">Drop your tax docs, let the translator highlight the FAFSA answers for you, then copy those temporary values straight into the official form. Everything stays on this device and disappears when you leave.</p>
+        <p className="text-slate-600 max-w-2xl">Drop your tax docs, let the translator highlight the FAFSA answers for you, then copy those temporary values straight into the official form. This is a scratch space that clears when you close or refresh the page.</p>
+        <div className="text-xs text-slate-500 bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 max-w-2xl">
+          <p className="font-semibold">How this helper fits into FAFSA</p>
+          <ul className="mt-1 list-disc space-y-1 pl-4">
+            <li>Gather your 1040, W-2s, Social Security letters, and any 1099 forms.</li>
+            <li>Upload PDF copies below, then run "Scan document" on each file you want to analyze.</li>
+            <li>Use the suggested numbers as a guide while you type the same values on the official FAFSA site.</li>
+          </ul>
+        </div>
       </div>
 
       <div className="space-y-8">
@@ -222,8 +235,8 @@ export default function FAFSATool() {
           >
             <UploadCloud className="text-slate-600" size={28} />
             <div className="text-center">
-              <p className="font-semibold">Drag & drop PDFs or take a photo</p>
-              <p className="text-sm text-slate-500">IRS 1040, W-2s, income statements, Social Security cards</p>
+              <p className="font-semibold">Drag & drop PDF copies of your tax docs</p>
+              <p className="text-sm text-slate-500">IRS 1040, W-2s, income statements, Social Security letters</p>
             </div>
             <input
               id="fafsa-docs"
@@ -231,12 +244,13 @@ export default function FAFSATool() {
               className="hidden"
               multiple
               accept=".pdf"
+              aria-describedby="fafsa-docs-help"
               onChange={(event) => {
                 void handleFiles(event.target.files)
                 event.target.value = ''
               }}
             />
-            <span className="text-xs text-slate-500">Files stay private until you share them with your counselor</span>
+            <span id="fafsa-docs-help" className="text-xs text-slate-500">Files are sent only to the FAFSA helper service configured for this site and are not kept as a long-term record.</span>
           </label>
           {uploadError && (
             <p className="text-sm text-rose-600">{uploadError}</p>
@@ -246,7 +260,18 @@ export default function FAFSATool() {
             <div className="space-y-3">
               <div className="flex items-center justify-between text-sm text-slate-600">
                 <span>{docs.length} document{docs.length === 1 ? '' : 's'} staged</span>
-                <span className={statusColor.pending}>Action needed on {pendingCount}</span>
+                <div className="flex items-center gap-3">
+                  <span className={statusColor.pending}>Action needed on {pendingCount}</span>
+                  {pendingCount > 0 && (
+                    <button
+                      type="button"
+                      onClick={() => docs.filter((doc) => doc.status === 'pending' && doc.file).forEach((doc) => analyzeDocument(doc.id))}
+                      className="inline-flex items-center rounded-full border border-slate-200 px-3 py-1 text-xs font-semibold text-slate-600 hover:border-slate-300"
+                    >
+                      Scan all pending
+                    </button>
+                  )}
+                </div>
               </div>
               <p className="text-xs text-slate-500">Choose “Scan document” on each file whenever you want to run detection. Nothing leaves your device until you hit that button.</p>
 
@@ -368,13 +393,14 @@ export default function FAFSATool() {
             responses={responses}
             onChangeResponse={updateResponse}
             onClearResponses={clearResponses}
+            appliedQuestionId={appliedQuestionId}
           />
         </div>
       </div>
 
       <div className="mt-8 text-sm text-slate-600 flex flex-wrap items-center gap-2 border-t pt-4">
         <AlertCircle className="text-amber-500" size={16} />
-        <span>This workspace is a planning tool only. Do not email or text sensitive tax data. Upload directly through FAFSA or your school portal.</span>
+        <span>This workspace is a planning tool only. Always double-check values before entering them on FAFSA or a college portal, and do not email or text sensitive tax data.</span>
       </div>
     </section>
   )
@@ -384,9 +410,10 @@ type FAFSAQuestionNavigatorProps = {
   responses: ResponseMap
   onChangeResponse: (id: string, value: string) => void
   onClearResponses: () => void
+  appliedQuestionId?: string | null
 }
 
-function FAFSAQuestionNavigator({ responses, onChangeResponse, onClearResponses }: FAFSAQuestionNavigatorProps) {
+function FAFSAQuestionNavigator({ responses, onChangeResponse, onClearResponses, appliedQuestionId }: FAFSAQuestionNavigatorProps) {
   const [searchTerm, setSearchTerm] = useState('')
   const [activeQuestionId, setActiveQuestionId] = useState(fafsaQuestions[0]?.id ?? '')
 
@@ -474,7 +501,7 @@ function FAFSAQuestionNavigator({ responses, onChangeResponse, onClearResponses 
       </div>
 
       <div className="grid gap-6 lg:grid-cols-[250px,1fr]">
-        <div className="rounded-2xl border border-slate-100">
+        <div className="rounded-2xl border border-slate-100" aria-label="FAFSA questions" role="navigation">
           <label className="flex items-center gap-2 border-b border-slate-100 px-4 py-3 text-sm text-slate-500">
             <Search size={16} />
             <input
@@ -496,13 +523,16 @@ function FAFSAQuestionNavigator({ responses, onChangeResponse, onClearResponses 
                   {questions.map((question) => {
                     const isActive = question.id === resolvedActiveId
                     const isComplete = Boolean(responses[question.id])
+                    const isRecentlyApplied = appliedQuestionId === question.id
                     return (
                       <button
                         key={question.id}
                         type="button"
                         onClick={() => setActiveQuestionId(question.id)}
                         className={`w-full rounded-xl border px-3 py-2 text-left text-sm transition ${
-                          isActive ? 'border-emerald-500 bg-emerald-50' : 'border-transparent hover:border-slate-200'
+                          isActive || isRecentlyApplied
+                            ? 'border-emerald-500 bg-emerald-50'
+                            : 'border-transparent hover:border-slate-200'
                         }`}
                       >
                         <div className="flex items-center justify-between gap-3">
@@ -519,7 +549,7 @@ function FAFSAQuestionNavigator({ responses, onChangeResponse, onClearResponses 
           </div>
         </div>
 
-        <div className="rounded-2xl border border-slate-100 p-5">
+        <div className="rounded-2xl border border-slate-100 p-5" aria-label="FAFSA question details">
           {!visibleQuestions.length && (
             <div className="text-sm text-slate-500">Start typing above to search the official FAFSA wording.</div>
           )}

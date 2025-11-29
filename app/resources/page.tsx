@@ -1,6 +1,14 @@
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import { BookOpen, Search, FileText } from 'lucide-react'
 import FAFSATool from '../components/FAFSATool'
+import CSSProfileChecklist from '../components/CSSProfileChecklist'
+
+export const metadata: Metadata = {
+  title: 'Resources – Destination College',
+  description:
+    'Checklists, scholarship guidance, and a FAFSA file-prep tool to help Summit High School students and families stay on track.',
+}
 
 export default function ResourcesPage() {
   return (
@@ -30,13 +38,29 @@ export default function ResourcesPage() {
         </article>
       </section>
 
-      <section className="mb-16">
+      <section className="mb-16 space-y-8">
         <FAFSATool />
+        <CSSProfileChecklist />
       </section>
 
       <section className="mb-12">
         <h2 className="text-2xl font-semibold mb-4">Featured Resource: Application Template</h2>
         <p className="text-gray-700">Use our sample application and essay templates to structure a strong submission. These templates have helped students organize materials and produce clear, persuasive essays.</p>
+      </section>
+
+      <section className="mb-10 rounded-3xl border border-gray-200 bg-gray-50 p-6 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+        <div>
+          <h2 className="text-xl font-semibold text-gray-900">Not sure where to start?</h2>
+          <p className="text-sm text-gray-700">Try the FAFSA helper above, then share your scratch sheet with a counselor during your next advising meeting.</p>
+        </div>
+        <div className="flex flex-wrap gap-3 mt-2 md:mt-0">
+          <Link href="/programs" className="btn-crimson inline-flex items-center justify-center rounded-full px-5 py-2 text-sm font-semibold text-white">
+            Explore programs
+          </Link>
+          <Link href="/donate" className="btn-crimson-outline inline-flex items-center justify-center rounded-full px-5 py-2 text-sm font-semibold">
+            Fuel more resources
+          </Link>
+        </div>
       </section>
 
       <Link href="/" className="underline crimson-link">← Back to home</Link>

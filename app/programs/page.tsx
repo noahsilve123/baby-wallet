@@ -1,5 +1,12 @@
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import { GraduationCap, Users, BookOpen, Calendar } from 'lucide-react'
+
+export const metadata: Metadata = {
+  title: 'Programs – Destination College',
+  description:
+    'Mentorship, workshops, SAT prep, and financial aid coaching that guide Summit High School students from planning through college transition.',
+}
 
 export default function ProgramsPage() {
   return (
@@ -52,6 +59,21 @@ export default function ProgramsPage() {
             </div>
           </li>
         </ul>
+      </section>
+
+      <section className="mb-10 rounded-3xl border border-gray-200 bg-gray-50 p-6 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+        <div>
+          <h2 className="text-xl font-semibold text-gray-900">Take the next step</h2>
+          <p className="text-sm text-gray-700">Students and families can start with a workshop, join a mentorship cohort, or ask about FAFSA nights.</p>
+        </div>
+        <div className="flex flex-wrap gap-3 mt-2 md:mt-0">
+          <Link href="/resources" className="btn-crimson inline-flex items-center justify-center rounded-full px-5 py-2 text-sm font-semibold text-white">
+            View resources
+          </Link>
+          <Link href="/donate" className="btn-crimson-outline inline-flex items-center justify-center rounded-full px-5 py-2 text-sm font-semibold">
+            Sponsor a program
+          </Link>
+        </div>
       </section>
 
       <Link href="/" className="underline crimson-link">← Back to home</Link>

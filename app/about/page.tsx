@@ -1,5 +1,12 @@
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
+
+export const metadata: Metadata = {
+  title: 'About – Destination College',
+  description:
+    'Learn how Destination College walks alongside first-generation Summit High School students from early high school through college graduation.',
+}
 
 export default function AboutPage() {
   return (
@@ -82,6 +89,21 @@ export default function AboutPage() {
           <li>Donate to expand scholarships, emergency grants, and college bridge programming.</li>
           <li>Refer a student, teacher, or school partner who could benefit from our programs.</li>
         </ul>
+      </section>
+
+      <section className="mb-10 rounded-3xl border border-gray-200 bg-gray-50 p-6 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+        <div>
+          <h2 className="text-xl font-semibold text-gray-900">Ready to connect with Destination College?</h2>
+          <p className="text-sm text-gray-700">Refer a student, explore partnership ideas, or reach out about volunteering and giving.</p>
+        </div>
+        <div className="flex flex-wrap gap-3 mt-2 md:mt-0">
+          <Link href="/programs" className="btn-crimson inline-flex items-center justify-center rounded-full px-5 py-2 text-sm font-semibold text-white">
+            Explore programs
+          </Link>
+          <Link href="/donate" className="btn-crimson-outline inline-flex items-center justify-center rounded-full px-5 py-2 text-sm font-semibold">
+            Invest in a student
+          </Link>
+        </div>
       </section>
 
       <Link href="/" className="underline crimson-link">← Back to home</Link>

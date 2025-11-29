@@ -114,6 +114,9 @@ function DonateContent() {
                   ${amount}
                 </button>
               ))}
+              <p className="mt-3 text-xs text-gray-600">
+                For example: $50 helps cover testing fees, $100 supports essay workshops, and $250+ funds campus visits or emergency grants.
+              </p>
             </div>
           </div>
           <div className="rounded-2xl border border-gray-200 p-5">
@@ -162,7 +165,11 @@ function DonateContent() {
         </div>
         {(success || canceled) && (
           <div className="mt-4 rounded-2xl border border-gray-200 bg-white p-4 text-sm" aria-live="polite">
-            {success && <p className="font-semibold text-green-700">Thank you! Your gift was processed successfully.</p>}
+            {success && (
+              <p className="font-semibold text-green-700">
+                Thank you! Your gift was processed successfully. You will see a confirmation from our payment partner in your email.
+              </p>
+            )}
             {canceled && <p className="text-gray-700">Checkout canceled. You can try again whenever you&rsquo;re ready.</p>}
           </div>
         )}
@@ -204,14 +211,14 @@ function DonateContent() {
       <Link href="/" className="crimson-link mt-6 inline-block underline">
         ← Back to home
       </Link>
-      </main>
-      )
-    }
+    </main>
+  )
+}
 
-    export default function DonatePage() {
-      return (
-        <Suspense fallback={<div className="min-h-screen px-6 py-16 text-center text-gray-600">Loading donate experience...</div>}>
-          <DonateContent />
-        </Suspense>
-      )
-    }
+export default function DonatePage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen px-6 py-16 text-center text-gray-600">Loading donate experience...</div>}>
+      <DonateContent />
+    </Suspense>
+  )
+}
