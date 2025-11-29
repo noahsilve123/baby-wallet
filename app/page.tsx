@@ -80,7 +80,7 @@ export default function Page() {
 			<section className="relative overflow-hidden bg-gradient-to-br from-rose-50 via-white to-amber-50 text-gray-900">
 				<div className="absolute inset-0 opacity-40 pattern-grid" aria-hidden />
 				<div className="relative max-w-7xl mx-auto px-6 py-20 grid gap-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] items-center">
-					<div>
+					<div className="frame-panel-slim bg-white/80 p-6 rounded-2xl shadow-sm">
 						<h1 className="mt-6 text-4xl md:text-5xl lg:text-6xl font-black leading-tight text-gray-900">Your future has a team behind it.</h1>
 						<p className="mt-4 text-lg text-gray-700">Destination College surrounds students with mentors, workshops, and financial guidance so the path to higher education feels clear—and possible.</p>
 
@@ -110,7 +110,7 @@ export default function Page() {
 						</div>
 					</div>
 
-					<aside className="glass-panel rounded-3xl p-8 text-gray-900">
+					<aside className="glass-panel frame-panel rounded-3xl p-8 text-gray-900 bg-white/95">
 						<div className="flex items-center gap-3 text-sm font-semibold text-gray-700"><BookOpen className="h-5 w-5" /> Weekly focus plan</div>
 						<p className="mt-4 text-xl font-semibold">“I never imagined having a mentor who understood each deadline. Now my FAFSA is filed and I’m visiting campuses.”</p>
 						<p className="mt-4 text-sm text-gray-600">— Kayla, first-generation senior</p>
@@ -128,7 +128,7 @@ export default function Page() {
 				<div className="max-w-6xl mx-auto px-6">
 					<div className="grid gap-4 md:grid-cols-3">
 						{quickLinks.map((card) => (
-							<div key={card.title} className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+							<div key={card.title} className="frame-panel-slim rounded-2xl border border-gray-100 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
 								<div className="inline-flex items-center gap-2 crimson-pill px-3 py-1 text-sm font-medium">{card.icon}{card.label}</div>
 								<h3 className="mt-4 text-lg font-semibold text-gray-900">{card.title}</h3>
 								<p className="mt-2 text-sm text-gray-600">{card.description}</p>
@@ -146,7 +146,7 @@ export default function Page() {
 					<p className="mt-3 text-gray-600">From classroom tutoring to financial aid, everything lives under one roof.</p>
 
 					<div className="mt-10 grid gap-6 md:grid-cols-3">
-						<div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+						<div className="frame-panel-slim rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
 							<div className="flex items-center gap-3" style={{ color: 'var(--crimson)' }}>
 								<div className="rounded-full p-3" style={{ backgroundColor: 'var(--crimson-soft)' }}><GraduationCap className="h-5 w-5" /></div>
 								<span className="font-semibold">Mentorship</span>
@@ -155,7 +155,7 @@ export default function Page() {
 							<Link href="/programs#mentorship" className="mt-4 inline-flex items-center text-sm font-semibold crimson-link">Learn more <ChevronRight className="ml-1 h-4 w-4" /></Link>
 						</div>
 
-						<div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+						<div className="frame-panel-slim rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
 							<div className="flex items-center gap-3" style={{ color: 'var(--crimson)' }}>
 								<div className="rounded-full p-3" style={{ backgroundColor: 'var(--crimson-soft)' }}><Users className="h-5 w-5" /></div>
 								<span className="font-semibold">SAT & Academic Labs</span>
@@ -164,7 +164,7 @@ export default function Page() {
 							<Link href="/programs#sat-prep" className="mt-4 inline-flex items-center text-sm font-semibold crimson-link">View schedule <ChevronRight className="ml-1 h-4 w-4" /></Link>
 						</div>
 
-						<div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+						<div className="frame-panel-slim rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
 							<div className="flex items-center gap-3" style={{ color: 'var(--crimson)' }}>
 								<div className="rounded-full p-3" style={{ backgroundColor: 'var(--crimson-soft)' }}><BookOpen className="h-5 w-5" /></div>
 								<span className="font-semibold">Financial Aid Studio</span>
@@ -184,7 +184,7 @@ export default function Page() {
 							<p className="mt-3 text-gray-600">We stay with students for nearly a decade—from the first campus tour through college graduation.</p>
 							<div className="mt-8 grid gap-6 md:grid-cols-3">
 								{pathways.map((item) => (
-									<div key={item.title} className="rounded-2xl border border-gray-200 p-5 shadow-sm">
+									<div key={item.title} className="frame-panel-slim rounded-2xl border border-gray-200 p-5 shadow-sm bg-white">
 										<p className="text-sm font-semibold" style={{ color: 'var(--crimson)' }}>{item.title}</p>
 										<p className="mt-2 text-sm text-gray-700">{item.description}</p>
 									</div>
@@ -192,7 +192,7 @@ export default function Page() {
 							</div>
 						</div>
 
-						<div className="rounded-3xl bg-gray-900 p-8 text-white shadow-xl">
+						<div className="frame-panel rounded-3xl bg-gray-900 p-8 text-white shadow-xl border border-amber-200/20">
 							<p className="text-sm uppercase tracking-[0.2em] text-white/60">Impact in motion</p>
 							<p className="mt-4 text-2xl font-semibold">Nested support for students + families</p>
 							<ul className="mt-6 space-y-4 text-sm text-white/80">
@@ -220,7 +220,7 @@ export default function Page() {
 					</div>
 					<div className="mt-10 grid gap-4 md:grid-cols-3">
 						{communitySignals.map((signal) => (
-							<div key={signal.label} className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+							<div key={signal.label} className="frame-panel-slim rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
 								<p className="text-3xl font-semibold" style={{ color: 'var(--crimson)' }}>{signal.value}</p>
 								<p className="mt-1 font-semibold text-gray-900">{signal.label}</p>
 								<p className="mt-2 text-sm text-gray-600">{signal.detail}</p>
@@ -239,7 +239,7 @@ export default function Page() {
 					</div>
 					<div className="grid gap-6 md:grid-cols-3">
 						{successStories.map((story) => (
-							<article key={story.name} className="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-lg backdrop-blur">
+							<article key={story.name} className="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-lg backdrop-blur frame-panel">
 								<div className="flex items-center gap-2 text-sm font-semibold text-white/80">
 									<ShieldCheck className="h-4 w-4 text-amber-300" />
 									<span>{story.pillar}</span>

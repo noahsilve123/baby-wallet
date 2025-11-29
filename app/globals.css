@@ -172,3 +172,27 @@ h1, h2, h3 {
 .btn-crimson-outline:hover {
   background: var(--crimson-soft);
 }
+
+.frame-panel {
+  border: 10px solid transparent;
+  border-image: linear-gradient(135deg, #f7d58b, #c2873d, #fef5cf) 30;
+  border-radius: 1.75rem;
+  background-clip: padding-box;
+  box-shadow: 0 20px 45px rgba(99, 64, 19, 0.15), inset 0 0 30px rgba(255, 255, 255, 0.35);
+}
+
+.frame-panel-slim {
+  border: 6px solid transparent;
+  border-image: linear-gradient(120deg, #fce6b1, #c58b3f) 25;
+  border-radius: 1.25rem;
+  background-clip: padding-box;
+  box-shadow: 0 12px 25px rgba(99, 64, 19, 0.12);
+}
+
+.frame-panel-oval {
+  border: 8px solid transparent;
+  border-image: radial-gradient(circle, #f8e0a1, #c98832) 40;
+  border-radius: 50%;
+  background-clip: padding-box;
+  box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.4), 0 12px 25px rgba(99, 64, 19, 0.18);
+}

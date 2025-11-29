@@ -79,7 +79,7 @@ export default function NetworkPage() {
           </form>
           {error && <p className="mt-3 text-sm text-red-600">{error}</p>}
         </section>
-      }
+      )}
 
       {unlocked && (
         <section className="mb-10 rounded-3xl border border-gray-200 bg-white p-6 shadow-sm">

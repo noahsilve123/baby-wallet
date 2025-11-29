@@ -12,8 +12,8 @@ export const metadata: Metadata = {
 
 export default function ResourcesPage() {
   return (
-    <main id="main-content" tabIndex={-1} className="min-h-screen max-w-6xl mx-auto px-4 md:px-6 py-12 md:py-16">
-      <header className="mb-6 md:mb-8">
+    <main id="main-content" tabIndex={-1} className="min-h-screen max-w-6xl mx-auto px-4 md:px-6 py-10 md:py-14">
+      <header className="mb-5 md:mb-7">
         <h1 className="text-4xl font-bold">Resources — Tools for Students & Families</h1>
         <p className="text-gray-600 mt-2">A curated collection of guides, checklists, scholarship search tools, and templates to help students navigate every step toward college.</p>
       </header>
@@ -26,7 +26,7 @@ export default function ResourcesPage() {
         </div>
 
         <aside className="space-y-4">
-          <article className="p-6 bg-white border rounded-lg shadow-sm">
+          <article className="frame-panel-slim p-6 bg-white border rounded-lg shadow-sm">
             <div className="flex items-center gap-3 mb-3">
               <div className="p-2 text-white rounded" style={{ backgroundColor: 'var(--crimson)' }}>
                 <BookOpen size={18} />
@@ -41,7 +41,7 @@ export default function ResourcesPage() {
             </Link>
           </article>
 
-          <article className="p-6 bg-white border rounded-lg shadow-sm">
+          <article className="frame-panel-slim p-6 bg-white border rounded-lg shadow-sm">
             <div className="flex items-center gap-3 mb-3">
               <div className="p-2 text-white rounded" style={{ backgroundColor: 'var(--crimson)' }}>
                 <Search size={18} />
@@ -56,7 +56,7 @@ export default function ResourcesPage() {
             </Link>
           </article>
 
-          <article className="p-6 bg-white border rounded-lg shadow-sm">
+          <article className="frame-panel-slim p-6 bg-white border rounded-lg shadow-sm">
             <div className="flex items-center gap-3 mb-3">
               <div className="p-2 text-white rounded" style={{ backgroundColor: 'var(--crimson)' }}>
                 <FileText size={18} />
