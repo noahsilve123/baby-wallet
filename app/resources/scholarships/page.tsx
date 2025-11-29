@@ -26,9 +26,16 @@ export default function ScholarshipsPage() {
         </p>
         <ul className="mt-4 list-disc pl-5 text-sm text-gray-700 space-y-2">
           <li>
-            Search online for{' '}
-            <span className="font-semibold">“Summit High School NJ scholarships”</span> to reach the latest district-hosted
-            information.
+            Open a search for{' '}
+            <a
+              href="https://www.google.com/search?q=Summit+High+School+NJ+scholarships"
+              target="_blank"
+              rel="noreferrer"
+              className="crimson-link underline font-semibold"
+            >
+              Summit High School NJ scholarships
+            </a>{' '}
+            to reach the latest district-hosted information.
           </li>
           <li>Ask your counselor about any Summit- or Union County-based awards for first-generation students.</li>
         </ul>
@@ -42,18 +49,21 @@ export default function ScholarshipsPage() {
         </p>
         <ul className="mt-4 list-disc pl-5 text-sm text-gray-700 space-y-2">
           <li>
-            Visit the New Jersey Higher Education Student Assistance Authority (HESAA) site to review available programs and
-            deadlines.
+            Visit the{' '}
+            <a
+              href="https://www.hesaa.org/Pages/GrantsScholarships.aspx"
+              target="_blank"
+              rel="noreferrer"
+              className="crimson-link underline font-semibold"
+            >
+              New Jersey Higher Education Student Assistance Authority (HESAA)
+            </a>{' '}
+            site to review available programs and deadlines.
           </li>
           <li>
             After FAFSA, log back in if you receive any alerts from HESAA asking you to confirm information for state aid.
           </li>
         </ul>
-        <p className="mt-4 text-sm">
-          For details, search for{' '}
-          <span className="font-semibold">“HESAA NJ grants and scholarships”</span> in your browser and use the official New
-          Jersey government site.
-        </p>
       </section>
 
       <section className="mb-10 rounded-3xl border border-gray-200 bg-white p-6 shadow-sm">
@@ -63,8 +73,26 @@ export default function ScholarshipsPage() {
           residency where available.
         </p>
         <ul className="mt-4 list-disc pl-5 text-sm text-gray-700 space-y-2">
-          <li>College Board / BigFuture scholarship search</li>
-          <li>Fastweb scholarship search</li>
+          <li>
+            <a
+              href="https://bigfuture.collegeboard.org/scholarship-search"
+              target="_blank"
+              rel="noreferrer"
+              className="crimson-link underline font-semibold"
+            >
+              College Board / BigFuture scholarship search
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.fastweb.com/scholarships"
+              target="_blank"
+              rel="noreferrer"
+              className="crimson-link underline font-semibold"
+            >
+              Fastweb scholarship search
+            </a>
+          </li>
           <li>Other reputable databases recommended by your counselor or college access programs</li>
         </ul>
         <p className="mt-4 text-sm text-gray-700">

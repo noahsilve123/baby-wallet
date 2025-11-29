@@ -363,7 +363,7 @@ export default function Page() {
 							Fuel scholarships <ArrowRight className="h-4 w-4" />
 						</Link>
 						<Link
-							href="/programs"
+							href="/refer"
 							className="inline-flex items-center gap-2 rounded-full border border-white/40 px-6 py-3 font-semibold text-white"
 						>
 							Refer a student

@@ -87,7 +87,12 @@ export default function AboutPage() {
         <ul className="list-disc pl-5 text-gray-700">
           <li>Volunteer as a mentor, workshop leader, or application reader.</li>
           <li>Donate to expand scholarships, emergency grants, and college bridge programming.</li>
-          <li>Refer a student, teacher, or school partner who could benefit from our programs.</li>
+          <li>
+            <Link href="/refer" className="crimson-link underline">
+              Refer a student
+            </Link>
+            , teacher, or school partner who could benefit from our programs.
+          </li>
         </ul>
       </section>
 
@@ -97,8 +102,8 @@ export default function AboutPage() {
           <p className="text-sm text-gray-700">Refer a student, explore partnership ideas, or reach out about volunteering and giving.</p>
         </div>
         <div className="flex flex-wrap gap-3 mt-2 md:mt-0">
-          <Link href="/programs" className="btn-crimson inline-flex items-center justify-center rounded-full px-5 py-2 text-sm font-semibold text-white">
-            Explore programs
+          <Link href="/refer" className="btn-crimson inline-flex items-center justify-center rounded-full px-5 py-2 text-sm font-semibold text-white">
+            Refer a student
           </Link>
           <Link href="/donate" className="btn-crimson-outline inline-flex items-center justify-center rounded-full px-5 py-2 text-sm font-semibold">
             Invest in a student

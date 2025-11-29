@@ -67,7 +67,10 @@ export default function ProgramsPage() {
           <p className="text-sm text-gray-700">Students and families can start with a workshop, join a mentorship cohort, or ask about FAFSA nights.</p>
         </div>
         <div className="flex flex-wrap gap-3 mt-2 md:mt-0">
-          <Link href="/resources" className="btn-crimson inline-flex items-center justify-center rounded-full px-5 py-2 text-sm font-semibold text-white">
+          <Link href="/refer" className="btn-crimson inline-flex items-center justify-center rounded-full px-5 py-2 text-sm font-semibold text-white">
+            Refer a student
+          </Link>
+          <Link href="/resources" className="btn-crimson-outline inline-flex items-center justify-center rounded-full px-5 py-2 text-sm font-semibold">
             View resources
           </Link>
           <Link href="/donate" className="btn-crimson-outline inline-flex items-center justify-center rounded-full px-5 py-2 text-sm font-semibold">
