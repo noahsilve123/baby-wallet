@@ -18,29 +18,64 @@ export default function ResourcesPage() {
         <p className="text-gray-600 mt-2">A curated collection of guides, checklists, scholarship search tools, and templates to help students navigate every step toward college.</p>
       </header>
 
-      <section className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-        <article className="p-6 bg-white border rounded-lg shadow-sm">
-          <div className="flex items-center gap-3 mb-3"><div className="p-2 text-white rounded" style={{ backgroundColor: 'var(--crimson)' }}><BookOpen size={18} /></div><h3 className="font-semibold">Guides & Checklists</h3></div>
-          <p className="text-gray-700">Step-by-step checklists for grade-by-grade planning, college applications, and transition-to-college tasks.</p>
-          <Link href="#" className="inline-block mt-4 underline crimson-link">Download checklist →</Link>
-        </article>
+      {/* Top layout: tools visible immediately, with quick-link cards alongside */}
+      <section className="mb-16 grid gap-10 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,0.9fr)] items-start">
+        <div className="space-y-8">
+          <FAFSATool />
+          <CSSProfileChecklist />
+        </div>
 
-        <article className="p-6 bg-white border rounded-lg shadow-sm">
-          <div className="flex items-center gap-3 mb-3"><div className="p-2 text-white rounded" style={{ backgroundColor: 'var(--crimson)' }}><Search size={18} /></div><h3 className="font-semibold">Scholarship Search</h3></div>
-          <p className="text-gray-700">Tips and trusted links to locate scholarships and build a competitive application.</p>
-          <Link href="#" className="inline-block mt-4 underline crimson-link">Find scholarships →</Link>
-        </article>
+        <aside className="space-y-4">
+          <article className="p-6 bg-white border rounded-lg shadow-sm">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="p-2 text-white rounded" style={{ backgroundColor: 'var(--crimson)' }}>
+                <BookOpen size={18} />
+              </div>
+              <h3 className="font-semibold">Guides & Checklists</h3>
+            </div>
+            <p className="text-gray-700 text-sm">
+              Grade-by-grade planning, application timelines, and move-in checklists designed for first-gen families.
+            </p>
+            <Link href="/resources/checklists" className="inline-block mt-4 underline crimson-link">
+              Go to checklists →
+            </Link>
+          </article>
 
-        <article className="p-6 bg-white border rounded-lg shadow-sm">
-          <div className="flex items-center gap-3 mb-3"><div className="p-2 text-white rounded" style={{ backgroundColor: 'var(--crimson)' }}><FileText size={18} /></div><h3 className="font-semibold">FAFSA & Financial Aid</h3></div>
-          <p className="text-gray-700">Clear instructions for completing FAFSA and maximizing aid eligibility.</p>
-          <Link href="#" className="inline-block mt-4 underline crimson-link">FAFSA help →</Link>
-        </article>
-      </section>
+          <article className="p-6 bg-white border rounded-lg shadow-sm">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="p-2 text-white rounded" style={{ backgroundColor: 'var(--crimson)' }}>
+                <Search size={18} />
+              </div>
+              <h3 className="font-semibold">Scholarship Search</h3>
+            </div>
+            <p className="text-gray-700 text-sm">
+              Starting points for local Summit / New Jersey funds plus national tools to build a strong list.
+            </p>
+            <Link href="/resources/scholarships" className="inline-block mt-4 underline crimson-link">
+              Explore scholarships →
+            </Link>
+          </article>
 
-      <section className="mb-16 space-y-8">
-        <FAFSATool />
-        <CSSProfileChecklist />
+          <article className="p-6 bg-white border rounded-lg shadow-sm">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="p-2 text-white rounded" style={{ backgroundColor: 'var(--crimson)' }}>
+                <FileText size={18} />
+              </div>
+              <h3 className="font-semibold">FAFSA & Financial Aid</h3>
+            </div>
+            <p className="text-gray-700 text-sm">
+              Official FAFSA instructions plus Destination College&rsquo;s translator tool to make each line less intimidating.
+            </p>
+            <Link
+              href="https://studentaid.gov/h/apply-for-aid/fafsa"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-block mt-4 underline crimson-link"
+            >
+              Open FAFSA site →
+            </Link>
+          </article>
+        </aside>
       </section>
 
       <section className="mb-12">
