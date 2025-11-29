@@ -1,0 +1,78 @@
+At line:1 char:577
++ ... .Height) 
+SIZE:$((Get-Item 
+$p).Length); $i.Dispose(); } 
+catch{ Write-O ...
++                            
+                             
+        ~
+Missing closing '}' in 
+statement block or type 
+definition.
+At line:1 char:401
++ ... re-frame-png.webp'); 
+foreach($p in $files){ 
+if(Test-Path $p){ try{ Ad ...
++                            
+                             
+        ~
+Missing closing '}' in 
+statement block or type 
+definition.
+At line:1 char:383
++ ... antique-gold-picture-fr
+ame-png.webp'); foreach($p 
+in $files){ if(Test ...
++                            
+                             
+        ~
+Missing closing '}' in 
+statement block or type 
+definition.
+At line:1 char:625
++ ... e(); } catch{ 
+Write-Output $p - not read 
+with System.Drawing) SIZE:$( 
+...
++                            
+                             
+        ~
+Unexpected token ')' in 
+expression or statement.
+At line:1 char:656
++ ...  not read with 
+System.Drawing) 
+SIZE:$((Get-Item $p).Length) 
+} } else  ...
++                            
+                             
+        ~
+Unexpected token '}' in 
+expression or statement.
+At line:1 char:658
++ ... ot read with 
+System.Drawing) 
+SIZE:$((Get-Item $p).Length) 
+} } else {  ...
++                            
+                             
+        ~
+Unexpected token '}' in 
+expression or statement.
+At line:1 char:665
++ ...  with System.Drawing) 
+SIZE:$((Get-Item $p).Length) 
+} } else { Write-O ...
++                            
+                             
+        ~
+Missing closing '}' in 
+statement block or type 
+definition.
+    + CategoryInfo           
+   : ParserError: (:) [], P  
+  arentContainsErrorRecord   
+ Exception
+    + FullyQualifiedErrorId  
+   : MissingEndCurlyBrace
+ 

@@ -52,20 +52,20 @@ export default function Header() {
             </div>
           </Link>
 
-          <nav className="hidden md:flex gap-6 items-center text-gray-700">
-            <Link href="/" className="hover:text-gray-900">
+          <nav className="hidden md:flex gap-6 items-center">
+            <Link href="/" className="nav-link hover:opacity-90">
               Home
             </Link>
-            <Link href="/programs" className="hover:text-gray-900">
-              Programs
-            </Link>
-            <Link href="/about" className="hover:text-gray-900">
+            <Link href="/about" className="nav-link hover:opacity-90">
               About
             </Link>
-            <Link href="/resources" className="hover:text-gray-900">
+            <Link href="/programs" className="nav-link hover:opacity-90">
+              Program
+            </Link>
+            <Link href="/resources" className="nav-link hover:opacity-90">
               Resources
             </Link>
-            <Link href="/network" className="hover:text-gray-900">
+            <Link href="/network" className="nav-link hover:opacity-90">
               Network
             </Link>
             <Link
@@ -99,40 +99,19 @@ export default function Header() {
           />
           <aside className="fixed top-0 right-0 z-50 h-full w-4/5 max-w-xs bg-white text-gray-900 p-6 shadow-2xl border-l border-[var(--gold)]/40">
             <nav className="flex flex-col gap-4">
-              <Link
-                href="/"
-                ref={firstLinkRef}
-                onClick={() => setMenuOpen(false)}
-                className="text-lg"
-              >
+              <Link href="/" ref={firstLinkRef} onClick={() => setMenuOpen(false)} className="text-lg nav-link">
                 Home
               </Link>
-              <Link
-                href="/programs"
-                onClick={() => setMenuOpen(false)}
-                className="text-lg"
-              >
-                Programs
-              </Link>
-              <Link
-                href="/about"
-                onClick={() => setMenuOpen(false)}
-                className="text-lg"
-              >
+              <Link href="/about" onClick={() => setMenuOpen(false)} className="text-lg nav-link">
                 About
               </Link>
-              <Link
-                href="/resources"
-                onClick={() => setMenuOpen(false)}
-                className="text-lg"
-              >
+              <Link href="/programs" onClick={() => setMenuOpen(false)} className="text-lg nav-link">
+                Program
+              </Link>
+              <Link href="/resources" onClick={() => setMenuOpen(false)} className="text-lg nav-link">
                 Resources
               </Link>
-              <Link
-                href="/network"
-                onClick={() => setMenuOpen(false)}
-                className="text-lg"
-              >
+              <Link href="/network" onClick={() => setMenuOpen(false)} className="text-lg nav-link">
                 Network
               </Link>
               <Link

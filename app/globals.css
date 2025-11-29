@@ -15,6 +15,9 @@
   --crimson: #7b1222;
   --crimson-dark: #4f0b13;
   --crimson-soft: #fbeaec;
+  /* Default decorative frame sizing (36rem = 576px at 16px root) */
+  --frame-width: 36rem;
+  --frame-rotate: 90deg;
 }
 
 body {
@@ -192,5 +195,23 @@ h1, h2, h3 {
   background: linear-gradient(135deg, #fffdf7, #fff9e6);
   box-shadow: 0 12px 25px rgba(201, 161, 45, 0.18);
 }
+
+/* Nav link color helper */
+.nav-link {
+  color: var(--crimson);
+  transition: color 150ms ease, opacity 120ms ease;
+}
+.nav-link:hover {
+  color: var(--crimson-dark);
+  opacity: 0.95;
+}
+
+/* Small utility for headings that should use the site crimson */
+.text-crimson { color: var(--crimson); }
+
+/* Decorative frame image positioning used on the weekly panel */
+/* Use the supplied decorative image as the panel border (frame) */
+/* Framed wrapper: places decorative artwork outside the panel bounds */
+/* (frame-related styles removed) */
 
 

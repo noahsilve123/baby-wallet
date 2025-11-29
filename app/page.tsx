@@ -121,26 +121,28 @@ export default function Page() {
 						</div>
 					</div>
 
-					<aside className="glass-panel rounded-3xl p-8 text-gray-900">
-						<div className="flex items-center gap-3 text-sm font-semibold text-gray-700">
-							<BookOpen className="h-5 w-5" /> Weekly focus plan
+					<aside className="glass-panel rounded-3xl p-8 text-gray-900 relative overflow-hidden">
+						<div className="relative z-10">
+							<div className="flex items-center gap-3 text-sm font-semibold text-crimson">
+								<BookOpen className="h-5 w-5" /> Weekly focus plan
+							</div>
+							<p className="mt-4 text-xl font-semibold">
+								“I never imagined having a mentor who understood each deadline. Now my FAFSA is filed and I’m visiting campuses.”
+							</p>
+							<p className="mt-4 text-sm text-gray-600">— Kayla, first-generation senior</p>
+							<div className="mt-6 h-px bg-gray-200" />
+							<ul className="mt-6 space-y-4 text-sm text-gray-700">
+								<li className="flex items-center gap-3">
+									<span className="stat-dot" /> Bi-weekly advising check-ins
+								</li>
+								<li className="flex items-center gap-3">
+									<span className="stat-dot" /> Essay studio &amp; interview prep
+								</li>
+								<li className="flex items-center gap-3">
+									<span className="stat-dot" /> Family financial aid nights
+								</li>
+							</ul>
 						</div>
-						<p className="mt-4 text-xl font-semibold">
-							“I never imagined having a mentor who understood each deadline. Now my FAFSA is filed and I’m visiting campuses.”
-						</p>
-						<p className="mt-4 text-sm text-gray-600">— Kayla, first-generation senior</p>
-						<div className="mt-6 h-px bg-gray-200" />
-						<ul className="mt-6 space-y-4 text-sm text-gray-700">
-							<li className="flex items-center gap-3">
-								<span className="stat-dot" /> Bi-weekly advising check-ins
-							</li>
-							<li className="flex items-center gap-3">
-								<span className="stat-dot" /> Essay studio &amp; interview prep
-							</li>
-							<li className="flex items-center gap-3">
-								<span className="stat-dot" /> Family financial aid nights
-							</li>
-						</ul>
 					</aside>
 				</div>
 			</section>
