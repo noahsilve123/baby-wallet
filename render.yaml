@@ -1,0 +1,14 @@
+# Render blueprint for the AI extractor container.
+# Deploy with: render blueprint deploy render.yaml
+
+services:
+  - type: web
+    name: destination-extractor
+    env: docker
+    plan: free
+    dockerfilePath: extractor/Dockerfile
+    envVars:
+      - key: PORT
+        value: 8080
+    healthCheckPath: /
+    autoDeploy: true

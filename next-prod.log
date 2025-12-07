@@ -21,3 +21,4 @@ Error: Cannot find module 'c:\ROOT\node_modules\tesseract.js\src\worker-script\n
   code: 'MODULE_NOT_FOUND',
   requireStack: []
 }
+^C^C
