@@ -8,7 +8,7 @@ import Recommendations from '../components/Recommendations'
 export const metadata: Metadata = {
   title: 'Resources – Destination College',
   description:
-    'Checklists, scholarship guidance, and a FAFSA file-prep tool to help Summit High School students and families stay on track.',
+    'Checklists, scholarship guidance, and financial document tools to help students and families stay on track.',
 }
 
 export default function ResourcesPage() {
@@ -35,14 +35,14 @@ export default function ResourcesPage() {
 
         <article className="p-6 bg-white border rounded-lg shadow-sm">
           <div className="flex items-center gap-3 mb-3"><div className="p-2 text-white rounded" style={{ backgroundColor: 'var(--crimson)' }}><FileText size={18} /></div><h3 className="font-semibold">Financial Aid (FAFSA / CSS Profile)</h3></div>
-          <p className="text-gray-700">Official FAFSA instructions, CSS Profile prep, and a file-prep tool that organizes extracted data for both.</p>
+          <p className="text-gray-700">Financial document guidance, profile prep, and a file-analysis tool that extracts and organizes values from PDFs.</p>
           <Link
             href="https://studentaid.gov/h/apply-for-aid/fafsa"
             target="_blank"
             rel="noreferrer"
             className="inline-block mt-4 underline crimson-link"
           >
-            FAFSA site →
+            Financial resources →
           </Link>
         </article>
       </section>

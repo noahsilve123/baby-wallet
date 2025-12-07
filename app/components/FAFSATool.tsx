@@ -184,9 +184,9 @@ export default function FAFSATool() {
   return (
     <section className="bg-white border rounded-2xl shadow-sm p-8">
       <div className="flex flex-col gap-3 mb-6">
-        <span className="uppercase text-xs tracking-widest text-slate-500">Financial Aid Simplified</span>
-        <h2 className="text-3xl font-semibold">Financial Aid File Prep (FAFSA / CSS Profile)</h2>
-        <p className="text-slate-600 max-w-3xl">Upload tax PDFs and copy parsed values, grouped for FAFSA, CSS Profile, or other forms. Nothing is stored permanently.</p>
+        <span className="uppercase text-xs tracking-widest text-slate-500">Financial Tools</span>
+        <h2 className="text-3xl font-semibold">Financial Document Analyzer</h2>
+        <p className="text-slate-600 max-w-3xl">Upload financial PDFs (taxes, income statements, W-2s) and copy parsed values grouped by category. Nothing is stored permanently.</p>
         <div className="flex flex-wrap gap-2 text-xs text-slate-600">
           {quickLinks.map((link) => (
             <a key={link.href} href={link.href} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 rounded-full border px-3 py-1 hover:bg-slate-50">
@@ -569,9 +569,9 @@ const currencyFormatter = new Intl.NumberFormat('en-US', { style: 'currency', cu
 const moneyKeywords = ['income', 'wage', 'tax', 'agi', 'deduction', 'benefit', 'withheld', 'distribution']
 
 const quickLinks: Array<{ label: string; href: string }> = [
-  { label: 'Official FAFSA site', href: 'https://studentaid.gov/h/apply-for-aid/fafsa' },
-  { label: 'CSS Profile (College Board)', href: 'https://cssprofile.collegeboard.org/' },
+  { label: 'Financial documents overview', href: 'https://www.consumerfinance.gov/consumer-tools/financial-tools/' },
   { label: 'IRS W-2 overview', href: 'https://www.irs.gov/forms-pubs/about-form-w-2' },
+  { label: 'Spreadsheet templates & tips', href: 'https://support.google.com/docs/answer/6282736' },
 ]
 
 const fafsaQuestionIds = new Set([

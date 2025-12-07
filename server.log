@@ -1,0 +1,11 @@
+
+> destination-college@0.1.0 start
+> cross-env NEXT_DISABLE_TURBOPACK=1 NEXT_CLI_FORCE_LEGACY_BUILDER=1 next start
+
+   ▲ Next.js 16.0.7
+   - Local:         http://localhost:3001
+   - Network:       http://10.245.181.13:3001
+
+ ✓ Starting...
+ ✓ Ready in 657ms
+STRIPE_SECRET_KEY is not set. Stripe Checkout will not work until it is configured.
