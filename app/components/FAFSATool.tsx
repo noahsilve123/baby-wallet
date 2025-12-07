@@ -552,7 +552,8 @@ function clampConfidence(value: number) {
   return Number(value.toFixed(2))
 }
 
-const ANALYSIS_TIMEOUT_MS = 20_000
+// AI extractor can take longer on large PDFs; keep client timeout close to the server limit.
+const ANALYSIS_TIMEOUT_MS = 55_000
 
 class TimeoutError extends Error { constructor(message = 'Analysis timed out') { super(message); this.name = 'TimeoutError' } }
 

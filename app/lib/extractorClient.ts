@@ -1,10 +1,11 @@
 const configuredExtractorUrl = process.env.NEXT_PUBLIC_EXTRACTOR_URL
+const defaultExtractorUrl = '/api/ai-extract'
 const extractorUrl = configuredExtractorUrl && configuredExtractorUrl.trim().length
   ? configuredExtractorUrl
-  : '/api/extractor'
+  : defaultExtractorUrl
 
 if (!configuredExtractorUrl) {
-  console.info('Using built-in /api/extractor endpoint. Set NEXT_PUBLIC_EXTRACTOR_URL to override.')
+  console.info('Using built-in /api/ai-extract endpoint. Set NEXT_PUBLIC_EXTRACTOR_URL to call a remote service.')
 }
 
 export type ProgressCallback = (value: number | null) => void
@@ -30,12 +31,13 @@ export function sendToExtractor(file: File, onProgress?: ProgressCallback, docTy
   return new Promise((resolve, reject) => {
     console.log('[extractor] uploading', file.name, file.size)
     const xhr = new XMLHttpRequest()
-    const trimmedUrl = extractorUrl.trim().replace(/\s+/g, '')
-    const needsSuffix = !/\/extract\/?$/i.test(trimmedUrl) && !/\/api\/extractor\/?$/i.test(trimmedUrl)
-    const targetUrl = needsSuffix ? `${trimmedUrl.replace(/\/$/, '')}/extract` : trimmedUrl
+    const trimmedUrl = extractorUrl.trim().replace(/\s+/g, '').replace(/\/$/, '')
+    const isBuiltIn = /\/api\/(ai-)?extract(or)?\/?$/i.test(trimmedUrl)
+    const alreadyHasExtract = /\/extract\/?$/i.test(trimmedUrl)
+    const targetUrl = isBuiltIn || alreadyHasExtract ? trimmedUrl : `${trimmedUrl}/extract`
     xhr.open('POST', targetUrl)
     xhr.responseType = 'json'
-    xhr.timeout = 30_000
+    xhr.timeout = 55_000
 
     xhr.onloadstart = () => {
       onProgress?.(0)
