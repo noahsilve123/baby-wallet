@@ -6,7 +6,7 @@ import { sendToExtractor, type ExtractorField } from '../lib/extractorClient'
 import { documentTypeOptions, extractFieldsFromText, type DocumentType, type ExtractedField } from '../lib/extractionRules'
 
 type AnalysisState = 'idle' | 'analyzing' | 'done' | 'error'
-type FieldCategory = 'FAFSA' | 'CSS Profile' | 'Other'
+type FieldCategory = 'Federal Aid' | 'CSS Profile' | 'Other'
 
 type DocExtraction = {
   id: string
@@ -198,7 +198,7 @@ export default function FAFSATool() {
       </div>
 
       <label
-        htmlFor="fafsa-docs"
+      htmlFor="financial-docs"
         onDrop={onDrop}
         onDragOver={onDragOver}
         onDragLeave={onDragLeave}
@@ -209,8 +209,8 @@ export default function FAFSATool() {
           <p className="font-semibold">Drag & drop PDF copies of your tax docs</p>
           <p className="text-sm text-slate-500">IRS 1040, W-2s, income statements, Social Security letters</p>
         </div>
-        <input
-          id="fafsa-docs"
+          <input
+          id="financial-docs"
           type="file"
           className="hidden"
           multiple
@@ -341,7 +341,7 @@ export default function FAFSATool() {
                   <div className="flex flex-wrap items-center gap-2">
                     <p className="text-sm text-slate-600">Filtered extracted values ({filteredFields.length}/{aggregatedFields.length})</p>
                     <div className="flex flex-wrap gap-2 text-xs">
-                      {(['All', 'FAFSA', 'CSS Profile', 'Other'] as Array<FieldCategory | 'All'>).map((cat) => (
+                      {(['All', 'Federal Aid', 'CSS Profile', 'Other'] as Array<FieldCategory | 'All'>).map((cat) => (
                         <button
                           key={cat}
                           type="button"
@@ -361,7 +361,7 @@ export default function FAFSATool() {
                 </div>
 
                 <div className="flex flex-wrap gap-2 text-xs">
-                  <button type="button" onClick={() => exportCategory('FAFSA')} className="rounded-full border px-3 py-1">Copy FAFSA-only</button>
+                  <button type="button" onClick={() => exportCategory('Federal Aid')} className="rounded-full border px-3 py-1">Copy Federal Aid-only</button>
                   <button type="button" onClick={() => exportCategory('CSS Profile')} className="rounded-full border px-3 py-1">Copy CSS-only</button>
                   <button type="button" onClick={() => exportCategory('Other')} className="rounded-full border px-3 py-1">Copy Other</button>
                 </div>
@@ -429,7 +429,7 @@ export default function FAFSATool() {
             <div className="rounded-2xl border border-slate-200 p-4 space-y-2 text-sm text-slate-800">
               <h3 className="text-sm font-semibold">Timeline helper</h3>
               <ul className="list-disc pl-4 space-y-1">
-                <li>FAFSA: submit within 1 week of opening; add all colleges.</li>
+                <li>Federal aid forms: submit within 1 week of opening; add all colleges.</li>
                 <li>CSS Profile: check each college deadline (often same as EA/ED).</li>
                 <li>Verification-ready: keep 1040, W-2, untaxed income docs handy.</li>
                 <li>State grant deadlines: confirm NJ deadlines if applicable.</li>
@@ -445,7 +445,7 @@ export default function FAFSATool() {
 
       <div className="mt-8 text-sm text-slate-600 flex flex-wrap items-center gap-2 border-t pt-4">
         <AlertCircle className="text-amber-500" size={16} />
-        <span>This workspace is a planning tool only. Always double-check values before entering them on FAFSA or a college portal, and do not email or text sensitive tax data.</span>
+        <span>This workspace is a planning tool only. Always double-check values before entering them on federal aid forms or a college portal, and do not email or text sensitive tax data.</span>
       </div>
     </section>
   )
@@ -455,7 +455,7 @@ type AggregatedField = DocExtraction & { fileName?: string }
 type Diagnostics = { missing: Array<{ category: FieldCategory; items: string[] }>; conflicts: string[] }
 
 const requiredByCategory: Record<FieldCategory, string[]> = {
-  FAFSA: ['parent-wages', 'parent-agi', 'parent-us-tax-paid', 'household-size', 'number-in-college', 'student-ssn', 'student-dob', 'student-legal-name'],
+  'Federal Aid': ['parent-wages', 'parent-agi', 'parent-us-tax-paid', 'household-size', 'number-in-college', 'student-ssn', 'student-dob', 'student-legal-name'],
   'CSS Profile': ['parent-wages', 'parent-agi', 'parent-us-tax-paid', 'parent-untaxed-income', 'household-size', 'number-in-college'],
   Other: [],
 }
@@ -465,9 +465,9 @@ function buildDiagnostics(fields: AggregatedField[]): Diagnostics {
   fields.forEach((f) => labelMap.set(f.questionId, f.label))
 
   const missing: Diagnostics['missing'] = []
-  ;(['FAFSA', 'CSS Profile'] as FieldCategory[]).forEach((cat) => {
+  ;(['Federal Aid', 'CSS Profile'] as FieldCategory[]).forEach((cat) => {
     const required = requiredByCategory[cat]
-    const present = new Set(fields.filter((f) => f.category === cat || cat === 'FAFSA').map((f) => f.questionId))
+    const present = new Set(fields.filter((f) => f.category === cat || cat === 'Federal Aid').map((f) => f.questionId))
     const gaps = required.filter((id) => !present.has(id)).map((id) => labelMap.get(id) ?? id)
     if (gaps.length) missing.push({ category: cat, items: gaps })
   })
@@ -498,7 +498,7 @@ function buildAidSuggestions(fields: AggregatedField[], diagnostics: Diagnostics
   const tax = asNumber(get('parent-us-tax-paid'))
   const untaxed = asNumber(get('parent-untaxed-income'))
   const ideas: string[] = []
-  if (agi !== undefined && agi < 65000) ideas.push('Income suggests need-based aid eligibility—prioritize FAFSA early and apply to need-aware scholarships.')
+  if (agi !== undefined && agi < 65000) ideas.push('Income suggests need-based aid eligibility—prioritize filing federal aid forms early and apply to need-aware scholarships.')
   if (wages !== undefined && tax === undefined) ideas.push('Total tax missing—double-check 1040 lines 22/24 or W-2 Box 2 before submission.')
   if (untaxed !== undefined) ideas.push('Untaxed income present—CSS Profile will ask for details; keep statements handy.')
   if (diagnostics.conflicts.length) ideas.push('Resolve conflicting values before filing to avoid verification delays.')
@@ -595,7 +595,7 @@ const cssQuestionIds = new Set([
 ])
 
 function categorizeQuestion(questionId: string): FieldCategory {
-  if (fafsaQuestionIds.has(questionId)) return 'FAFSA'
+  if (fafsaQuestionIds.has(questionId)) return 'Federal Aid'
   if (cssQuestionIds.has(questionId)) return 'CSS Profile'
   return 'Other'
 }
