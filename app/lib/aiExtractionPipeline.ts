@@ -12,6 +12,7 @@ const fieldSchema = z.object({
   label: z.string().min(1),
   value: z.string().min(1),
   confidence: z.number().min(0).max(1),
+  source: z.string().min(1).default('heuristic'),
 })
 
 const layoutModelId = 'Xenova/layoutlmv3-base'
@@ -73,7 +74,7 @@ export async function extractWithLayoutLM(text: string) {
   if (!layoutPipelinePromise) {
     layoutPipelinePromise = pipeline('token-classification', layoutModelId, { quantized: true })
   }
-  const classifier = await layoutPipelinePromise
+  const classifier = (await layoutPipelinePromise) as unknown as (input: string) => Promise<unknown>
   return classifier(text)
 }
 

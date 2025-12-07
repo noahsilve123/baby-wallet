@@ -5,10 +5,10 @@ const config: PlaywrightTestConfig = {
   timeout: 60_000,
   expect: { timeout: 10_000 },
   webServer: {
-    command: 'npm run dev',
+    command: 'cross-env NEXT_DISABLE_TURBOPACK=1 NEXT_CLI_FORCE_LEGACY_BUILDER=1 npm run start',
     url: 'http://localhost:3000',
-    reuseExistingServer: !process.env.CI,
-    timeout: 120_000,
+    reuseExistingServer: false,
+    timeout: 180_000,
   },
   use: {
     baseURL: 'http://localhost:3000',

@@ -1,0 +1,69 @@
+{
+  "config": {
+    "configFile": "C:\\Users\\ndalu\\OneDrive - University of Vermont\\Websites\\destination-college\\playwright.config.ts",
+    "rootDir": "C:/Users/ndalu/OneDrive - University of Vermont/Websites/destination-college/tests",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {},
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "C:/Users/ndalu/OneDrive - University of Vermont/Websites/destination-college/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {},
+        "id": "",
+        "name": "",
+        "testDir": "C:/Users/ndalu/OneDrive - University of Vermont/Websites/destination-college/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 60000
+      }
+    ],
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.57.0",
+    "workers": 8,
+    "webServer": {
+      "command": "cross-env NEXT_DISABLE_TURBOPACK=1 NEXT_CLI_FORCE_LEGACY_BUILDER=1 npm run start",
+      "url": "http://localhost:3000",
+      "reuseExistingServer": false,
+      "timeout": 180000
+    }
+  },
+  "suites": [],
+  "errors": [
+    {
+      "message": "Error: Process from config.webServer was not able to start. Exit code: 1",
+      "stack": "Error: Process from config.webServer was not able to start. Exit code: 1"
+    }
+  ],
+  "stats": {
+    "startTime": "2025-12-07T03:49:27.251Z",
+    "duration": 74091.749,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

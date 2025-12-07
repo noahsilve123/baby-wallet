@@ -8,7 +8,7 @@ if (!stripeSecretKey) {
 	console.warn('STRIPE_SECRET_KEY is not set. Stripe Checkout will not work until it is configured.')
 }
 
-const stripe = stripeSecretKey ? new Stripe(stripeSecretKey, { apiVersion: '2022-11-15' }) : undefined
+const stripe = stripeSecretKey ? new Stripe(stripeSecretKey) : undefined
 
 export async function POST(req: Request) {
 	if (!stripe) {

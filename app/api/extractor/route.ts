@@ -26,8 +26,10 @@ export async function POST(request: NextRequest) {
     // Support both common `pdf-parse` (CommonJS function) and newer ESM-style
     // PDFParse API. Use `createRequire` to load the installed package safely.
     const require = createRequire(import.meta.url)
-     
-    const pdfParseModule: unknown = require('pdf-parse')
+
+    type PdfParseExport = typeof import('pdf-parse')
+    const pdfParseModule = require('pdf-parse') as PdfParseExport | { PDFParse?: PdfParseExport['PDFParse'] }
+    const pdfParseClass = 'PDFParse' in pdfParseModule ? pdfParseModule.PDFParse : undefined
 
     // Try to configure a worker if the library exposes a `setWorker` method.
     // Prefer a copy in `public/pdf.worker.mjs` if present, otherwise resolve
@@ -56,9 +58,9 @@ export async function POST(request: NextRequest) {
         }
       }
 
-      if (workerPath && pdfParseModule && pdfParseModule.PDFParse && typeof pdfParseModule.PDFParse.setWorker === 'function') {
+      if (workerPath && pdfParseClass && typeof pdfParseClass.setWorker === 'function') {
         try {
-          pdfParseModule.PDFParse.setWorker(workerPath)
+          pdfParseClass.setWorker(workerPath)
           console.info('[extractor] configured pdf worker', workerPath)
         } catch (e) {
           console.warn('[extractor] failed to set pdf worker', e)
@@ -75,10 +77,11 @@ export async function POST(request: NextRequest) {
       // older CommonJS api: call function directly
       const parsed = await pdfParseModule(buffer)
       text = typeof parsed?.text === 'string' ? parsed.text : ''
-    } else if (pdfParseModule && typeof pdfParseModule.PDFParse === 'function') {
-      parser = new pdfParseModule.PDFParse({ data: buffer })
+    } else if (pdfParseClass && typeof pdfParseClass === 'function') {
+      const parserInstance = new pdfParseClass({ data: buffer })
+      parser = parserInstance
       const parseParams = { disableFontFace: true, disableAutoFetch: true } as unknown
-      const parsed = await parser.getText(parseParams)
+      const parsed = await parserInstance.getText(parseParams)
       text = typeof parsed?.text === 'string' ? parsed.text : ''
     } else {
       throw new Error('Unsupported pdf-parse export shape')

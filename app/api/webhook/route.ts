@@ -2,9 +2,11 @@ import Stripe from 'stripe'
 import fs from 'fs'
 import path from 'path'
 
-export const runtime = 'node'
+// Use nodejs runtime (Next 13+ expects "nodejs" here)
+export const runtime = 'nodejs'
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || '', { apiVersion: '2022-11-15' })
+const stripeSecretKey = process.env.STRIPE_SECRET_KEY
+const stripe = stripeSecretKey ? new Stripe(stripeSecretKey) : null
 
 type DonationRecord = {
   id: string
@@ -37,6 +39,11 @@ async function appendDonation(record: DonationRecord) {
 export async function POST(req: Request) {
   const sig = req.headers.get('stripe-signature') || ''
   const secret = process.env.STRIPE_WEBHOOK_SECRET || ''
+
+  if (!stripe || !stripeSecretKey || !secret) {
+    console.error('Stripe webhook called without STRIPE_SECRET_KEY or STRIPE_WEBHOOK_SECRET set')
+    return new Response('Stripe not configured', { status: 500 })
+  }
 
   const buf = Buffer.from(await req.arrayBuffer())
   let event: Stripe.Event

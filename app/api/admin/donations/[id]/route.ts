@@ -1,5 +1,6 @@
 import fs from 'fs'
 import path from 'path'
+import type { NextRequest } from 'next/server'
 
 type DonationRecord = {
   id: string
@@ -26,8 +27,8 @@ function writeAll(items: DonationRecord[]) {
   fs.writeFileSync(dataPath, JSON.stringify(items, null, 2))
 }
 
-export async function PATCH(req: Request, { params }: { params: { id: string } }) {
-  const id = params.id
+export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params
   if (!id) return new Response(JSON.stringify({ error: 'Missing id' }), { status: 400 })
   let body = {}
   try {
@@ -48,9 +49,9 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
   return new Response(JSON.stringify({ ok: changed }), { status: changed ? 200 : 404 })
 }
 
-export async function DELETE(_req: Request, { params }: { params: { id: string } }) {
+export async function DELETE(_req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   void _req
-  const id = params.id
+  const { id } = await params
   if (!id) return new Response(JSON.stringify({ error: 'Missing id' }), { status: 400 })
   const items = readAll()
   const filtered = items.filter((it) => String(it.id) !== String(id))
