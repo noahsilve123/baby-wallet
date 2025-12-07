@@ -1,0 +1,17 @@
+{
+  "defaults": {
+    "timeout": 60000,
+    "screenCapture": "reports/a11y.png",
+    "standard": "WCAG2AA",
+    "ignore": ["notice", "warning"],
+    "headers": {
+      "User-Agent": "destination-college-a11y-bot"
+    }
+  },
+  "urls": [
+    "http://localhost:3000/",
+    "http://localhost:3000/resources",
+    "http://localhost:3000/resources/scholarships",
+    "http://localhost:3000/programs"
+  ]
+}

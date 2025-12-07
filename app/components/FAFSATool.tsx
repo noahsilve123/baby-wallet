@@ -1,13 +1,12 @@
-'use client'
+"use client"
 
 import { useCallback, useMemo, useState } from 'react'
-import { AlertCircle, CheckCircle2, Circle, Download, Loader2, Printer, RefreshCcw, Search, Sparkles, Trash2, UploadCloud } from 'lucide-react'
+import { AlertCircle, BadgeCheck, Loader2, Sparkles, Trash2, UploadCloud } from 'lucide-react'
 import { sendToExtractor, type ExtractorField } from '../lib/extractorClient'
 import { documentTypeOptions, extractFieldsFromText, type DocumentType, type ExtractedField } from '../lib/extractionRules'
-import { fafsaQuestions, type FAFSAQuestion } from '../data/fafsaQuestions'
 
 type AnalysisState = 'idle' | 'analyzing' | 'done' | 'error'
-type ResponseMap = Record<string, string>
+type FieldCategory = 'FAFSA' | 'CSS Profile' | 'Other'
 
 type DocExtraction = {
   id: string
@@ -16,6 +15,7 @@ type DocExtraction = {
   confidence: number
   questionId: string
   source?: string
+  category: FieldCategory
 }
 
 type UploadedDoc = {
@@ -29,11 +29,7 @@ type UploadedDoc = {
   analysisError?: string
   extractedFields: DocExtraction[]
   analysisProgress: number | null
-}
-
-const statusColor: Record<'pending' | 'ready', string> = {
-  pending: 'text-amber-600',
-  ready: 'text-emerald-600',
+  rawText: string | null
 }
 
 function formatBytes(size: number) {
@@ -46,55 +42,43 @@ function formatBytes(size: number) {
 export default function FAFSATool() {
   const [docs, setDocs] = useState<UploadedDoc[]>([])
   const [isDragging, setIsDragging] = useState(false)
-  const [responses, setResponses] = useState<ResponseMap>({})
   const [uploadError, setUploadError] = useState<string | null>(null)
-  const [appliedQuestionId, setAppliedQuestionId] = useState<string | null>(null)
+  const [expandedDocId, setExpandedDocId] = useState<string | null>(null)
+  const [filterCategory, setFilterCategory] = useState<FieldCategory | 'All'>('All')
+  const [scratchpad, setScratchpad] = useState('')
+  const [aidFlags, setAidFlags] = useState({ business: false, home: false, nonCustodial: false, plan529: false })
 
   const safeId = useCallback((fileName: string) => `${Date.now()}-${fileName}`, [])
 
-  const updateResponse = useCallback((id: string, value: string) => {
-    setResponses((prev) => {
-      if (value === '') {
-        if (!(id in prev)) return prev
-        const next = { ...prev }
-        delete next[id]
-        return next
-      }
-      if (prev[id] === value) return prev
-      return { ...prev, [id]: value }
-    })
+  const updateDoc = useCallback((id: string, patch: Partial<UploadedDoc>) => {
+    setDocs((prev) => prev.map((d) => (d.id === id ? { ...d, ...patch } : d)))
   }, [])
 
-  const clearResponses = useCallback(() => {
-    setResponses({})
-  }, [])
-
-  const updateDocProgress = useCallback((docId: string, progress: number | null) => {
-    setDocs((prev) => prev.map((doc) => (doc.id === docId ? { ...doc, analysisProgress: progress } : doc)))
-  }, [])
+  async function validatePdfFile(file: File) {
+    const allowedMime = ['application/pdf', 'application/x-pdf']
+    const isLikelyPdf = allowedMime.includes(file.type) || file.name.toLowerCase().endsWith('.pdf')
+    if (!isLikelyPdf) return { ok: false, reason: 'looks like an image. Export a PDF before uploading.' }
+    try {
+      const header = await file.slice(0, 5).text()
+      if (!header.startsWith('%PDF')) return { ok: false, reason: 'does not contain a valid %PDF header. Save it as a PDF file first.' }
+    } catch {
+      return { ok: false, reason: 'could not be read. Try saving it again as a PDF.' }
+    }
+    return { ok: true }
+  }
 
   const handleFiles = useCallback(async (fileList: FileList | null) => {
     if (!fileList) return
-
     const incoming = Array.from(fileList)
     const checks = await Promise.all(incoming.map(validatePdfFile))
     const accepted: File[] = []
     let rejection: string | null = null
-
-    incoming.forEach((file, index) => {
-      const result = checks[index]
-      if (result.ok) {
-        accepted.push(file)
-        return
-      }
-      if (!rejection) {
-        rejection = `${file.name}: ${result.reason}`
-      }
+    incoming.forEach((file, i) => {
+      if (checks[i].ok) accepted.push(file)
+      else if (!rejection) rejection = `${file.name}: ${checks[i].reason}`
     })
-
     setUploadError(rejection)
     if (!accepted.length) return
-
     const newDocs: UploadedDoc[] = accepted.map((file) => ({
       id: safeId(file.name),
       fileName: file.name,
@@ -106,297 +90,358 @@ export default function FAFSATool() {
       analysisError: undefined,
       extractedFields: [],
       analysisProgress: null,
+      rawText: null,
     }))
-
     setDocs((prev) => [...prev, ...newDocs])
   }, [safeId])
 
-  const onDrop = useCallback((event: React.DragEvent<HTMLLabelElement>) => {
-    event.preventDefault()
-    setIsDragging(false)
-    if (event.dataTransfer.files?.length) {
-      void handleFiles(event.dataTransfer.files)
-    }
-  }, [handleFiles])
+  const onDrop = useCallback((e: React.DragEvent<HTMLLabelElement>) => { e.preventDefault(); setIsDragging(false); if (e.dataTransfer.files?.length) void handleFiles(e.dataTransfer.files) }, [handleFiles])
+  const onDragOver = useCallback((e: React.DragEvent<HTMLLabelElement>) => { e.preventDefault(); if (!isDragging) setIsDragging(true) }, [isDragging])
+  const onDragLeave = useCallback((e: React.DragEvent<HTMLLabelElement>) => { e.preventDefault(); setIsDragging(false) }, [])
 
-  const onDragOver = useCallback((event: React.DragEvent<HTMLLabelElement>) => {
-    event.preventDefault()
-    if (!isDragging) setIsDragging(true)
-  }, [isDragging])
+  const removeDoc = useCallback((id: string) => setDocs((prev) => prev.filter((d) => d.id !== id)), [])
+  const updateDocType = useCallback((id: string, type: DocumentType) => updateDoc(id, { type }), [updateDoc])
 
-  const onDragLeave = useCallback((event: React.DragEvent<HTMLLabelElement>) => {
-    event.preventDefault()
-    setIsDragging(false)
-  }, [])
-
-  const removeDoc = useCallback((id: string) => {
-    setDocs((prev) => prev.filter((doc) => doc.id !== id))
-  }, [])
-
-  const updateDocType = useCallback((id: string, type: DocumentType) => {
-    setDocs((prev) => prev.map((doc) => (doc.id === id ? { ...doc, type } : doc)))
-  }, [])
+  async function extractDocumentData(file: File, docType: DocumentType, onProgress?: (n: number | null) => void) {
+    const response = await sendToExtractor(file, (v) => onProgress?.(v), docType)
+    const fallback = extractFieldsFromText(response.text, docType)
+    const fields = mergeExtractions(response.fields, fallback)
+    return { text: response.text, fields }
+  }
 
   const analyzeDocument = useCallback(async (id: string) => {
-    const targetDoc = docs.find((doc) => doc.id === id)
-    if (!targetDoc?.file) {
-      setDocs((prev) => prev.map((doc) => (
-        doc.id === id
-          ? { ...doc, analysisState: 'error', analysisError: 'File data was cleared—re-upload and try again.' }
-          : doc
-      )))
-      return
-    }
-
-    setDocs((prev) => prev.map((doc) => (
-      doc.id === id
-        ? { ...doc, analysisState: 'analyzing', analysisError: undefined, analysisProgress: 0 }
-        : doc
-    )))
-
-    const handleProgress = (progress: number | null) => {
-      updateDocProgress(id, progress)
-    }
-
+    const target = docs.find((d) => d.id === id)
+    if (!target?.file) return updateDoc(id, { analysisState: 'error', analysisError: 'File missing' })
+    updateDoc(id, { analysisState: 'analyzing', analysisError: undefined, analysisProgress: 0 })
     try {
-      const { fields } = await runWithTimeout(
-        extractDocumentData(targetDoc.file, targetDoc.type, handleProgress),
+      const { fields, text } = await runWithTimeout(
+        extractDocumentData(target.file, target.type, (p) => updateDoc(id, { analysisProgress: p })),
         ANALYSIS_TIMEOUT_MS,
       )
-      setDocs((prev) => prev.map((doc) => (doc.id === id ? { ...doc, analysisState: 'done', extractedFields: fields, analysisProgress: null } : doc)))
-    } catch (error) {
-      const message = error instanceof TimeoutError
-        ? 'Scanning took too long—try trimming the file or run it again.'
-        : error instanceof Error ? error.message : 'Unable to analyze file'
-      setDocs((prev) => prev.map((doc) => (doc.id === id ? { ...doc, analysisState: 'error', analysisError: message, analysisProgress: null } : doc)))
+      updateDoc(id, { analysisState: 'done', extractedFields: fields, analysisProgress: null, status: 'ready', rawText: text })
+    } catch (err) {
+      const message = err instanceof TimeoutError ? 'Scanning timed out' : err instanceof Error ? err.message : 'Unable to analyze file'
+      updateDoc(id, { analysisState: 'error', analysisError: message, analysisProgress: null })
     }
-  }, [docs, updateDocProgress])
+  }, [docs, updateDoc])
 
-  const updateExtractionQuestion = useCallback((docId: string, extractionId: string, questionId: string) => {
-    setDocs((prev) => prev.map((doc) => {
-      if (doc.id !== docId) return doc
-      return {
-        ...doc,
-        extractedFields: doc.extractedFields.map((field) =>
-          field.id === extractionId ? { ...field, questionId } : field,
-        ),
-      }
-    }))
+  const pendingCount = useMemo(() => docs.filter((d) => d.status === 'pending').length, [docs])
+
+  const aggregatedFields = useMemo(
+    () =>
+      docs.flatMap((doc) =>
+        doc.extractedFields.map((f) => ({ ...f, fileName: doc.fileName, category: categorizeQuestion(f.questionId) } as DocExtraction & { fileName: string })),
+      ),
+    [docs],
+  )
+
+  const filteredFields = useMemo(
+    () => (filterCategory === 'All' ? aggregatedFields : aggregatedFields.filter((f) => f.category === filterCategory)),
+    [aggregatedFields, filterCategory],
+  )
+
+  const diagnostics = useMemo(() => buildDiagnostics(aggregatedFields), [aggregatedFields])
+  const suggestions = useMemo(() => buildAidSuggestions(aggregatedFields, diagnostics), [aggregatedFields, diagnostics])
+
+  const copyToClipboard = useCallback(async (text: string) => {
+    try { await navigator.clipboard.writeText(text); return true }
+    catch { try { window.prompt('Copy text', text) } catch {} return false }
   }, [])
 
-  const applyExtractionFromDoc = useCallback((docId: string, extractionId: string) => {
-    const doc = docs.find((item) => item.id === docId)
-    const extraction = doc?.extractedFields.find((field) => field.id === extractionId)
-    if (!extraction) return
-    updateResponse(extraction.questionId, extraction.value)
-    setAppliedQuestionId(extraction.questionId)
-    window.setTimeout(() => {
-      setAppliedQuestionId((current) => (current === extraction.questionId ? null : current))
-    }, 1500)
-  }, [docs, updateResponse])
+  const copyAllKeyValue = useCallback(() => {
+    const lines = filteredFields.map((f) => `${f.label}: ${f.value}`).join('\n')
+    void copyToClipboard(lines)
+  }, [filteredFields, copyToClipboard])
 
-  const pendingCount = useMemo(() => docs.filter((doc) => doc.status === 'pending').length, [docs])
+  const copyAllCSV = useCallback(() => {
+    const rows = filteredFields
+      .map((f) => `"${String(f.label).replace(/"/g, '""')}","${String(f.value).replace(/"/g, '""')}","${f.category}"`)
+      .join('\n')
+    void copyToClipboard(rows)
+  }, [filteredFields, copyToClipboard])
+
+  const downloadAllTxt = useCallback(() => {
+    const text = filteredFields.map((f) => `${f.label} (${f.category}): ${f.value}`).join('\n')
+    const b = new Blob([text], { type: 'text/plain' })
+    const u = URL.createObjectURL(b)
+    const a = document.createElement('a')
+    a.href = u
+    a.download = `extracted-${new Date().toISOString().slice(0, 10)}.txt`
+    a.click()
+    URL.revokeObjectURL(u)
+  }, [filteredFields])
+
+  const exportCategory = useCallback(
+    (category: FieldCategory) => {
+      const rows = aggregatedFields.filter((f) => f.category === category)
+      if (!rows.length) return
+      const text = rows.map((f) => `${f.label}: ${f.value}`).join('\n')
+      void copyToClipboard(text)
+    },
+    [aggregatedFields, copyToClipboard],
+  )
 
   return (
     <section className="bg-white border rounded-2xl shadow-sm p-8">
       <div className="flex flex-col gap-3 mb-6">
         <span className="uppercase text-xs tracking-widest text-slate-500">Financial Aid Simplified</span>
-        <h2 className="text-3xl font-semibold">FAFSA File Prep Tool</h2>
-        <p className="text-slate-600 max-w-2xl">Drop your tax docs, let the translator highlight the FAFSA answers for you, then copy those temporary values straight into the official form. This is a scratch space that clears when you close or refresh the page.</p>
-        <div className="text-xs text-slate-500 bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 max-w-2xl">
-          <p className="font-semibold">How this helper fits into FAFSA</p>
-          <ul className="mt-1 list-disc space-y-1 pl-4">
-            <li>Gather your 1040, W-2s, Social Security letters, and any 1099 forms.</li>
-            <li>Upload PDF copies below, then run "Scan document" on each file you want to analyze.</li>
-            <li>Use the suggested numbers as a guide while you type the same values on the official FAFSA site.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div className="space-y-8">
-        <div className="grid gap-4 md:grid-cols-3">
-          {['Drop your tax PDFs or photos.', 'We auto-highlight numbers that answer FAFSA questions.', 'Copy the suggested value directly into FAFSA (nothing is saved).'].map((tip, index) => (
-            <div key={tip} className="rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-600">
-              <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Step {index + 1}</p>
-              <p className="mt-1 font-medium text-slate-800">{tip}</p>
-            </div>
+        <h2 className="text-3xl font-semibold">Financial Aid File Prep (FAFSA / CSS Profile)</h2>
+        <p className="text-slate-600 max-w-3xl">Upload tax PDFs and copy parsed values, grouped for FAFSA, CSS Profile, or other forms. Nothing is stored permanently.</p>
+        <div className="flex flex-wrap gap-2 text-xs text-slate-600">
+          {quickLinks.map((link) => (
+            <a key={link.href} href={link.href} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 rounded-full border px-3 py-1 hover:bg-slate-50">
+              <BadgeCheck size={12} />
+              <span>{link.label}</span>
+            </a>
           ))}
         </div>
+      </div>
 
-        <div className="space-y-6">
-          <label
-            htmlFor="fafsa-docs"
-            onDrop={onDrop}
-            onDragOver={onDragOver}
-            onDragLeave={onDragLeave}
-            className={`flex flex-col items-center justify-center gap-3 rounded-xl border-2 border-dashed px-6 py-10 cursor-pointer transition ${
-              isDragging ? 'border-emerald-500 bg-emerald-50' : 'border-slate-200 hover:border-slate-300'
-            }`}
-          >
-            <UploadCloud className="text-slate-600" size={28} />
-            <div className="text-center">
-              <p className="font-semibold">Drag & drop PDF copies of your tax docs</p>
-              <p className="text-sm text-slate-500">IRS 1040, W-2s, income statements, Social Security letters</p>
+      <label
+        htmlFor="fafsa-docs"
+        onDrop={onDrop}
+        onDragOver={onDragOver}
+        onDragLeave={onDragLeave}
+        className={`flex flex-col items-center justify-center gap-3 rounded-xl border-2 border-dashed px-6 py-10 cursor-pointer transition ${isDragging ? 'border-emerald-500 bg-emerald-50' : 'border-slate-200 hover:border-slate-300'}`}
+      >
+        <UploadCloud className="text-slate-600" size={28} />
+        <div className="text-center">
+          <p className="font-semibold">Drag & drop PDF copies of your tax docs</p>
+          <p className="text-sm text-slate-500">IRS 1040, W-2s, income statements, Social Security letters</p>
+        </div>
+        <input
+          id="fafsa-docs"
+          type="file"
+          className="hidden"
+          multiple
+          accept=".pdf"
+          onChange={(e) => {
+            void handleFiles(e.target.files)
+            if (e.target) (e.target as HTMLInputElement).value = ''
+          }}
+        />
+        <span className="text-xs text-slate-500">Files are sent only to the extraction service and are not kept long-term.</span>
+      </label>
+      {uploadError && <p className="text-sm text-rose-600 mt-2">{uploadError}</p>}
+
+      {docs.length > 0 && (
+        <div className="space-y-6 mt-6">
+          <div className="flex items-center justify-between text-sm text-slate-600">
+            <span>{docs.length} document{docs.length === 1 ? '' : 's'} staged</span>
+            <div className="flex items-center gap-3">
+              <span className="text-amber-600">Action needed on {pendingCount}</span>
+              {pendingCount > 0 && (
+                <button
+                  type="button"
+                  onClick={() => docs.filter((d) => d.status === 'pending' && d.file).forEach((d) => void analyzeDocument(d.id))}
+                  className="inline-flex items-center rounded-full border border-slate-200 px-3 py-1 text-xs font-semibold text-slate-600 hover:border-slate-300"
+                >
+                  Scan all pending
+                </button>
+              )}
             </div>
-            <input
-              id="fafsa-docs"
-              type="file"
-              className="hidden"
-              multiple
-              accept=".pdf"
-              aria-describedby="fafsa-docs-help"
-              onChange={(event) => {
-                void handleFiles(event.target.files)
-                event.target.value = ''
-              }}
-            />
-            <span id="fafsa-docs-help" className="text-xs text-slate-500">Files are sent only to the FAFSA helper service configured for this site and are not kept as a long-term record.</span>
-          </label>
-          {uploadError && (
-            <p className="text-sm text-rose-600">{uploadError}</p>
-          )}
-
-          {docs.length > 0 && (
-            <div className="space-y-3">
-              <div className="flex items-center justify-between text-sm text-slate-600">
-                <span>{docs.length} document{docs.length === 1 ? '' : 's'} staged</span>
-                <div className="flex items-center gap-3">
-                  <span className={statusColor.pending}>Action needed on {pendingCount}</span>
-                  {pendingCount > 0 && (
+          </div>
+          <ul className="space-y-3">
+            {docs.map((doc) => (
+              <li key={doc.id} className="space-y-3 rounded-xl border px-4 py-3">
+                <div className="flex flex-col gap-3 md:flex-row md:items-center md:gap-4">
+                  <div className="flex-1">
+                    <p className="font-medium">{doc.fileName}</p>
+                    <p className="text-xs text-slate-500">{doc.sizeLabel}</p>
+                  </div>
+                  <div className="flex items-center gap-2 w-full md:w-auto">
+                    <select
+                      className="flex-1 rounded-lg border border-slate-200 px-3 py-2 text-sm"
+                      value={doc.type}
+                      onChange={(e) => updateDocType(doc.id, e.target.value as DocumentType)}
+                    >
+                      {documentTypeOptions.map((o) => (
+                        <option key={o.value} value={o.value}>{o.label}</option>
+                      ))}
+                    </select>
                     <button
                       type="button"
-                      onClick={() => docs.filter((doc) => doc.status === 'pending' && doc.file).forEach((doc) => analyzeDocument(doc.id))}
-                      className="inline-flex items-center rounded-full border border-slate-200 px-3 py-1 text-xs font-semibold text-slate-600 hover:border-slate-300"
+                      onClick={() => removeDoc(doc.id)}
+                      className="p-2 text-slate-600 hover:text-rose-600"
+                      aria-label="Remove document"
                     >
-                      Scan all pending
+                      <Trash2 size={18} />
                     </button>
-                  )}
+                  </div>
                 </div>
-              </div>
-              <p className="text-xs text-slate-500">Choose “Scan document” on each file whenever you want to run detection. Nothing leaves your device until you hit that button.</p>
 
-              <ul className="space-y-3">
-                {docs.map((doc) => (
-                  <li key={doc.id} className="space-y-3 rounded-xl border px-4 py-3">
-                    <div className="flex flex-col gap-3 md:flex-row md:items-center md:gap-4">
-                      <div className="flex-1">
-                        <p className="font-medium">{doc.fileName}</p>
-                        <p className="text-xs text-slate-500">{doc.sizeLabel}</p>
+                <div className="flex items-center gap-3 text-xs text-slate-500">
+                  <span>Stored locally — closed tab = data gone.</span>
+                  <button
+                    type="button"
+                    onClick={() => void analyzeDocument(doc.id)}
+                    disabled={!doc.file || doc.analysisState === 'analyzing'}
+                    className={`inline-flex items-center gap-2 rounded-full border px-3 py-1 text-sm ${doc.analysisState === 'analyzing' ? 'border-emerald-300 text-emerald-700' : 'border-slate-200 text-slate-600 hover-border-slate-300'}`}
+                  >
+                    {doc.analysisState === 'analyzing' ? <Loader2 className="animate-spin" size={14} /> : <Sparkles size={14} />}
+                    {doc.analysisState === 'done' ? 'Re-run detection' : doc.analysisState === 'error' ? 'Try scan again' : doc.analysisState === 'analyzing' ? 'Scanning…' : 'Scan document'}
+                  </button>
+                  {doc.analysisState === 'analyzing' && <span className="text-emerald-700">{formatProgress(doc.analysisProgress)}</span>}
+                  {doc.analysisState === 'done' && doc.extractedFields.length === 0 && <span className="text-sm text-slate-500">No obvious values detected in this file.</span>}
+                  {doc.analysisState === 'error' && doc.analysisError && <span className="text-sm text-rose-600">{doc.analysisError}</span>}
+                </div>
+
+                {doc.extractedFields.length > 0 && (
+                  <div className="space-y-2 mt-3">
+                    {doc.extractedFields.map((field) => (
+                      <div key={field.id} className="rounded-xl border border-slate-100 bg-slate-50 p-3">
+                        <div className="flex items-center justify-between gap-3">
+                          <div>
+                            <p className="text-sm font-semibold text-slate-800">{field.label}</p>
+                            <p className="text-sm text-slate-700">{formatSuggestedValue(field.label, field.value)}</p>
+                            <p className="text-xs text-slate-500">Confidence {Math.round(field.confidence * 100)}% — {field.source ?? 'detected'}</p>
+                          </div>
+                          <div>
+                            <button type="button" onClick={() => void copyToClipboard(field.value)} className="rounded-full bg-emerald-600 px-3 py-1 text-sm font-semibold text-white hover:bg-emerald-500">Copy</button>
+                          </div>
+                        </div>
                       </div>
-                      <div className="flex items-center gap-2 w-full md:w-auto">
-                        <select
-                          className="flex-1 rounded-lg border border-slate-200 px-3 py-2 text-sm"
-                          value={doc.type}
-                          onChange={(event) => updateDocType(doc.id, event.target.value as DocumentType)}
-                        >
-                          {documentTypeOptions.map((option) => (
-                            <option key={option.value} value={option.value}>{option.label}</option>
-                          ))}
-                        </select>
+                    ))}
+                  </div>
+                )}
+
+                {doc.rawText && (
+                  <details className="mt-2 rounded-lg border border-slate-200 bg-slate-50 px-3 py-2" open={expandedDocId === doc.id}>
+                    <summary
+                      className="text-xs text-slate-600 cursor-pointer select-none"
+                      onClick={(e) => {
+                        e.preventDefault()
+                        setExpandedDocId((prev) => (prev === doc.id ? null : doc.id))
+                      }}
+                    >
+                      View extracted text (debug)
+                    </summary>
+                    {expandedDocId === doc.id && (
+                      <div className="mt-2 space-y-2">
+                        <pre className="max-h-48 overflow-auto rounded bg-white p-2 text-[11px] text-slate-700 whitespace-pre-wrap">{doc.rawText}</pre>
                         <button
                           type="button"
-                          onClick={() => removeDoc(doc.id)}
-                          className="p-2 text-slate-400 hover:text-rose-500"
-                          aria-label="Remove document"
+                          onClick={() => void copyToClipboard(doc.rawText ?? '')}
+                          className="rounded-full border px-3 py-1 text-xs"
                         >
-                          <Trash2 size={18} />
+                          Copy raw text
                         </button>
                       </div>
+                    )}
+                  </details>
+                )}
+              </li>
+            ))}
+          </ul>
+
+          <div className="mt-6">
+            {aggregatedFields.length > 0 && (
+              <div className="rounded-2xl border border-slate-200 p-4 space-y-3">
+                <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <p className="text-sm text-slate-600">Filtered extracted values ({filteredFields.length}/{aggregatedFields.length})</p>
+                    <div className="flex flex-wrap gap-2 text-xs">
+                      {(['All', 'FAFSA', 'CSS Profile', 'Other'] as Array<FieldCategory | 'All'>).map((cat) => (
+                        <button
+                          key={cat}
+                          type="button"
+                          onClick={() => setFilterCategory(cat)}
+                          className={`rounded-full border px-3 py-1 ${filterCategory === cat ? 'bg-emerald-600 text-white border-emerald-600' : 'text-slate-700 border-slate-200'}`}
+                        >
+                          {cat}
+                        </button>
+                      ))}
                     </div>
+                  </div>
+                  <div className="flex gap-2">
+                    <button type="button" onClick={() => copyAllKeyValue()} className="rounded-full border px-3 py-1 text-sm">Copy all</button>
+                    <button type="button" onClick={() => copyAllCSV()} className="rounded-full border px-3 py-1 text-sm">Copy CSV</button>
+                    <button type="button" onClick={() => downloadAllTxt()} className="rounded-full border px-3 py-1 text-sm">Download</button>
+                  </div>
+                </div>
 
-                    <div className="flex flex-wrap items-center gap-3 text-xs text-slate-500">
-                      <span>Stored locally — closed tab = data gone.</span>
-                      <button
-                        type="button"
-                        onClick={() => analyzeDocument(doc.id)}
-                        disabled={!doc.file || doc.analysisState === 'analyzing'}
-                        className={`inline-flex items-center gap-2 rounded-full border px-3 py-1 text-sm ${
-                          doc.analysisState === 'analyzing'
-                            ? 'border-emerald-200 text-emerald-600'
-                            : 'border-slate-200 text-slate-600 hover:border-slate-300'
-                        }`}
-                      >
-                        {doc.analysisState === 'analyzing' ? (
-                          <Loader2 className="animate-spin" size={14} />
-                        ) : (
-                          <Sparkles size={14} />
-                        )}
-                        {doc.analysisState === 'done' ? 'Re-run detection' : doc.analysisState === 'error' ? 'Try scan again' : doc.analysisState === 'analyzing' ? 'Scanning…' : 'Scan document'}
-                      </button>
-                      {doc.analysisState === 'analyzing' && (
-                        <span className="text-emerald-600">{formatProgress(doc.analysisProgress)}</span>
-                      )}
-                      {doc.analysisState === 'idle' && doc.file && (
-                        <span className="text-amber-600">Click “Scan document” when you’re ready.</span>
-                      )}
-                      {doc.analysisState === 'done' && doc.extractedFields.length > 0 && (
-                        <span className="text-emerald-600">Suggested {doc.extractedFields.length} value{doc.extractedFields.length === 1 ? '' : 's'}</span>
-                      )}
-                    </div>
+                <div className="flex flex-wrap gap-2 text-xs">
+                  <button type="button" onClick={() => exportCategory('FAFSA')} className="rounded-full border px-3 py-1">Copy FAFSA-only</button>
+                  <button type="button" onClick={() => exportCategory('CSS Profile')} className="rounded-full border px-3 py-1">Copy CSS-only</button>
+                  <button type="button" onClick={() => exportCategory('Other')} className="rounded-full border px-3 py-1">Copy Other</button>
+                </div>
 
-                    {doc.analysisState === 'error' && (
-                      <p className="text-sm text-rose-600">{doc.analysisError}</p>
-                    )}
+                {(diagnostics.missing.length > 0 || diagnostics.conflicts.length > 0) && (
+                  <div className="rounded-xl border border-amber-200 bg-amber-50 p-3 text-sm text-amber-900 space-y-2">
+                    <p className="font-semibold">Data quality checks</p>
+                    {diagnostics.missing.map((row) => (
+                      <p key={row.category}>Missing for {row.category}: {row.items.join(', ')}</p>
+                    ))}
+                    {diagnostics.conflicts.length > 0 && <p>Conflicting values: {diagnostics.conflicts.join('; ')}</p>}
+                  </div>
+                )}
 
-                    {doc.analysisState === 'done' && doc.extractedFields.length === 0 && (
-                      <p className="text-sm text-slate-500">No obvious FAFSA values detected in this file. You can still enter figures manually in the translator below.</p>
-                    )}
+                {suggestions.length > 0 && (
+                  <div className="rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-sm text-emerald-900 space-y-2">
+                    <p className="font-semibold">Planning suggestions</p>
+                    <ul className="list-disc pl-4 space-y-1">
+                      {suggestions.map((s) => (
+                        <li key={s}>{s}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
 
-                    {doc.extractedFields.length > 0 && (
-                      <div className="space-y-2">
-                        {doc.extractedFields.map((field) => {
-                          const linkedQuestion = fafsaQuestions.find((question) => question.id === field.questionId)
-                          const formattedValue = formatSuggestedValue(field.value, linkedQuestion?.inputType)
-                          return (
-                            <div key={field.id} className="rounded-xl border border-slate-100 bg-slate-50 p-3">
-                              <div className="flex flex-col gap-1 md:flex-row md:items-center md:justify-between">
-                                <div>
-                                  <p className="text-sm font-semibold text-slate-800">{field.label}</p>
-                                  <p className="text-sm text-slate-600">{formattedValue}</p>
-                                  {linkedQuestion && <p className="text-xs text-slate-500">FAFSA prompt: {linkedQuestion.prompt}</p>}
-                                </div>
-                                <span className="text-xs text-slate-500">Confidence {Math.round(field.confidence * 100)}%</span>
-                              </div>
-                              <div className="mt-3 flex flex-col gap-3 lg:flex-row lg:items-end">
-                                <label className="flex-1 text-xs font-semibold uppercase tracking-wide text-slate-500">
-                                  Send this value to
-                                  <select
-                                    className="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2 text-sm"
-                                    value={field.questionId}
-                                    onChange={(event) => updateExtractionQuestion(doc.id, field.id, event.target.value)}
-                                  >
-                                    {fafsaQuestions.map((question) => (
-                                      <option key={question.id} value={question.id}>{question.prompt}</option>
-                                    ))}
-                                  </select>
-                                </label>
-                                <button
-                                  type="button"
-                                  onClick={() => applyExtractionFromDoc(doc.id, field.id)}
-                                  className="w-full rounded-lg bg-emerald-600 px-3 py-2 text-sm font-semibold text-white hover:bg-emerald-500 lg:w-auto"
-                                >
-                                  Apply to translator
-                                </button>
-                              </div>
-                            </div>
-                          )
-                        })}
-                      </div>
-                    )}
-                  </li>
+          <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2">
+            <div className="rounded-2xl border border-slate-200 p-4 space-y-3">
+              <h3 className="text-sm font-semibold text-slate-800">Additional info prompts</h3>
+              <div className="space-y-2 text-sm text-slate-700">
+                {[
+                  { key: 'business', label: 'Family owns a business or farm (CSS Profile asks for schedules)' },
+                  { key: 'home', label: 'Home equity info needed (value + mortgage balance)' },
+                  { key: 'nonCustodial', label: 'Non-custodial parent info required by many CSS schools' },
+                  { key: 'plan529', label: '529 plans balances (identify owner and beneficiary)' },
+                ].map((item) => (
+                  <label key={item.key} className="flex items-center gap-2">
+                    <input
+                      type="checkbox"
+                      checked={aidFlags[item.key as keyof typeof aidFlags]}
+                      onChange={(e) => setAidFlags((prev) => ({ ...prev, [item.key]: e.target.checked }))}
+                    />
+                    <span>{item.label}</span>
+                  </label>
                 ))}
+              </div>
+            </div>
+
+            <div className="rounded-2xl border border-slate-200 p-4 space-y-3">
+              <h3 className="text-sm font-semibold text-slate-800">Scratchpad (local only)</h3>
+              <textarea
+                value={scratchpad}
+                onChange={(e) => setScratchpad(e.target.value)}
+                className="w-full rounded-lg border border-slate-200 p-2 text-sm"
+                rows={5}
+                placeholder="Notes for counselor meetings, verification follow-ups, login reminders..."
+              />
+              <p className="text-xs text-slate-500">Stored in this tab only; clears on refresh.</p>
+            </div>
+          </div>
+
+          <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2">
+            <div className="rounded-2xl border border-slate-200 p-4 space-y-2 text-sm text-slate-800">
+              <h3 className="text-sm font-semibold">Timeline helper</h3>
+              <ul className="list-disc pl-4 space-y-1">
+                <li>FAFSA: submit within 1 week of opening; add all colleges.</li>
+                <li>CSS Profile: check each college deadline (often same as EA/ED).</li>
+                <li>Verification-ready: keep 1040, W-2, untaxed income docs handy.</li>
+                <li>State grant deadlines: confirm NJ deadlines if applicable.</li>
               </ul>
             </div>
-          )}
-
-          <FAFSAQuestionNavigator
-            responses={responses}
-            onChangeResponse={updateResponse}
-            onClearResponses={clearResponses}
-            appliedQuestionId={appliedQuestionId}
-          />
+            <div className="rounded-2xl border border-slate-200 p-4 space-y-2 text-sm text-slate-800">
+              <h3 className="text-sm font-semibold">Scholarship fit booster</h3>
+              <p className="text-slate-700">Use extracted income to target need-based awards and filter local funds; add merit-only options as backups.</p>
+            </div>
+          </div>
         </div>
-      </div>
+      )}
 
       <div className="mt-8 text-sm text-slate-600 flex flex-wrap items-center gap-2 border-t pt-4">
         <AlertCircle className="text-amber-500" size={16} />
@@ -406,266 +451,59 @@ export default function FAFSATool() {
   )
 }
 
-type FAFSAQuestionNavigatorProps = {
-  responses: ResponseMap
-  onChangeResponse: (id: string, value: string) => void
-  onClearResponses: () => void
-  appliedQuestionId?: string | null
+type AggregatedField = DocExtraction & { fileName?: string }
+type Diagnostics = { missing: Array<{ category: FieldCategory; items: string[] }>; conflicts: string[] }
+
+const requiredByCategory: Record<FieldCategory, string[]> = {
+  FAFSA: ['parent-wages', 'parent-agi', 'parent-us-tax-paid', 'household-size', 'number-in-college', 'student-ssn', 'student-dob', 'student-legal-name'],
+  'CSS Profile': ['parent-wages', 'parent-agi', 'parent-us-tax-paid', 'parent-untaxed-income', 'household-size', 'number-in-college'],
+  Other: [],
 }
 
-function FAFSAQuestionNavigator({ responses, onChangeResponse, onClearResponses, appliedQuestionId }: FAFSAQuestionNavigatorProps) {
-  const [searchTerm, setSearchTerm] = useState('')
-  const [activeQuestionId, setActiveQuestionId] = useState(fafsaQuestions[0]?.id ?? '')
+function buildDiagnostics(fields: AggregatedField[]): Diagnostics {
+  const labelMap = new Map<string, string>()
+  fields.forEach((f) => labelMap.set(f.questionId, f.label))
 
-  const visibleQuestions = useMemo(() => {
-    const needle = searchTerm.trim().toLowerCase()
-    if (!needle) return fafsaQuestions
-    return fafsaQuestions.filter((question) =>
-      [question.prompt, question.translator, question.section]
-        .some((field) => field.toLowerCase().includes(needle)),
-    )
-  }, [searchTerm])
-
-  const sections = useMemo(() => {
-    const map = new Map<FAFSAQuestion['section'], FAFSAQuestion[]>()
-    visibleQuestions.forEach((question) => {
-      if (!map.has(question.section)) map.set(question.section, [])
-      map.get(question.section)!.push(question)
-    })
-    return Array.from(map.entries())
-  }, [visibleQuestions])
-
-  const resolvedActiveId = useMemo(() => {
-    if (!visibleQuestions.length) return ''
-    return visibleQuestions.some((question) => question.id === activeQuestionId)
-      ? activeQuestionId
-      : visibleQuestions[0].id
-  }, [visibleQuestions, activeQuestionId])
-
-  const activeQuestion = useMemo(() => visibleQuestions.find((question) => question.id === resolvedActiveId), [visibleQuestions, resolvedActiveId])
-
-  const downloadScratchSheet = useCallback(() => {
-    const text = buildScratchSheet(responses)
-    const blob = new Blob([text], { type: 'text/plain' })
-    const url = URL.createObjectURL(blob)
-    const anchor = document.createElement('a')
-    anchor.href = url
-    anchor.download = `fafsa-scratch-${new Date().toISOString().slice(0, 10)}.txt`
-    anchor.click()
-    URL.revokeObjectURL(url)
-  }, [responses])
-
-  const printScratchSheet = useCallback(() => {
-    const text = buildScratchSheet(responses)
-    const printable = window.open('', '_blank', 'width=900,height=700')
-    if (!printable) return
-    printable.document.write(`<!doctype html><html><head><title>FAFSA Scratch Sheet</title></head><body style="font-family:Arial,sans-serif;white-space:pre-wrap;">${text.replace(/\n/g, '<br/>')}</body></html>`)
-    printable.document.close()
-    printable.focus()
-    printable.print()
-  }, [responses])
-
-  return (
-    <div className="rounded-2xl border border-slate-200 p-6 space-y-5">
-      <div className="flex flex-col gap-3">
-        <div className="flex flex-col gap-2 lg:flex-row lg:items-center lg:justify-between">
-          <div>
-            <p className="text-xs uppercase tracking-widest text-emerald-600">FAFSA Translator</p>
-            <h3 className="text-2xl font-semibold">Line-by-line question helper</h3>
-            <p className="text-sm text-slate-500">Entries live only while this page stays open. Close or refresh and everything resets automatically.</p>
-          </div>
-          <div className="flex flex-wrap gap-2">
-            <button
-              type="button"
-              onClick={downloadScratchSheet}
-              className="inline-flex items-center gap-2 rounded-full border border-slate-200 px-4 py-2 text-sm text-slate-600 hover:border-slate-300"
-            >
-              <Download size={16} /> Download scratch sheet
-            </button>
-            <button
-              type="button"
-              onClick={printScratchSheet}
-              className="inline-flex items-center gap-2 rounded-full border border-slate-200 px-4 py-2 text-sm text-slate-600 hover:border-slate-300"
-            >
-              <Printer size={16} /> Print
-            </button>
-            <button
-              type="button"
-              onClick={onClearResponses}
-              className="inline-flex items-center gap-2 rounded-full border border-slate-200 px-4 py-2 text-sm text-slate-600 hover:border-slate-300"
-            >
-              <RefreshCcw size={16} /> Clear all
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <div className="grid gap-6 lg:grid-cols-[250px,1fr]">
-        <div className="rounded-2xl border border-slate-100" aria-label="FAFSA questions" role="navigation">
-          <label className="flex items-center gap-2 border-b border-slate-100 px-4 py-3 text-sm text-slate-500">
-            <Search size={16} />
-            <input
-              type="search"
-              placeholder="Search FAFSA wording"
-              value={searchTerm}
-              onChange={(event) => setSearchTerm(event.target.value)}
-              className="flex-1 border-none bg-transparent text-slate-700 placeholder:text-slate-400 focus:outline-none"
-            />
-          </label>
-          <div className="max-h-80 overflow-y-auto px-3 py-4 space-y-4">
-            {sections.length === 0 && (
-              <p className="text-sm text-slate-500">No questions match that search. Clear the filter to see everything.</p>
-            )}
-            {sections.map(([sectionName, questions]) => (
-              <div key={sectionName} className="space-y-2">
-                <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">{sectionName}</p>
-                <div className="space-y-1">
-                  {questions.map((question) => {
-                    const isActive = question.id === resolvedActiveId
-                    const isComplete = Boolean(responses[question.id])
-                    const isRecentlyApplied = appliedQuestionId === question.id
-                    return (
-                      <button
-                        key={question.id}
-                        type="button"
-                        onClick={() => setActiveQuestionId(question.id)}
-                        className={`w-full rounded-xl border px-3 py-2 text-left text-sm transition ${
-                          isActive || isRecentlyApplied
-                            ? 'border-emerald-500 bg-emerald-50'
-                            : 'border-transparent hover:border-slate-200'
-                        }`}
-                      >
-                        <div className="flex items-center justify-between gap-3">
-                          <p className="font-medium text-slate-800 line-clamp-2">{question.prompt}</p>
-                          {isComplete ? <CheckCircle2 className="text-emerald-500" size={16} /> : <Circle className="text-slate-300" size={16} />}
-                        </div>
-                        <p className="text-xs text-slate-500">{question.section}</p>
-                      </button>
-                    )
-                  })}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="rounded-2xl border border-slate-100 p-5" aria-label="FAFSA question details">
-          {!visibleQuestions.length && (
-            <div className="text-sm text-slate-500">Start typing above to search the official FAFSA wording.</div>
-          )}
-          {visibleQuestions.length > 0 && activeQuestion && (
-            <QuestionDetail
-              question={activeQuestion}
-              value={responses[activeQuestion.id] ?? ''}
-              onChange={(value) => onChangeResponse(activeQuestion.id, value)}
-            />
-          )}
-        </div>
-      </div>
-    </div>
-  )
-}
-
-type QuestionDetailProps = {
-  question: FAFSAQuestion
-  value: string
-  onChange: (value: string) => void
-}
-
-function QuestionDetail({ question, value, onChange }: QuestionDetailProps) {
-  const renderInput = () => {
-    if (question.inputType === 'yesno') {
-      return (
-        <div className="flex gap-3">
-          {['Yes', 'No'].map((choice) => {
-            const isActive = value === choice
-            return (
-              <button
-                key={choice}
-                type="button"
-                onClick={() => onChange(choice)}
-                className={`flex-1 rounded-xl border px-3 py-2 text-sm font-medium transition ${
-                  isActive ? 'border-emerald-500 bg-emerald-50 text-emerald-700' : 'border-slate-200 text-slate-600 hover:border-slate-300'
-                }`}
-              >
-                {choice}
-              </button>
-            )
-          })}
-        </div>
-      )
-    }
-
-    const inputMode = question.inputType === 'number' ? 'numeric' : question.inputType === 'currency' ? 'decimal' : 'text'
-    const prefix = question.inputType === 'currency' ? '$' : undefined
-
-    return (
-      <div className="flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-3">
-        {prefix && <span className="text-slate-400">{prefix}</span>}
-        <input
-          type="text"
-          inputMode={inputMode}
-          value={value}
-          onChange={(event) => onChange(event.target.value)}
-          className="w-full border-none py-2 text-sm text-slate-700 focus:outline-none"
-          placeholder={question.inputType === 'currency' ? '0.00' : 'Type response'}
-        />
-      </div>
-    )
-  }
-
-  return (
-    <div className="space-y-4">
-      <div className="space-y-1">
-        <p className="text-xs uppercase tracking-wide text-slate-400">{question.section}</p>
-        <h4 className="text-xl font-semibold text-slate-900">{question.prompt}</h4>
-        <p className="text-sm text-slate-600">{question.translator}</p>
-      </div>
-
-      <div className="space-y-2">
-        <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Document line to check</p>
-        <ul className="space-y-2">
-          {question.docHints.map((hint) => (
-            <li key={`${hint.doc}-${hint.location}`} className="rounded-xl border border-slate-100 bg-slate-50 px-3 py-2 text-sm">
-              <p className="font-medium text-slate-800">{hint.doc}</p>
-              <p className="text-slate-600">{hint.location}</p>
-              {hint.note && <p className="text-xs text-slate-500">{hint.note}</p>}
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      {question.helper && <p className="rounded-xl bg-emerald-50 px-3 py-2 text-sm text-emerald-700">{question.helper}</p>}
-
-      <div className="space-y-2">
-        <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Temporary FAFSA answer</p>
-        {renderInput()}
-        <p className="text-xs text-slate-500">Use this as a quick holding spot while you enter the same number on FAFSA. Refreshing or closing the page clears it instantly.</p>
-      </div>
-    </div>
-  )
-}
-
-const currencyFormatter = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' })
-
-function formatSuggestedValue(value: string, inputType?: FAFSAQuestion['inputType']) {
-  if (!value) return '—'
-  if (inputType === 'currency') {
-    const numeric = Number(value)
-    if (!Number.isNaN(numeric)) {
-      return currencyFormatter.format(numeric)
-    }
-  }
-  return value
-}
-
-function buildScratchSheet(responses: ResponseMap) {
-  const generatedAt = new Date().toLocaleString()
-  const lines = fafsaQuestions.map((question) => {
-    const answer = responses[question.id] ?? ''
-    return `${question.section} — ${question.prompt}\nAnswer: ${answer || '—'}\n`
+  const missing: Diagnostics['missing'] = []
+  ;(['FAFSA', 'CSS Profile'] as FieldCategory[]).forEach((cat) => {
+    const required = requiredByCategory[cat]
+    const present = new Set(fields.filter((f) => f.category === cat || cat === 'FAFSA').map((f) => f.questionId))
+    const gaps = required.filter((id) => !present.has(id)).map((id) => labelMap.get(id) ?? id)
+    if (gaps.length) missing.push({ category: cat, items: gaps })
   })
-  return `FAFSA Scratch Sheet\nGenerated ${generatedAt}\n\n${lines.join('\n')}`
+
+  const byQuestion = new Map<string, Set<string>>()
+  fields.forEach((f) => {
+    if (!byQuestion.has(f.questionId)) byQuestion.set(f.questionId, new Set())
+    byQuestion.get(f.questionId)?.add(f.value)
+  })
+  const conflicts: string[] = []
+  byQuestion.forEach((values, qid) => {
+    if (values.size > 1) conflicts.push(`${labelMap.get(qid) ?? qid}: ${Array.from(values).join(' vs ')}`)
+  })
+
+  return { missing, conflicts }
+}
+
+function asNumber(val?: string): number | undefined {
+  if (!val) return undefined
+  const n = Number(val.replace(/[^0-9.-]/g, ''))
+  return Number.isFinite(n) ? n : undefined
+}
+
+function buildAidSuggestions(fields: AggregatedField[], diagnostics: Diagnostics): string[] {
+  const get = (id: string) => fields.find((f) => f.questionId === id)?.value
+  const agi = asNumber(get('parent-agi'))
+  const wages = asNumber(get('parent-wages'))
+  const tax = asNumber(get('parent-us-tax-paid'))
+  const untaxed = asNumber(get('parent-untaxed-income'))
+  const ideas: string[] = []
+  if (agi !== undefined && agi < 65000) ideas.push('Income suggests need-based aid eligibility—prioritize FAFSA early and apply to need-aware scholarships.')
+  if (wages !== undefined && tax === undefined) ideas.push('Total tax missing—double-check 1040 lines 22/24 or W-2 Box 2 before submission.')
+  if (untaxed !== undefined) ideas.push('Untaxed income present—CSS Profile will ask for details; keep statements handy.')
+  if (diagnostics.conflicts.length) ideas.push('Resolve conflicting values before filing to avoid verification delays.')
+  diagnostics.missing.forEach((m) => ideas.push(`Fill missing ${m.category} fields: ${m.items.join(', ')}`))
+  return Array.from(new Set(ideas))
 }
 
 function inferDocumentType(file: File): DocumentType {
@@ -677,41 +515,12 @@ function inferDocumentType(file: File): DocumentType {
   return 'Other'
 }
 
-type ValidationResult = { ok: true } | { ok: false; reason: string }
-
-async function validatePdfFile(file: File): Promise<ValidationResult> {
-  const allowedMime = ['application/pdf', 'application/x-pdf']
-  const isLikelyPdf = allowedMime.includes(file.type) || file.name.toLowerCase().endsWith('.pdf')
-  if (!isLikelyPdf) {
-    return { ok: false, reason: 'looks like an image. Export a PDF before uploading.' }
-  }
-
-  try {
-    const header = await file.slice(0, 5).text()
-    if (!header.startsWith('%PDF')) {
-      return { ok: false, reason: 'does not contain a valid %PDF header. Save it as a PDF file first.' }
-    }
-  } catch {
-    return { ok: false, reason: 'could not be read. Try saving it again as a PDF.' }
-  }
-
-  return { ok: true }
-}
-
-async function extractDocumentData(file: File, docType: DocumentType, onProgress?: (value: number | null) => void) {
-  const response = await sendToExtractor(file, (value) => onProgress?.(value), docType)
-  const fallback = extractFieldsFromText(response.text, docType)
-  const fields = mergeExtractions(response.fields, fallback)
-  return { text: response.text, fields }
-}
-
 function mergeExtractions(serverFields: ExtractorField[], fallbackFields: ExtractedField[]): DocExtraction[] {
   const map = new Map<string, DocExtraction>()
   const combined: Array<{ field: ExtractorField | ExtractedField; origin: 'server' | 'client' }> = [
     ...serverFields.map((field) => ({ field, origin: 'server' as const })),
     ...fallbackFields.map((field) => ({ field, origin: 'client' as const })),
   ]
-
   combined.forEach(({ field, origin }, index) => {
     const key = `${field.questionId}:${field.value}`
     const candidate: DocExtraction = {
@@ -721,23 +530,17 @@ function mergeExtractions(serverFields: ExtractorField[], fallbackFields: Extrac
       questionId: field.questionId,
       confidence: clampConfidence(field.confidence ?? 0.6),
       source: origin,
+      category: categorizeQuestion(field.questionId),
     }
     const existing = map.get(key)
-    if (!existing || candidate.confidence > existing.confidence) {
-      map.set(key, candidate)
-    }
+    if (!existing || candidate.confidence > existing.confidence) map.set(key, candidate)
   })
-
   return Array.from(map.values())
 }
 
 function buildExtractionId(questionId: string, origin: string, index: number) {
   if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') {
-    try {
-      return `${questionId}-${origin}-${crypto.randomUUID()}`
-    } catch {
-      // Ignore and fall through to fallback id strategy.
-    }
+    try { return `${questionId}-${origin}-${crypto.randomUUID()}` } catch {}
   }
   return `${questionId}-${origin}-${Date.now()}-${index}`
 }
@@ -751,25 +554,60 @@ function clampConfidence(value: number) {
 
 const ANALYSIS_TIMEOUT_MS = 20_000
 
-class TimeoutError extends Error {
-  constructor(message = 'Analysis timed out') {
-    super(message)
-    this.name = 'TimeoutError'
-  }
-}
+class TimeoutError extends Error { constructor(message = 'Analysis timed out') { super(message); this.name = 'TimeoutError' } }
 
 function runWithTimeout<T>(promise: Promise<T>, timeoutMs: number): Promise<T> {
   let timeoutId: ReturnType<typeof setTimeout>
-  const timeoutPromise = new Promise<never>((_, reject) => {
-    timeoutId = setTimeout(() => reject(new TimeoutError()), timeoutMs)
-  })
-  return Promise.race([
-    promise.finally(() => clearTimeout(timeoutId)),
-    timeoutPromise,
-  ])
+  const timeoutPromise = new Promise<never>((_, reject) => { timeoutId = setTimeout(() => reject(new TimeoutError()), timeoutMs) })
+  return Promise.race([promise.finally(() => clearTimeout(timeoutId)), timeoutPromise])
 }
 
-function formatProgress(progress: number | null) {
-  if (progress == null) return ''
-  return `${Math.round(progress * 100)}%`
+function formatProgress(progress: number | null) { if (progress == null) return ''; return `${Math.round((progress ?? 0) * 100)}%` }
+
+const currencyFormatter = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' })
+const moneyKeywords = ['income', 'wage', 'tax', 'agi', 'deduction', 'benefit', 'withheld', 'distribution']
+
+const quickLinks: Array<{ label: string; href: string }> = [
+  { label: 'Official FAFSA site', href: 'https://studentaid.gov/h/apply-for-aid/fafsa' },
+  { label: 'CSS Profile (College Board)', href: 'https://cssprofile.collegeboard.org/' },
+  { label: 'IRS W-2 overview', href: 'https://www.irs.gov/forms-pubs/about-form-w-2' },
+]
+
+const fafsaQuestionIds = new Set([
+  'parent-wages',
+  'parent-agi',
+  'parent-us-tax-paid',
+  'household-size',
+  'number-in-college',
+  'student-ssn',
+  'student-dob',
+  'student-legal-name',
+])
+
+const cssQuestionIds = new Set([
+  'parent-wages',
+  'parent-agi',
+  'parent-us-tax-paid',
+  'parent-untaxed-income',
+  'household-size',
+  'number-in-college',
+])
+
+function categorizeQuestion(questionId: string): FieldCategory {
+  if (fafsaQuestionIds.has(questionId)) return 'FAFSA'
+  if (cssQuestionIds.has(questionId)) return 'CSS Profile'
+  return 'Other'
+}
+
+function looksLikeMoney(label: string, value: string) {
+  return moneyKeywords.some((k) => label.toLowerCase().includes(k)) || /[$,]/.test(value)
+}
+
+function formatSuggestedValue(label: string, value: string) {
+  if (!value) return '—'
+  if (looksLikeMoney(label, value)) {
+    const numeric = Number(value.replace(/[^0-9.-]+/g, ''))
+    if (!Number.isNaN(numeric)) return currencyFormatter.format(numeric)
+  }
+  return value
 }

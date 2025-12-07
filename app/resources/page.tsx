@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { BookOpen, Search, FileText } from 'lucide-react'
 import FAFSATool from '../components/FAFSATool'
 import CSSProfileChecklist from '../components/CSSProfileChecklist'
+import Recommendations from '../components/Recommendations'
 
 export const metadata: Metadata = {
   title: 'Resources – Destination College',
@@ -19,6 +20,7 @@ export default function ResourcesPage() {
       </header>
 
       <section className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+        <h2 className="sr-only">Resource categories</h2>
         <article className="p-6 bg-white border rounded-lg shadow-sm">
           <div className="flex items-center gap-3 mb-3"><div className="p-2 text-white rounded" style={{ backgroundColor: 'var(--crimson)' }}><BookOpen size={18} /></div><h3 className="font-semibold">Guides & Checklists</h3></div>
           <p className="text-gray-700">Step-by-step checklists for grade-by-grade planning, college applications, and transition-to-college tasks.</p>
@@ -32,15 +34,15 @@ export default function ResourcesPage() {
         </article>
 
         <article className="p-6 bg-white border rounded-lg shadow-sm">
-          <div className="flex items-center gap-3 mb-3"><div className="p-2 text-white rounded" style={{ backgroundColor: 'var(--crimson)' }}><FileText size={18} /></div><h3 className="font-semibold">FAFSA & Financial Aid</h3></div>
-          <p className="text-gray-700">Official FAFSA instructions plus Destination College tools to make each line less intimidating.</p>
+          <div className="flex items-center gap-3 mb-3"><div className="p-2 text-white rounded" style={{ backgroundColor: 'var(--crimson)' }}><FileText size={18} /></div><h3 className="font-semibold">Financial Aid (FAFSA / CSS Profile)</h3></div>
+          <p className="text-gray-700">Official FAFSA instructions, CSS Profile prep, and a file-prep tool that organizes extracted data for both.</p>
           <Link
             href="https://studentaid.gov/h/apply-for-aid/fafsa"
             target="_blank"
             rel="noreferrer"
             className="inline-block mt-4 underline crimson-link"
           >
-            Open FAFSA site →
+            FAFSA site →
           </Link>
         </article>
       </section>
@@ -58,7 +60,7 @@ export default function ResourcesPage() {
       <section className="mb-10 rounded-3xl border border-gray-200 bg-gray-50 p-6 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
         <div>
           <h2 className="text-xl font-semibold text-gray-900">Not sure where to start?</h2>
-          <p className="text-sm text-gray-700">Try the FAFSA helper above, then share your scratch sheet with a counselor during your next advising meeting.</p>
+          <p className="text-sm text-gray-700">Try the financial aid helper above (FAFSA + CSS Profile views), then share your scratch sheet with a counselor during your next advising meeting.</p>
         </div>
         <div className="flex flex-wrap gap-3 mt-2 md:mt-0">
           <Link href="/programs" className="btn-crimson inline-flex items-center justify-center rounded-full px-5 py-2 text-sm font-semibold text-white">
@@ -76,6 +78,8 @@ export default function ResourcesPage() {
           Uploaded FAFSA helper files stay in your browser until you click “Scan document.” At that point they are sent securely to the configured extractor service, used to surface suggested values, and then discarded. Destination College never stores or emails tax records. Close or refresh the page anytime to clear your temporary entries.
         </p>
       </section>
+
+      <Recommendations />
 
       <Link href="/" className="underline crimson-link">← Back to home</Link>
     </main>

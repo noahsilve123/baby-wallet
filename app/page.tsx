@@ -121,7 +121,7 @@ export default function Page() {
 						</div>
 					</div>
 
-					<aside className="glass-panel rounded-3xl p-8 text-gray-900 relative overflow-hidden">
+					<section className="glass-panel rounded-3xl p-8 text-gray-900 relative overflow-hidden" aria-label="Weekly focus plan">
 						<div className="relative z-10">
 							<div className="flex items-center gap-3 text-sm font-semibold text-crimson">
 								<BookOpen className="h-5 w-5" /> Weekly focus plan
@@ -143,13 +143,14 @@ export default function Page() {
 								</li>
 							</ul>
 						</div>
-					</aside>
+					</section>
 				</div>
 			</section>
 
 			{/* QUICK LINKS */}
 			<section className="relative -mt-10 z-10">
 				<div className="max-w-6xl mx-auto px-6">
+					<h2 className="sr-only">Key actions</h2>
 					<div className="grid gap-4 md:grid-cols-3">
 						{quickLinks.map((card) => (
 							<div

@@ -26,8 +26,8 @@ export async function POST(request: NextRequest) {
     // Support both common `pdf-parse` (CommonJS function) and newer ESM-style
     // PDFParse API. Use `createRequire` to load the installed package safely.
     const require = createRequire(import.meta.url)
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
-    const pdfParseModule: any = require('pdf-parse')
+     
+    const pdfParseModule: unknown = require('pdf-parse')
 
     // Try to configure a worker if the library exposes a `setWorker` method.
     // Prefer a copy in `public/pdf.worker.mjs` if present, otherwise resolve
@@ -38,12 +38,11 @@ export async function POST(request: NextRequest) {
       let workerPath: string | null = null
       // prefer public copy when present
       try {
-        // eslint-disable-next-line @typescript-eslint/no-var-requires
         const fs = require('fs')
         if (fs.existsSync(publicWorker)) {
           workerPath = `file://${publicWorker.replace(/\\/g, '/')}`
         }
-      } catch (_) {
+      } catch {
         // ignore
       }
 
@@ -51,7 +50,7 @@ export async function POST(request: NextRequest) {
         try {
           const resolved = require.resolve('pdf-parse/lib/pdf.js/v1.10.100/build/pdf.worker.js')
           workerPath = `file://${resolved.replace(/\\/g, '/')}`
-        } catch (e) {
+        } catch {
           // best effort; if resolve fails we'll skip worker configuration
           workerPath = null
         }
@@ -65,11 +64,11 @@ export async function POST(request: NextRequest) {
           console.warn('[extractor] failed to set pdf worker', e)
         }
       }
-    } catch (e) {
+    } catch {
       // ignore worker setup errors; parsing will fall back to built-in logic
     }
 
-    let parser: any = undefined
+    let parser: { destroy?: () => Promise<void> | void; getText?: (options?: unknown) => Promise<{ text?: string }> } | undefined
     let text = ''
 
     if (typeof pdfParseModule === 'function') {
@@ -87,7 +86,9 @@ export async function POST(request: NextRequest) {
 
     if (!text.trim()) {
       if (parser && typeof parser.destroy === 'function') {
-        try { await parser.destroy() } catch {}
+        try { await parser.destroy() } catch {
+          // ignore cleanup errors
+        }
       }
       return NextResponse.json({ error: 'No text could be extracted from that PDF. Try a text-based (not scanned image) copy.' }, { status: 422 })
     }

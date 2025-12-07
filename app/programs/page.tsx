@@ -17,6 +17,7 @@ export default function ProgramsPage() {
       </header>
 
       <section className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+        <h2 className="sr-only">Program tracks</h2>
         <article id="mentorship" className="p-6 bg-white border rounded-lg shadow-sm">
           <div className="flex items-center gap-4 mb-4">
             <div className="p-3 text-white rounded-md" style={{ backgroundColor: 'var(--crimson)' }}><GraduationCap size={22} /></div>

@@ -3,6 +3,7 @@ import { Source_Serif_4 } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import ServiceWorkerRegistrar from "./components/ServiceWorkerRegistrar";
 
 const sourceSerif = Source_Serif_4({
   variable: "--font-source-serif",
@@ -35,6 +36,7 @@ export default function RootLayout({
           <div className="flex-1">{children}</div>
           <Footer />
         </div>
+        <ServiceWorkerRegistrar />
       </body>
     </html>
   );

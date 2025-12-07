@@ -206,6 +206,35 @@ h1, h2, h3 {
   opacity: 0.95;
 }
 
+.low-bandwidth * {
+  animation: none !important;
+  transition: none !important;
+  backdrop-filter: none !important;
+}
+
+:focus-visible {
+  outline: 2px solid var(--crimson);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 3px rgba(123, 18, 34, 0.15);
+}
+
+.low-bandwidth .motion-safe,
+.low-bandwidth [data-animate],
+.low-bandwidth img,
+.low-bandwidth video {
+  animation: none !important;
+  transition: none !important;
+  filter: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
 /* Small utility for headings that should use the site crimson */
 .text-crimson { color: var(--crimson); }
 

@@ -76,7 +76,7 @@ export default function FrameTest() {
           )}
         </div>
 
-        <div className="text-sm text-gray-600">If the frame still doesn't match, tell me and I'll provide the homepage panel exact width I used (or capture it live).</div>
+        <div className="text-sm text-gray-600">If the frame still doesn&apos;t match, tell me and I&apos;ll provide the homepage panel exact width I used (or capture it live).</div>
 
         <div className="mt-4">
           <Link href="/" className="text-crimson font-semibold">← Back to home</Link>

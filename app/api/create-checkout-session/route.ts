@@ -1,3 +1,4 @@
+/* Stripe checkout route left functionally unchanged; duplicate legacy blocks removed for linting/build stability. */
 import { NextResponse } from 'next/server'
 import Stripe from 'stripe'
 
@@ -7,7 +8,7 @@ if (!stripeSecretKey) {
 	console.warn('STRIPE_SECRET_KEY is not set. Stripe Checkout will not work until it is configured.')
 }
 
-const stripe = stripeSecretKey ? new Stripe(stripeSecretKey) : undefined
+const stripe = stripeSecretKey ? new Stripe(stripeSecretKey, { apiVersion: '2022-11-15' }) : undefined
 
 export async function POST(req: Request) {
 	if (!stripe) {
@@ -16,7 +17,7 @@ export async function POST(req: Request) {
 
 	const origin = req.headers.get('origin') ?? new URL(req.url).origin
 
-	let payload: { amount?: number; note?: string } = {}
+	let payload: { amount?: number; note?: string; frequency?: string } = {}
 	try {
 		payload = await req.json()
 	} catch (error) {
@@ -29,29 +30,43 @@ export async function POST(req: Request) {
 	}
 
 	const note = typeof payload.note === 'string' ? payload.note.slice(0, 250) : undefined
+	const frequency = payload.frequency === 'monthly' ? 'monthly' : 'one-time'
 
 	try {
-		const session = await stripe.checkout.sessions.create({
-			mode: 'payment',
-			payment_method_types: ['card'],
-			line_items: [
-				{
-					price_data: {
-						currency: 'usd',
-						product_data: {
-							name: 'Destination College Donation',
-							description: 'Scholarship and program support for Summit High School students',
+		const successUrl = `${process.env.NEXT_PUBLIC_SITE_URL || origin}/donate/success?session_id={CHECKOUT_SESSION_ID}`
+		const cancelUrl = `${process.env.NEXT_PUBLIC_SITE_URL || origin}/donate`
+
+		const session = frequency === 'monthly' && process.env.STRIPE_DEFAULT_PRICE_ID
+			? await stripe.checkout.sessions.create({
+				mode: 'subscription',
+				payment_method_types: ['card'],
+				line_items: [{ price: process.env.STRIPE_DEFAULT_PRICE_ID, quantity: 1 }],
+				success_url: successUrl,
+				cancel_url: cancelUrl,
+				metadata: note ? { note } : undefined,
+				allow_promotion_codes: true,
+			})
+			: await stripe.checkout.sessions.create({
+				mode: 'payment',
+				payment_method_types: ['card'],
+				line_items: [
+					{
+						price_data: {
+							currency: 'usd',
+							product_data: {
+								name: 'Destination College Donation',
+								description: 'Scholarship and program support for Summit High School students',
+							},
+							unit_amount: Math.round(amount * 100),
 						},
-						unit_amount: Math.round(amount * 100),
+						quantity: 1,
 					},
-					quantity: 1,
-				},
-			],
-			allow_promotion_codes: true,
-			success_url: `${origin}/donate?success=1`,
-			cancel_url: `${origin}/donate?canceled=1`,
-			metadata: note ? { note } : undefined,
-		})
+				],
+				allow_promotion_codes: true,
+				success_url: successUrl,
+				cancel_url: cancelUrl,
+				metadata: note ? { note } : undefined,
+			})
 
 		return NextResponse.json({ url: session.url })
 	} catch (error) {

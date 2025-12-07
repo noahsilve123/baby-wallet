@@ -29,8 +29,8 @@ const summaryRules: HeuristicRule[] = [
     questionId: 'student-legal-name',
     label: 'Student legal name',
     patterns: [
-      /Student\s+Name[:\s]+([A-Za-z][A-Za-z\s\.'-]{1,60})/i,
-      /Student\s+Information[\s:]+Name[:\s]+([A-Za-z][A-Za-z\s\.'-]{1,60})/i,
+      /Student\s+Name[:\s]+([A-Za-z][A-Za-z\s\.'-]{1,60}?)(?=\s*(?:Student\s+SSN|SSN|DOB|Date|$))/i,
+      /Student\s+Information[\s:]+Name[:\s]+([A-Za-z][A-Za-z\s\.'-]{1,60}?)(?=\s*(?:Student\s+SSN|SSN|DOB|Date|$))/i,
     ],
     valueTransform: normalizeName,
     confidence: 0.95,
@@ -60,30 +60,36 @@ const summaryRules: HeuristicRule[] = [
     questionId: 'parent-agi',
     label: 'Adjusted Gross Income',
     patterns: [
-      /Adjusted\s+Gross\s+Income[^0-9]*([\d,\.]+)/i,
-      /AGI[^0-9]*([\d,\.]+)/i,
+      /Adjusted\s+Gross\s+Income(?:\s*\(AGI\))?\s+(-?\(?\d[\d,.]*\)?)/i,
+      /AGI[^0-9-]*(-?\(?\d[\d,.]*\)?)/i,
+      /\b11\s+Adjusted\s+gross\s+income[^0-9-]*(-?\(?\d[\d,.]*\)?)/i,
+      /Line\s*11[^0-9-]*Adjusted\s+gross\s+income[^0-9-]*(-?\(?\d[\d,.]*\)?)/i,
     ],
-    valueTransform: cleanCurrency,
+    valueTransform: (v) => cleanCurrency(v, 3),
     confidence: 0.85,
   },
   {
     questionId: 'parent-wages',
     label: 'Parent wages, salaries, tips',
     patterns: [
-      /Wages(?:,\s*salaries,\s*tips)?[^0-9]*([\d,\.]+)/i,
-      /Earned\s+Income[^0-9]*([\d,\.]+)/i,
+      /Wages(?:,\s*salaries,\s*tips)?\s+(-?\(?\d[\d,.]*\)?)/i,
+      /Earned\s+Income\s+(-?\(?\d[\d,.]*\)?)/i,
+      /Line\s*1[^0-9-]*(-?\(?\d[\d,.]*\)?)/i,
+      /Total\s+amount\s+from\s+Form\(s\)\s+W-2[^0-9-]*(-?\(?\d[\d,.]*\)?)/i,
     ],
-    valueTransform: cleanCurrency,
+    valueTransform: (v) => cleanCurrency(v, 3),
     confidence: 0.8,
   },
   {
     questionId: 'parent-us-tax-paid',
     label: 'Parent total tax',
     patterns: [
-      /Total\s+Tax[^0-9]*([\d,\.]+)/i,
-      /Tax\s+Liability[^0-9]*([\d,\.]+)/i,
+      /Total\s+Tax[^\d]*\(.*?\)\s*(-?\(?\d[\d,.]*\)?)/i,
+      /Total\s+Tax[^0-9-]*(-?\(?\d[\d,.]*\)?)/i,
+      /Tax\s+Liability[^0-9-]*(-?\(?\d[\d,.]*\)?)/i,
+      /Line\s*22[^0-9-]*(-?\(?\d[\d,.]*\)?)/i,
     ],
-    valueTransform: cleanCurrency,
+    valueTransform: (v) => cleanCurrency(v, 3),
     confidence: 0.8,
   },
   {
@@ -111,21 +117,37 @@ const docTypeRules: Record<DocumentType, HeuristicRule[]> = {
     {
       questionId: 'parent-agi',
       label: 'Adjusted Gross Income (1040 line 11)',
-      patterns: [/11\s+Adjusted\s+gross\s+income[^0-9]*([\d,\.]+)/i],
-      valueTransform: cleanCurrency,
+      patterns: [
+        /\b11\s+Adjusted\s+gross\s+income[\s\S]{0,40}?(-?\(?\d[\d,.]*\)?)/i,
+        /Adjusted\s+Gross\s+Income[^0-9-]*line\s*11[\s\S]{0,40}?(-?\(?\d[\d,.]*\)?)/i,
+        /adjusted\s+gross\s+income[\s\S]{0,40}?(-?\(?\d[\d,.]*\)?)/i,
+      ],
+      valueTransform: (v) => cleanCurrency(v, 3),
       confidence: 0.95,
     },
     {
       questionId: 'parent-us-tax-paid',
-      label: 'Total tax (1040 line 22)',
-      patterns: [/22\s+Total\s+tax[^0-9]*([\d,\.]+)/i],
-      valueTransform: cleanCurrency,
+      label: 'Total tax (1040)',
+      patterns: [
+        /\b24\s+Total\s+tax[\s\S]{0,40}?(-?\(?\d[\d,.]*\)?)/i,
+        /\b22\s+Total\s+tax[^\d]*\(.*?\)\s*(-?\(?\d[\d,.]*\)?)/i,
+        /Total\s+tax[^\d]*line\s*22[\s\S]{0,30}?(-?\(?\d[\d,.]*\)?)/i,
+        /Total\s+tax[^0-9-]*(-?\(?\d[\d,.]*\)?)/i,
+      ],
+      valueTransform: (v) => cleanCurrency(v, 3),
+      confidence: 0.92,
     },
     {
       questionId: 'parent-wages',
       label: 'Wages, salaries, tips (1040 line 1)',
-      patterns: [/1\s+Wages[\s,]+salaries[\s,]+tips[^0-9]*([\d,\.]+)/i],
+      patterns: [
+        /\b1\s+Wages[\s,]+salaries[\s,]+tips[^0-9-]*(-?\(?\d[\d,.]*\)?)/i,
+        /Line\s*1\s*Wages[^0-9-]*(-?\(?\d[\d,.]*\)?)/i,
+        /1[a-z]?\s*Total\s+amount\s+from\s+Form\(s\)\s+W-2[^0-9-]*(-?\(?\d[\d,.]*\)?)/i,
+        /1z\s+Add\s+lines\s+1a\s+through\s+1h[^0-9-]*(-?\(?\d[\d,.]*\)?)/i,
+      ],
       valueTransform: cleanCurrency,
+      confidence: 0.9,
     },
   ],
   'W-2': [
@@ -133,26 +155,26 @@ const docTypeRules: Record<DocumentType, HeuristicRule[]> = {
       questionId: 'parent-wages',
       label: 'Box 1 wages',
       patterns: [/Box\s*1[^0-9]*([\d,\.]+)/i],
-      valueTransform: cleanCurrency,
+      valueTransform: (v) => cleanCurrency(v, 1, true),
       confidence: 0.9,
     },
     {
       questionId: 'parent-us-tax-paid',
       label: 'Box 2 federal income tax withheld',
       patterns: [/Box\s*2[^0-9]*([\d,\.]+)/i],
-      valueTransform: cleanCurrency,
+      valueTransform: (v) => cleanCurrency(v, 1, true),
     },
     {
       questionId: 'parent-wages',
       label: 'Line 3 social security wages',
       patterns: [/3\s+Social\s+security\s+wages[^0-9]*([\d,\.]+)/i],
-      valueTransform: cleanCurrency,
+      valueTransform: (v) => cleanCurrency(v, 1, true),
     },
     {
       questionId: 'parent-untaxed-income',
       label: 'Box 12 retirement contributions',
       patterns: [/12[a-d]?\s*[A-Z]?[^0-9]*([\d,\.]+)/i],
-      valueTransform: cleanCurrency,
+      valueTransform: (v) => cleanCurrency(v, 1, true),
     },
   ],
   '1099': [
@@ -187,6 +209,8 @@ export function extractFieldsFromText(text: string, docType: DocumentType = 'Oth
   const combined = [
     ...applyRules(normalized, summaryRules, 'summary'),
     ...applyRules(normalized, docTypeRules[docType] ?? [], docType),
+    ...(docType === '1040' ? extract1040IncomeBlock(normalized) : []),
+    ...(docType === '1040' ? extract1040TaxBlock(normalized) : []),
   ]
   return dedupeByQuestion(combined)
 }
@@ -216,10 +240,9 @@ function applyRules(text: string, rules: HeuristicRule[], source: string): Extra
 function dedupeByQuestion(fields: ExtractedField[]): ExtractedField[] {
   const map = new Map<string, ExtractedField>()
   fields.forEach((field) => {
-    const key = `${field.questionId}:${field.value}`
-    const existing = map.get(key)
+    const existing = map.get(field.questionId)
     if (!existing || field.confidence > existing.confidence) {
-      map.set(key, field)
+      map.set(field.questionId, field)
     }
   })
   return Array.from(map.values())
@@ -233,10 +256,95 @@ function tidyValue(input: string) {
   return input.replace(/\s+/g, ' ').trim()
 }
 
-function cleanCurrency(value: string) {
-  const cleaned = value.replace(/[,\s\$]/g, '')
-  const match = cleaned.match(/-?\d+(?:\.\d+)?/)
-  return match ? match[0] : ''
+function extract1040TaxBlock(text: string): ExtractedField[] {
+  const blocks = Array.from(text.matchAll(/((?:(?:-?\(?\d[\d,]{2,}\)?|0)\s+){8,25})/g))
+  if (!blocks.length) return []
+  const withCounts = blocks.map((b) => ({ raw: b[0], count: (b[0].match(/-?\(?\d[\d,]{2,}\)?|0/g) ?? []).length }))
+  const best = withCounts.reduce((prev, curr) => (curr.count > prev.count ? curr : prev), withCounts[0])
+  const rawNumbers = best.raw.match(/-?\(?\d[\d,]{2,}\)?|0/g) ?? []
+  const numbers = rawNumbers
+    .map((token) => {
+      const cleaned = cleanCurrency(token, 3)
+      if (!cleaned) return ''
+      const looksLikeSsnFragment = /^-\d{4}$/.test(cleaned)
+      return looksLikeSsnFragment ? '' : cleaned
+    })
+    .filter(Boolean)
+  if (numbers.length < 8) return []
+  const preferred = numbers[7] || numbers[5]
+  if (!preferred) return []
+  return [
+    {
+      questionId: 'parent-us-tax-paid',
+      label: 'Total tax (1040)',
+      value: preferred,
+      confidence: numbers[7] ? 0.84 : 0.8,
+      source: '1040',
+    },
+  ]
+}
+
+function extract1040IncomeBlock(text: string): ExtractedField[] {
+  const blocks = Array.from(text.matchAll(/((?:(?:-?\(?\d[\d,]{2,}\)?|0)\s+){6,20})/g))
+  if (!blocks.length) return []
+  const scored = blocks
+    .map((b) => {
+      const tokens = b[0].match(/-?\(?\d[\d,]{2,}\)?|0/g) ?? []
+      const cleaned = tokens
+        .map((token) => cleanCurrency(token, 3))
+        .filter((val) => {
+          if (!val || /^-\d{4}$/.test(val)) return false
+          const digits = val.replace(/[^0-9]/g, '')
+          if (!digits) return false
+          if (digits.length > 6) return false
+          return true
+        })
+      if (!cleaned.length) return null
+      const numeric = cleaned.map((v) => Math.abs(Number(v))).filter(Number.isFinite)
+      const maxVal = Math.max(...numeric)
+      if (maxVal > 150000) return null
+      const hasIncomeSized = numeric.some((v) => v >= 30000 && v <= 90000)
+      if (!hasIncomeSized) return null
+      const sum = cleaned.reduce((acc, val) => acc + Math.abs(Number(val)), 0)
+      return { raw: b[0], cleaned, sum }
+    })
+    .filter((b): b is { raw: string; cleaned: string[]; sum: number } => Boolean(b && b.cleaned && b.cleaned.length >= 6))
+  if (!scored.length) return []
+  const best = scored.reduce((prev, curr) => (curr.sum > prev.sum ? curr : prev), scored[0])
+  const numbers = best.cleaned
+  const fields: ExtractedField[] = []
+  if (numbers[0]) {
+    fields.push({
+      questionId: 'parent-wages',
+      label: 'Parent wages, salaries, tips',
+      value: numbers[0],
+      confidence: 0.9,
+      source: '1040',
+    })
+  }
+  if (numbers[5]) {
+    fields.push({
+      questionId: 'parent-agi',
+      label: 'Adjusted Gross Income (1040 line 11)',
+      value: numbers[5],
+      confidence: 0.93,
+      source: '1040',
+    })
+  }
+  return fields
+}
+
+function cleanCurrency(value: string, minDigits = 1, keepDecimal = false) {
+  const matches = value.match(/-?\(?\d[\d,]*(?:\.\d{1,2})?\)?/g)
+  if (!matches || matches.length === 0) return ''
+  const token = matches[matches.length - 1]
+  const hasParens = /^\(.*\)$/.test(token)
+  const stripped = token.replace(/[ ,\$()]/g, '')
+  const cleaned = keepDecimal ? stripped : stripped.replace(/\./g, '')
+  if (!cleaned) return ''
+  const digitsOnly = cleaned.replace(/[^0-9]/g, '')
+  if (digitsOnly.length < minDigits) return ''
+  return hasParens ? `-${cleaned}` : cleaned
 }
 
 function normalizeSsn(value: string) {
@@ -250,14 +358,24 @@ function normalizeName(value: string) {
 }
 
 function normalizeDate(value: string) {
-  const digits = value.replace(/[^0-9]/g, '')
+  const normalized = value.trim()
+  const parts = normalized.split(/[\/\-]/).filter(Boolean)
+  if (parts.length === 3) {
+    const [monthRaw, dayRaw, yearRaw] = parts
+    const month = monthRaw.padStart(2, '0')
+    const day = dayRaw.padStart(2, '0')
+    const year = yearRaw.length === 2 ? `20${yearRaw}` : yearRaw
+    return `${month}/${day}/${year}`
+  }
+
+  const digits = normalized.replace(/[^0-9]/g, '')
   if (digits.length === 8) {
     const month = digits.slice(0, 2)
     const day = digits.slice(2, 4)
     const year = digits.slice(4)
     return `${month}/${day}/${year}`
   }
-  return value.replace(/\s+/g, '').replace(/-/g, '/').trim()
+  return normalized.replace(/\s+/g, '').replace(/-/g, '/').trim()
 }
 
 function clampConfidence(value: number) {
