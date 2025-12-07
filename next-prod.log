@@ -11,3 +11,13 @@
 STRIPE_SECRET_KEY is not set. Stripe Checkout will not work until it is configured.
 (node:24628) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
 (Use `node --trace-deprecation ...` to show where the warning was created)
+Error: Cannot find module 'c:\ROOT\node_modules\tesseract.js\src\worker-script\node\index.js'
+    at ignore-listed frames {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: []
+}
+ ⨯ uncaughtException:  Error: Cannot find module 'c:\ROOT\node_modules\tesseract.js\src\worker-script\node\index.js'
+    at ignore-listed frames {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: []
+}
