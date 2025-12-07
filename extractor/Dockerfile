@@ -17,6 +17,8 @@ RUN npm ci --production || true
 
 # Copy your extractor server implementation here (implement `server.js` to wire AI pipeline)
 COPY ./extractor/server.js ./server.js
+COPY ./extractor/pipeline.js ./pipeline.js
+COPY ./extractor/extractionRules.js ./extractionRules.js
 
 EXPOSE 8080
 

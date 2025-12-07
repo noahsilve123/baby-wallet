@@ -25,6 +25,30 @@ Deploy options (free / low-cost)
 - Render: also supports web services with free tier (limited). Create a Web Service from your Git repo and point to this folder's Dockerfile.
 - Railway / Railway.app: quick deployments, but free tier is limited.
 
+Publish the Docker image automatically (GHCR)
+---------------------------------------------
+This repository includes a GitHub Actions workflow that will build and publish the extractor Docker image to GitHub Container Registry (GHCR) when you push changes under `extractor/`.
+
+What it does:
+- Builds the image using `extractor/Dockerfile`.
+- Pushes tags to `ghcr.io/<your-github-username>/destination-extractor:latest` and `ghcr.io/<your-github-username>/destination-extractor:<sha>`.
+
+How to use the published image
+- Option A — Render / other container host: create a new Web Service and use the GHCR image `ghcr.io/<your-github-username>/destination-extractor:latest` as the deploy image. Set the service port to `8080`.
+- Option B — Pull the image manually on any host or VM:
+  ```bash
+  docker pull ghcr.io/<your-github-username>/destination-extractor:latest
+  docker run -d -p 8080:8080 ghcr.io/<your-github-username>/destination-extractor:latest
+  ```
+
+Set Vercel to use the hosted extractor
+-------------------------------------
+After you have a publicly reachable extractor URL (for example, `https://dc-extractor-yourname.onrender.com`), set the Vercel environment variable for your project:
+
+- `NEXT_PUBLIC_EXTRACTOR_URL` = `https://<your-extractor-host>/` (no trailing `/extract` required; the client will append `/extract`)
+
+Then redeploy your Vercel site so the client bundle bakes in the new URL.
+
 Notes about models & runtime
 - The existing `app/lib/aiExtractionPipeline.ts` uses `@xenova/transformers` + `tesseract.js`. You can copy that module into the extractor service and adapt to a plain Node server (JS or TS).
 - To avoid runtime model downloads on cold start, try to:
