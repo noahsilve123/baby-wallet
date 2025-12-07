@@ -3,9 +3,10 @@ import formidable from 'formidable'
 import fs from 'fs'
 import path from 'path'
 
-// Import the existing pipeline from the app lib so we reuse the same logic.
-import { processDocument } from '../../app/lib/aiExtractionPipeline'
-import { isDocumentType, type DocumentType } from '../../app/lib/extractionRules'
+// Lazy import the heavy pipeline at request time to avoid module-initialization
+// failures in the Serverless Function environment (model downloads, native deps).
+import type { DocumentType } from '../../app/lib/extractionRules'
+import { isDocumentType } from '../../app/lib/extractionRules'
 
 export const config = {
   api: {
@@ -34,8 +35,12 @@ function parseForm(req: NextApiRequest): Promise<{ files: formidable.File[]; fie
 }
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  if (req.method === 'GET') {
+    return res.status(200).json({ ok: true, message: 'ai-extract endpoint (pages/api) is alive' })
+  }
+
   if (req.method !== 'POST') {
-    res.setHeader('Allow', 'POST')
+    res.setHeader('Allow', 'POST, GET')
     return res.status(405).end('Method Not Allowed')
   }
 
@@ -51,6 +56,18 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     // Read file into buffer
     const buffer = fs.readFileSync(file.filepath || (file as any).path)
+
+    // Lazy-load the heavy pipeline module here so module initialization doesn't
+    // fail when Vercel builds the function (avoid throws from native deps).
+    let processDocument: (buf: Buffer, opts: { docType: DocumentType }) => Promise<any>
+    try {
+      // Use dynamic import so build-time bundling doesn't execute heavy code.
+      const mod = await import('../../app/lib/aiExtractionPipeline')
+      processDocument = mod.processDocument
+    } catch (impErr) {
+      console.error('[pages/api/ai-extract] failed to import pipeline', impErr)
+      return res.status(500).json({ error: 'Pipeline temporarily unavailable' })
+    }
 
     const { text, ocrText, fields: extractedFields, validated } = await processDocument(buffer, { docType })
 
