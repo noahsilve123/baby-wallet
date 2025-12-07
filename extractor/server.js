@@ -18,10 +18,17 @@ app.post('/extract', (req, res) => {
       return res.status(400).json({ error: 'Invalid form upload' })
     }
     const file = files.file || files.upload || files[Object.keys(files)[0]]
-    if (!file) return res.status(400).json({ error: 'Missing file' })
+      if (!file) return res.status(400).json({ error: 'Missing file' })
     try {
-      const filePath = file.filepath || file.path || file.path
-      const buffer = await fs.promises.readFile(filePath)
+        // Normalize possible shapes from formidable
+        let fileItem = file
+        if (Array.isArray(fileItem)) fileItem = fileItem[0]
+        const filePath = (fileItem && (fileItem.filepath || fileItem.path || (fileItem._writeStream && fileItem._writeStream.path)))
+        if (!filePath) {
+          console.error('upload shape', Object.keys(files), fileItem)
+          return res.status(400).json({ error: 'Unable to locate uploaded file on disk' })
+        }
+        const buffer = await fs.promises.readFile(filePath)
       const docType = typeof fields.docType === 'string' ? fields.docType : undefined
       const result = await processDocument(buffer, { docType })
       return res.json({ text: result.text, fields: result.fields })
