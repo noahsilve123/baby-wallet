@@ -15,7 +15,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Copy package manifests and install production deps. Fail build if install fails.
 COPY package.json package-lock.json ./
 ENV NODE_ENV=production
-RUN npm ci --production
+# Use npm install in the Docker build to avoid failures when the lockfile
+# and package.json are out of sync. For a permanent fix regenerate and
+# commit an updated package-lock.json from your development machine.
+RUN npm install --production --no-audit --no-fund
 
 # Copy your extractor server implementation here (implement `server.js` to wire AI pipeline)
 COPY ./extractor/server.js ./server.js
