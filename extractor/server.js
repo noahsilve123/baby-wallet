@@ -3,6 +3,7 @@ const cors = require('cors')
 const formidable = require('formidable')
 const fs = require('fs')
 const { processDocument } = require('./pipeline')
+const Redis = require('ioredis')
 
 const app = express()
 const PORT = process.env.PORT ? Number(process.env.PORT) : 8080
@@ -15,6 +16,32 @@ app.options('/extract', cors())
 
 app.get('/', (_req, res) => {
   res.json({ ok: true, message: 'AI extractor service' })
+})
+
+// Simple Redis health-check endpoint. Returns PONG when REDIS_URL is reachable.
+let _redisClient = null
+function getRedisClient() {
+  if (_redisClient) return _redisClient
+  const url = process.env.REDIS_URL
+  if (!url) return null
+  _redisClient = new Redis(url)
+  // prevent unhandled rejections from killing the process
+  _redisClient.on('error', (e) => console.warn('[redis] error', e && e.message))
+  return _redisClient
+}
+
+app.get('/health/redis', async (_req, res) => {
+  const url = process.env.REDIS_URL
+  if (!url) return res.status(400).json({ ok: false, error: 'REDIS_URL not set' })
+  const client = getRedisClient()
+  if (!client) return res.status(500).json({ ok: false, error: 'Failed to create Redis client' })
+  try {
+    const pong = await client.ping()
+    return res.json({ ok: true, redis: pong })
+  } catch (e) {
+    console.error('redis ping failed', e)
+    return res.status(500).json({ ok: false, error: String(e && e.message) })
+  }
 })
 
 app.post('/extract', (req, res) => {
