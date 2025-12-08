@@ -24,4 +24,8 @@ COPY ./extractor/extractionRules.js ./extractionRules.js
 
 EXPOSE 8080
 
+# Healthcheck: use node to probe the local HTTP endpoint so Render/other orchestrators can verify readiness
+HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 \
+  CMD node -e "const http=require('http');http.get('http://localhost:8080/',res=>{process.exit(res.statusCode===200?0:1)}).on('error',()=>process.exit(1))"
+
 CMD ["node", "server.js"]
