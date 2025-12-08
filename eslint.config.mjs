@@ -15,6 +15,8 @@ const eslintConfig = defineConfig([
     "public/tesseract/**",
     "public/pdf.worker.mjs",
     "worker/**",
+    // Ignore the standalone extractor service (runs on Node, uses CommonJS)
+    "extractor/**",
   ]),
 ]);
 

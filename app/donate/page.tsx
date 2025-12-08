@@ -28,8 +28,8 @@ const testimonials = [
 
 function DonateContent() {
   const searchParams = useSearchParams()
-  const success = searchParams.get('success')
-  const canceled = searchParams.get('canceled')
+  const success = searchParams?.get('success')
+  const canceled = searchParams?.get('canceled')
   const [customAmount, setCustomAmount] = useState(150)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [error, setError] = useState<string | null>(null)

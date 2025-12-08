@@ -1,10 +1,10 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import formidable from 'formidable'
 import fs from 'fs'
-import path from 'path'
 
 // Lazy import the heavy pipeline at request time to avoid module-initialization
 // failures in the Serverless Function environment (model downloads, native deps).
+import type { ExtractionResult } from '../../app/lib/aiExtractionPipeline'
 import type { DocumentType } from '../../app/lib/extractionRules'
 import { isDocumentType } from '../../app/lib/extractionRules'
 
@@ -17,16 +17,17 @@ export const config = {
 function parseForm(req: NextApiRequest): Promise<{ files: formidable.File[]; fields: formidable.Fields }> {
   const form = formidable({ maxFileSize: 20 * 1024 * 1024 }) // 20MB
   return new Promise((resolve, reject) => {
-    form.parse(req as any, (err, fields, files) => {
+    form.parse(req, (err: formidable.FormidableError | undefined, fields: formidable.Fields, files: formidable.Files) => {
       if (err) return reject(err)
       const fileArray: formidable.File[] = []
+      const fileMap = (files ?? {}) as Record<string, formidable.File | formidable.File[]>
       // `files` may be an object with keys; flatten into array
-      for (const key of Object.keys(files || {})) {
-        const value = (files as any)[key]
+      for (const key of Object.keys(fileMap)) {
+        const value = fileMap[key]
         if (Array.isArray(value)) {
           fileArray.push(...value)
         } else if (value) {
-          fileArray.push(value as formidable.File)
+          fileArray.push(value)
         }
       }
       resolve({ files: fileArray, fields })
@@ -55,11 +56,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const docType: DocumentType = typeof declaredType === 'string' && isDocumentType(declaredType) ? declaredType : 'Other'
 
     // Read file into buffer
-    const buffer = fs.readFileSync(file.filepath || (file as any).path)
+    const buffer = fs.readFileSync(file.filepath)
 
     // Lazy-load the heavy pipeline module here so module initialization doesn't
     // fail when Vercel builds the function (avoid throws from native deps).
-    let processDocument: (buf: Buffer, opts: { docType: DocumentType }) => Promise<any>
+    let processDocument: (buf: Buffer, opts: { docType: DocumentType }) => Promise<ExtractionResult>
     try {
       // Use dynamic import so build-time bundling doesn't execute heavy code.
       const mod = await import('../../app/lib/aiExtractionPipeline')

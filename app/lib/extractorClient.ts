@@ -36,8 +36,6 @@ if (configuredExtractorUrl && configuredExtractorUrl.trim().length) {
   console.info('Using built-in /api/ai-extract endpoint. Set NEXT_PUBLIC_EXTRACTOR_URL to call a remote service.')
 }
 
-const extractorUrl = primaryExtractorUrl
-
 export type ProgressCallback = (value: number | null) => void
 
 export type ExtractorField = {
