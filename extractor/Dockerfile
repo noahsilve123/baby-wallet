@@ -12,8 +12,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   && rm -rf /var/lib/apt/lists/*
 
 # Copy package manifests and install production deps
+# Copy package manifests and install production deps. Fail build if install fails.
 COPY package.json package-lock.json ./
-RUN npm ci --production || true
+ENV NODE_ENV=production
+RUN npm ci --production
 
 # Copy your extractor server implementation here (implement `server.js` to wire AI pipeline)
 COPY ./extractor/server.js ./server.js
