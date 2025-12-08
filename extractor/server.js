@@ -1,10 +1,17 @@
 const express = require('express')
+const cors = require('cors')
 const formidable = require('formidable')
 const fs = require('fs')
 const { processDocument } = require('./pipeline')
 
 const app = express()
 const PORT = process.env.PORT ? Number(process.env.PORT) : 8080
+
+// Enable CORS for browser uploads. In production consider restricting origin.
+app.use(cors())
+
+// Handle preflight for /extract
+app.options('/extract', cors())
 
 app.get('/', (_req, res) => {
   res.json({ ok: true, message: 'AI extractor service' })

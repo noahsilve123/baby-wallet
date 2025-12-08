@@ -18,6 +18,7 @@
     "@xenova/transformers": "^2.16.1",
     "bullmq": "^5.35.7",
     "express": "^5.2.1",
+    "cors": "^2.8.5",
     "formidable": "^3.5.4",
     "ioredis": "^5.4.1",
     "lucide-react": "^0.554.0",
