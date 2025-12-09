@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "cross-env NEXT_DISABLE_TURBOPACK=1 NEXT_CLI_FORCE_LEGACY_BUILDER=1 next dev --webpack",
-    "build": "cross-env NEXT_DISABLE_TURBOPACK=1 NEXT_CLI_FORCE_LEGACY_BUILDER=1 next build",
+    "build": "cross-env NEXT_DISABLE_TURBOPACK=1 NEXT_CLI_FORCE_LEGACY_BUILDER=1 next build --webpack",
     "start": "cross-env NEXT_DISABLE_TURBOPACK=1 NEXT_CLI_FORCE_LEGACY_BUILDER=1 next start",
     "lint": "eslint",
     "test:e2e": "playwright test",

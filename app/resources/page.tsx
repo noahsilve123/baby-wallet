@@ -75,7 +75,7 @@ export default function ResourcesPage() {
       <section id="privacy" className="mb-8 rounded-3xl border border-gray-200 bg-white p-6 shadow-sm">
         <h2 className="text-2xl font-semibold text-gray-900">Privacy & data handling</h2>
         <p className="mt-3 text-sm text-gray-600">
-          Uploaded FAFSA helper files stay in your browser until you click “Scan document.” At that point they are sent securely to the configured extractor service, used to surface suggested values, and then discarded. Destination College never stores or emails tax records. Close or refresh the page anytime to clear your temporary entries.
+          Uploaded FAFSA helper files stay in your browser until you click “Scan document.” Scanning and extraction happen locally in your browser — files are not uploaded to any external server. Destination College never stores or emails tax records. Close or refresh the page anytime to clear your temporary entries.
         </p>
       </section>
 

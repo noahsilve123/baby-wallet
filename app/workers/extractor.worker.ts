@@ -31,7 +31,7 @@ self.onmessage = async (e: MessageEvent) => {
     if (text.trim().length < 50) {
       self.postMessage({ type: 'progress', value: 0.1, status: 'Scanning image (OCR)...' })
       
-      const { data } = await Tesseract.recognize(buffer, 'eng', {
+      const { data } = await Tesseract.recognize(buffer as any, 'eng', {
         logger: (m) => {
           if (m.status === 'recognizing text') {
             self.postMessage({ type: 'progress', value: 0.2 + (m.progress * 0.8) })

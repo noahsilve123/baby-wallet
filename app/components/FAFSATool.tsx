@@ -49,9 +49,19 @@ export default function FAFSATool() {
   const [scratchpad, setScratchpad] = useState('')
   const [aidFlags, setAidFlags] = useState({ business: false, home: false, nonCustodial: false, plan529: false })
   const workerRef = useRef<Worker | null>(null)
+  const [workerError, setWorkerError] = useState<string | null>(null)
 
   useEffect(() => {
-    workerRef.current = new Worker(new URL('../workers/extractor.worker.ts', import.meta.url))
+    try {
+      // Preferred: bundler-handled module worker
+      workerRef.current = new Worker(new URL('../workers/extractor.worker.ts', import.meta.url), { type: 'module' })
+    } catch (e) {
+      // If bundler doesn't support worker URL (dev environment like Turbopack), surface helpful error
+      console.error('Worker instantiation failed', e)
+      // avoid calling setState synchronously inside effect body
+      setTimeout(() => setWorkerError('Unable to start background extractor worker. Try restarting the dev server.'), 0)
+      workerRef.current = null
+    }
     return () => workerRef.current?.terminate()
   }, [])
 
@@ -102,11 +112,12 @@ export default function FAFSATool() {
     setDocs((prev) => [...prev, ...newDocs])
   }, [safeId])
 
-  async function analyzeWithWorker(file: File, docType: DocumentType, onProgress?: (n: number | null) => void): Promise<WorkerResult> {
+  const analyzeWithWorker = useCallback(async (file: File, docType: DocumentType, onProgress?: (n: number | null) => void): Promise<WorkerResult> => {
     const worker = workerRef.current
-    if (!worker) throw new Error('Extractor unavailable; please refresh')
-    return new Promise((resolve, reject) => {
-      const handleMessage = (event: MessageEvent) => {
+    if (!worker) throw new Error(workerError ?? 'Extractor unavailable; please restart the dev server')
+    let handleMessage: (event: MessageEvent) => void
+    const promise = new Promise<WorkerResult>((resolve, reject) => {
+      handleMessage = (event: MessageEvent) => {
         const data = event.data as
           | { type: 'progress'; value?: number | null }
           | { type: 'complete'; result: WorkerResult }
@@ -114,17 +125,17 @@ export default function FAFSATool() {
         if (data.type === 'progress') {
           onProgress?.(data.value ?? null)
         } else if (data.type === 'complete') {
-          worker.removeEventListener('message', handleMessage)
           resolve(data.result)
         } else if (data.type === 'error') {
-          worker.removeEventListener('message', handleMessage)
           reject(new Error(data.error))
         }
       }
       worker.addEventListener('message', handleMessage)
       worker.postMessage({ file, docType })
     })
-  }
+    const cleanup = () => worker.removeEventListener('message', handleMessage)
+    return promise.finally(cleanup)
+  }, [workerError])
 
   const onDrop = useCallback((e: React.DragEvent<HTMLLabelElement>) => { e.preventDefault(); setIsDragging(false); if (e.dataTransfer.files?.length) void handleFiles(e.dataTransfer.files) }, [handleFiles])
   const onDragOver = useCallback((e: React.DragEvent<HTMLLabelElement>) => { e.preventDefault(); if (!isDragging) setIsDragging(true) }, [isDragging])
@@ -138,17 +149,14 @@ export default function FAFSATool() {
     if (!target?.file) return updateDoc(id, { analysisState: 'error', analysisError: 'File missing' })
     updateDoc(id, { analysisState: 'analyzing', analysisError: undefined, analysisProgress: 0 })
     try {
-      const { fields, text } = await runWithTimeout<WorkerResult>(
-        analyzeWithWorker(target.file, target.type, (p) => updateDoc(id, { analysisProgress: p })),
-        ANALYSIS_TIMEOUT_MS,
-      )
+      const { fields, text } = await analyzeWithWorker(target.file, target.type, (p) => updateDoc(id, { analysisProgress: p }))
       const merged = mergeExtractions(fields)
       updateDoc(id, { analysisState: 'done', extractedFields: merged, analysisProgress: null, status: 'ready', rawText: text })
     } catch (err) {
-      const message = err instanceof TimeoutError ? 'Scanning timed out' : err instanceof Error ? err.message : 'Unable to analyze file'
+      const message = err instanceof Error ? err.message : 'Unable to analyze file'
       updateDoc(id, { analysisState: 'error', analysisError: message, analysisProgress: null })
     }
-  }, [docs, updateDoc])
+  }, [docs, updateDoc, analyzeWithWorker])
 
   const pendingCount = useMemo(() => docs.filter((d) => d.status === 'pending').length, [docs])
 
@@ -571,17 +579,6 @@ function clampConfidence(value: number) {
   if (value < 0) return 0
   if (value > 1) return 1
   return Number(value.toFixed(2))
-}
-
-// AI extractor can take longer on large PDFs; keep client timeout close to the server limit.
-const ANALYSIS_TIMEOUT_MS = 55_000
-
-class TimeoutError extends Error { constructor(message = 'Analysis timed out') { super(message); this.name = 'TimeoutError' } }
-
-function runWithTimeout<T>(promise: Promise<T>, timeoutMs: number): Promise<T> {
-  let timeoutId: ReturnType<typeof setTimeout>
-  const timeoutPromise = new Promise<never>((_, reject) => { timeoutId = setTimeout(() => reject(new TimeoutError()), timeoutMs) })
-  return Promise.race([promise.finally(() => clearTimeout(timeoutId)), timeoutPromise])
 }
 
 function formatProgress(progress: number | null) { if (progress == null) return ''; return `${Math.round((progress ?? 0) * 100)}%` }
