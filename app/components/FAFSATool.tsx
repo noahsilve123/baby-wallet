@@ -1,9 +1,8 @@
 "use client"
 
-import { useCallback, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { AlertCircle, BadgeCheck, Loader2, Sparkles, Trash2, UploadCloud } from 'lucide-react'
-import { sendToExtractor, type ExtractorField } from '../lib/extractorClient'
-import { documentTypeOptions, extractFieldsFromText, type DocumentType, type ExtractedField } from '../lib/extractionRules'
+import { documentTypeOptions, type DocumentType, type ExtractedField } from '../lib/extractionRules'
 
 type AnalysisState = 'idle' | 'analyzing' | 'done' | 'error'
 type FieldCategory = 'Federal Aid' | 'CSS Profile' | 'Other'
@@ -32,6 +31,8 @@ type UploadedDoc = {
   rawText: string | null
 }
 
+type WorkerResult = { text: string; fields: ExtractedField[] }
+
 function formatBytes(size: number) {
   if (!Number.isFinite(size)) return '—'
   if (size < 1024) return `${size} B`
@@ -47,6 +48,12 @@ export default function FAFSATool() {
   const [filterCategory, setFilterCategory] = useState<FieldCategory | 'All'>('All')
   const [scratchpad, setScratchpad] = useState('')
   const [aidFlags, setAidFlags] = useState({ business: false, home: false, nonCustodial: false, plan529: false })
+  const workerRef = useRef<Worker | null>(null)
+
+  useEffect(() => {
+    workerRef.current = new Worker(new URL('../workers/extractor.worker.ts', import.meta.url))
+    return () => workerRef.current?.terminate()
+  }, [])
 
   const safeId = useCallback((fileName: string) => `${Date.now()}-${fileName}`, [])
 
@@ -95,6 +102,30 @@ export default function FAFSATool() {
     setDocs((prev) => [...prev, ...newDocs])
   }, [safeId])
 
+  async function analyzeWithWorker(file: File, docType: DocumentType, onProgress?: (n: number | null) => void): Promise<WorkerResult> {
+    const worker = workerRef.current
+    if (!worker) throw new Error('Extractor unavailable; please refresh')
+    return new Promise((resolve, reject) => {
+      const handleMessage = (event: MessageEvent) => {
+        const data = event.data as
+          | { type: 'progress'; value?: number | null }
+          | { type: 'complete'; result: WorkerResult }
+          | { type: 'error'; error: string }
+        if (data.type === 'progress') {
+          onProgress?.(data.value ?? null)
+        } else if (data.type === 'complete') {
+          worker.removeEventListener('message', handleMessage)
+          resolve(data.result)
+        } else if (data.type === 'error') {
+          worker.removeEventListener('message', handleMessage)
+          reject(new Error(data.error))
+        }
+      }
+      worker.addEventListener('message', handleMessage)
+      worker.postMessage({ file, docType })
+    })
+  }
+
   const onDrop = useCallback((e: React.DragEvent<HTMLLabelElement>) => { e.preventDefault(); setIsDragging(false); if (e.dataTransfer.files?.length) void handleFiles(e.dataTransfer.files) }, [handleFiles])
   const onDragOver = useCallback((e: React.DragEvent<HTMLLabelElement>) => { e.preventDefault(); if (!isDragging) setIsDragging(true) }, [isDragging])
   const onDragLeave = useCallback((e: React.DragEvent<HTMLLabelElement>) => { e.preventDefault(); setIsDragging(false) }, [])
@@ -102,23 +133,17 @@ export default function FAFSATool() {
   const removeDoc = useCallback((id: string) => setDocs((prev) => prev.filter((d) => d.id !== id)), [])
   const updateDocType = useCallback((id: string, type: DocumentType) => updateDoc(id, { type }), [updateDoc])
 
-  async function extractDocumentData(file: File, docType: DocumentType, onProgress?: (n: number | null) => void) {
-    const response = await sendToExtractor(file, (v) => onProgress?.(v), docType)
-    const fallback = extractFieldsFromText(response.text, docType)
-    const fields = mergeExtractions(response.fields, fallback)
-    return { text: response.text, fields }
-  }
-
   const analyzeDocument = useCallback(async (id: string) => {
     const target = docs.find((d) => d.id === id)
     if (!target?.file) return updateDoc(id, { analysisState: 'error', analysisError: 'File missing' })
     updateDoc(id, { analysisState: 'analyzing', analysisError: undefined, analysisProgress: 0 })
     try {
-      const { fields, text } = await runWithTimeout(
-        extractDocumentData(target.file, target.type, (p) => updateDoc(id, { analysisProgress: p })),
+      const { fields, text } = await runWithTimeout<WorkerResult>(
+        analyzeWithWorker(target.file, target.type, (p) => updateDoc(id, { analysisProgress: p })),
         ANALYSIS_TIMEOUT_MS,
       )
-      updateDoc(id, { analysisState: 'done', extractedFields: fields, analysisProgress: null, status: 'ready', rawText: text })
+      const merged = mergeExtractions(fields)
+      updateDoc(id, { analysisState: 'done', extractedFields: merged, analysisProgress: null, status: 'ready', rawText: text })
     } catch (err) {
       const message = err instanceof TimeoutError ? 'Scanning timed out' : err instanceof Error ? err.message : 'Unable to analyze file'
       updateDoc(id, { analysisState: 'error', analysisError: message, analysisProgress: null })
@@ -515,21 +540,17 @@ function inferDocumentType(file: File): DocumentType {
   return 'Other'
 }
 
-function mergeExtractions(serverFields: ExtractorField[], fallbackFields: ExtractedField[]): DocExtraction[] {
+function mergeExtractions(fields: ExtractedField[]): DocExtraction[] {
   const map = new Map<string, DocExtraction>()
-  const combined: Array<{ field: ExtractorField | ExtractedField; origin: 'server' | 'client' }> = [
-    ...serverFields.map((field) => ({ field, origin: 'server' as const })),
-    ...fallbackFields.map((field) => ({ field, origin: 'client' as const })),
-  ]
-  combined.forEach(({ field, origin }, index) => {
+  fields.forEach((field, index) => {
     const key = `${field.questionId}:${field.value}`
     const candidate: DocExtraction = {
-      id: buildExtractionId(field.questionId, origin, index),
+      id: buildExtractionId(field.questionId, 'client', index),
       label: field.label,
       value: field.value,
       questionId: field.questionId,
       confidence: clampConfidence(field.confidence ?? 0.6),
-      source: origin,
+      source: 'client',
       category: categorizeQuestion(field.questionId),
     }
     const existing = map.get(key)
