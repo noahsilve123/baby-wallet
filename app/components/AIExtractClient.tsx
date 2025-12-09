@@ -30,9 +30,9 @@ export default function AIExtractClient() {
         try {
           const arrayBuffer = await file.arrayBuffer()
           const pdfjsLib = await import('pdfjs-dist/legacy/build/pdf')
-          // use local pdf.worker in public for stability
+          // disable worker in browser to avoid worker-message conflicts in certain dev environments
           try {
-            pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdf.worker.mjs'
+            pdfjsLib.GlobalWorkerOptions.disableWorker = true
           } catch (e) {}
           const loadingTask = pdfjsLib.getDocument({ data: arrayBuffer })
           const pdf = await loadingTask.promise
@@ -57,18 +57,8 @@ export default function AIExtractClient() {
       const createWorkerFn = (Tesseract && (Tesseract.createWorker || (Tesseract.default && Tesseract.default.createWorker)))
       let worker: any
       if (typeof createWorkerFn === 'function') {
-        // cast options to any because tesseract types vary between environments
-        worker = createWorkerFn(({
-          logger: (m: any) => {
-            if (m.status === 'recognizing text' && typeof m.progress === 'number') {
-              setProgress(Math.round(m.progress * 100))
-            } else if (m.status && m.progress !== undefined) {
-              // show setup steps briefly
-              const pct = Math.min(20, Math.round((m.progress || 0) * 20))
-              setProgress(pct)
-            }
-          },
-        } as any))
+        // create worker without passing a logger function (avoid posting functions to worker)
+        worker = createWorkerFn(({} as any))
       } else if (Tesseract && typeof Tesseract.recognize === 'function') {
         // fallback: no worker API available, will call recognize directly later
         worker = null
