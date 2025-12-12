@@ -60,3 +60,6 @@ build.log
 
 # playwright
 playwright-report/
+
+# research/reference files
+research.md
