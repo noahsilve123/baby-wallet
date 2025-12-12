@@ -82,7 +82,7 @@ export default function RealInvoiceCalculator() {
         amount: onCampusHousingCost,
       });
     } else if (housing === 'off-campus') {
-      const housingData = HOUSING_DATA.find(h => h.institution.includes(school));
+      const housingData = getHousingData(school);
       if (housingData) {
         const offCampusCost = calculateOffCampusLiability(housingData.avgRent2BR);
         total += offCampusCost;

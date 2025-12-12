@@ -358,7 +358,9 @@ export function getFees(institution: string): number {
 
 // Helper to get housing data
 export function getHousingData(institution: string): HousingData | undefined {
-  return HOUSING_DATA.find(h => h.institution.includes(institution));
+  // Try exact match first, then partial match for multi-campus schools
+  return HOUSING_DATA.find(h => h.institution === institution) || 
+         HOUSING_DATA.find(h => h.institution.split('/').some(i => i.trim() === institution));
 }
 
 // Helper to get ROI data

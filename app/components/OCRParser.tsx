@@ -51,7 +51,7 @@ export default function OCRParser({ onTextExtracted }: OCRParserProps) {
       if (file.type === 'application/pdf') {
         // Use pdfjs to convert first page to image
         const pdfjs = await import('pdfjs-dist');
-        pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
+        pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
 
         const arrayBuffer = await file.arrayBuffer();
         const pdf = await pdfjs.getDocument({ data: arrayBuffer }).promise;
@@ -72,10 +72,9 @@ export default function OCRParser({ onTextExtracted }: OCRParserProps) {
           }).promise;
 
           // CRITICAL: Blur SSN patterns on canvas before OCR
-          const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
-          // Simple blur by setting alpha to 0 for detected patterns
-          // This is a basic implementation - a production version would use
-          // more sophisticated pattern detection and blurring
+          // Note: Pre-OCR blurring requires ML-based detection which is complex
+          // Current implementation: Post-OCR text redaction (line 89)
+          // For production: Consider tesseract custom patterns or pre-processing ML models
           
           imageUrl = canvas.toDataURL();
         } else {
