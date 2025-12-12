@@ -40,3 +40,26 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# temporary files
+tmp_*
+*.tmp
+
+# debug and test artifacts
+ocr-debug.*
+test-output.json
+test-results/
+debug.json
+extracted_fields.json
+sample.pdf
+
+# logs
+*.log
+server.log
+build.log
+
+# playwright
+playwright-report/
+
+# research/reference files
+research.md
